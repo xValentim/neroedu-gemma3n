@@ -57,11 +57,17 @@ async def lifespan(app: FastAPI):
         # Inicia o ollama serve em background
         ollama_process = subprocess.Popen(["ollama", "serve"])
 
-        # Aguarda um tempo para garantir que o Ollama subiu
-        time.sleep(5)
+        time.sleep(3)
         print("Ollama Serve started!")
+        
+        print("Init Langgraph...")        
+        # Inicia langgraph server
+        langgraph_process = subprocess.Popen(["langgraph", "dev"], cwd="./agent")
+        
+        time.sleep(3)
+        print("Langgraph server started!")
     except Exception as e:
-        print(f"Error starting Ollama Serve: {e}")
+        print(f"Error starting Ollama Serve or Langgraph: {e}")
         
     yield
     try:
@@ -69,10 +75,19 @@ async def lifespan(app: FastAPI):
         # Encerra o processo do ollama serve
         ollama_process.terminate()
         ollama_process.wait()
+        
+        print("Ollama Serve terminated!")
+        
+        print("Shutting down Langgraph server...")
+        # Encerra o processo do langgraph
+        langgraph_process.terminate()
+        langgraph_process.wait()
+        
+        print("Langgraph server terminated!")
+        
     except Exception as e:
-        print(f"Error shutting down Ollama Serve: {e}")
-    finally:
-        print("Ollama Serve shutdown!")
+        print(f"Error shutting down Ollama Serve or Langgraph: {e}")
+
 
 # app = FastAPI(dependencies=[Depends(get_query_token)],
 #               lifespan=lifespan)
