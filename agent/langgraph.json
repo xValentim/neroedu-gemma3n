@@ -1,0 +1,14 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "agent": "./src/agent/graph.py:graph",
+    "competencia_1": "./src/agent/competencia_1.py:graph",
+    "competencia_2": "./src/agent/competencia_2.py:graph",
+    "competencia_3": "./src/agent/competencia_3.py:graph",
+    "competencia_4": "./src/agent/competencia_4.py:graph",
+    "competencia_5": "./src/agent/competencia_5.py:graph",
+    "competencia_all": "./src/agent/competencia_all.py:graph"
+  },
+  "env": ".env",
+  "image_distro": "wolfi"
+}

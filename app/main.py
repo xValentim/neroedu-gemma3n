@@ -16,6 +16,15 @@ import time
 
 BASE_URL = "http://localhost:11434"
 
+model_names = [
+    "gemma3n:e2b", # Text, Audio, Image
+    "gemma3n:e4b", # Text, Audio, Image
+    "gemma3:1b", # 800MB, bom pra testar os endpoints
+    "gemma3:4b", # Text, Image
+    "gemma3:12b",
+    "gemma3:27b"
+]
+
 def get_models_info():
     response = requests.get(f"{BASE_URL}/api/tags")
     if response.status_code == 200:
@@ -100,6 +109,21 @@ async def root():
 @app.get("/list-models")
 async def list_models():
     return get_models_info()
+
+@app.post("/check-model/{model_name}")
+async def check_model(model_name: str):
+    my_local_models = get_models_info()
+    list_model_name = [x['model'] for x in my_local_models['models']]
+    if model_name in list_model_name:
+        return {
+            "model": model_name,
+            "available": True,
+            
+        }
+    return {
+        "model": model_name,
+        "available": False,
+    }
 
 @app.delete("/delete-model/{model_name}")
 async def delete_model_endpoint(model_name: str):

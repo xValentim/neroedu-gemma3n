@@ -1,10 +1,11 @@
+langgraph-cli
+langgraph
 faiss-cpu
 langchain-core
 langchain
 langchain-community
 langchain-openai
 langchain-ollama
-langgraph
 streamlit
 python-dotenv
 pypdf
