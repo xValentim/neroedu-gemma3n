@@ -1,4 +1,6 @@
 from fastapi import Depends, FastAPI
+from fastapi.responses import StreamingResponse
+
 import subprocess
 import requests
 
@@ -20,6 +22,20 @@ def get_models_info():
         return response.json()
     else:
         return {"error": "Failed to fetch models info"}
+    
+def delete_model(model_name):
+    url = f"{BASE_URL}/api/delete"
+    payload = {"model": model_name}
+    response = requests.delete(url, json=payload)
+    
+    if response.status_code == 200:
+        return {"message": f"Model '{model_name}' deleted successfully"}
+    else:
+        return {
+            "error": f"Failed to delete model '{model_name}'",
+            "status_code": response.status_code,
+            "response": response.text
+        }
 
 def debug():
     print("Debugging...")
@@ -84,3 +100,22 @@ async def root():
 @app.get("/list-models")
 async def list_models():
     return get_models_info()
+
+@app.delete("/delete-model/{model_name}")
+async def delete_model_endpoint(model_name: str):
+    return delete_model(model_name)
+
+@app.post("/pull-model/{model_name}")
+async def pull_model(model_name: str):
+    def stream_model_pull():
+        url = f"{BASE_URL}/api/pull"
+        payload = {"model": model_name}
+        headers = {"Content-Type": "application/json"}
+
+        with requests.post(url, json=payload, headers=headers, stream=True) as r:
+            for line in r.iter_lines():
+                if line:
+                    # Retorna cada linha do JSON como texto
+                    yield line.decode("utf-8") + "\n"
+
+    return StreamingResponse(stream_model_pull(), media_type="text/plain")
