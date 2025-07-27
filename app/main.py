@@ -62,7 +62,7 @@ async def lifespan(app: FastAPI):
         
         print("Init Langgraph...")        
         # Inicia langgraph server
-        langgraph_process = subprocess.Popen(["langgraph", "dev"], cwd="./agent")
+        langgraph_process = subprocess.Popen(["langgraph", "dev", "--no-browser"], cwd="./agent")
         
         time.sleep(3)
         print("Langgraph server started!")

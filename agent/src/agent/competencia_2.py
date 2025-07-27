@@ -59,6 +59,36 @@ async def call_model_competencia_2(state: State, config: RunnableConfig) -> Dict
     🔎 A Competência 2 avalia se o candidato compreendeu o tema proposto, respeitou o gênero dissertativo-argumentativo e usou repertório sociocultural produtivo. A redação deve tratar diretamente do tema e desenvolver argumentos relevantes, com base em conhecimentos das diversas áreas.
 
     Dê uma nota de 0 a 200 para essa competência e explique o motivo com base nesses critérios. No final, dê um feedback construtivo com sugestão clara de melhoria.
+    
+    ## Padrão de resposta
+    
+    Sua resposta deve ser estruturada da seguinte forma:
+    ```json
+    {{
+        "nota": 180,
+        "feedback": "A proposta de intervenção apresentada é clara e viável, abordando o problema de forma eficaz. No entanto, poderia ser mais detalhada em relação aos meios de execução.",
+        "justificativa": "A redação atende aos critérios da Competência 5, apresentando uma proposta de intervenção que inclui todos os elementos necessários. A nota foi reduzida devido à falta de detalhes sobre os meios de execução da proposta."
+    }}
+    ```
+    
+    ## Exemplo de resposta esperada:
+    
+    ```json
+    {{
+        "nota": 150,
+        "feedback": "A proposta de intervenção é boa, mas falta detalhamento em alguns pontos. Sugiro incluir mais informações sobre como a proposta será executada.",
+        "justificativa": "A redação apresenta uma proposta de intervenção que atende aos critérios da Competência 5, mas poderia ser mais detalhada em relação aos meios de execução."
+    }}
+    ```
+    
+    ## Exemplo de resposta esperada:
+    ```json
+    {{
+        "nota": 200,
+        "feedback": "Excelente proposta de intervenção! Todos os elementos estão presentes e bem detalhados.",
+        "justificativa": "A redação atende a todos os critérios da Competência 5, apresentando uma proposta de intervenção clara, viável e detalhada."
+    }}
+    ```
     """
 
     prompt = ChatPromptTemplate.from_messages(
