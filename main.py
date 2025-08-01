@@ -11,6 +11,7 @@ from langchain_ollama.llms import OllamaLLM
 from langchain_ollama.chat_models import ChatOllama
 
 from pydantic import BaseModel
+import random
 
 class InputData(BaseModel):
     essay: str = example_essay
@@ -124,7 +125,7 @@ async def call_simulado(input_simulado: InputSimulado):
                 "C": "string",
                 "D": "string",
                 "E": "string",
-                "correct_answer": "A|B|C|   D|E",
+                "correct_answer": "A|B|C|D|E",
                 "explanation": "string"
                 }},
                 ...
@@ -146,6 +147,47 @@ async def call_simulado(input_simulado: InputSimulado):
 
     response = await chain_simulado.ainvoke({"tema": tema})
     return response
+
+
+@app.post("/call-simulado-questao")
+async def call_simulado(input_simulado: InputSimulado):
+    tema = input_simulado.tema
+    model_name = input_simulado.model_name
+    template = [
+        ('system', """Você irá gerar questões para compor um simulado do ENEM."""),
+        ('system', "Não crie questões unicamente objetivas, como 'O que é?', 'Quem foi?', crie questões que exijam raciocínio."),
+        ('system', """Siga a estrutura:
+            {{
+                "question": "string",
+                "A": "string",
+                "B": "string",
+                "C": "string",
+                "D": "string",
+                "E": "string",
+                "correct_answer": "A|B|C|D|E",
+                "explanation": "string"
+                }}
+        """),
+        ('system', """Gere a questão sobre o tema: {tema}\n"""),
+
+    ]
+
+    prompt = ChatPromptTemplate.from_messages(template)
+
+    # Sortear um inteiro de 0 a 1000 para o seed e um float de 0 a 1 para a temperatura
+    seed = random.randint(0, 1000)
+    temperature = round(random.uniform(0, 1), 2)
+    llm = ChatOllama(model=model_name, temperature=temperature, seed=seed)
+
+    chain_simulado = (
+        prompt
+        | llm
+        | StrOutputParser()
+    )
+
+    response = await chain_simulado.ainvoke({"tema": tema})
+    return {"response": response, "temperature": temperature, "seed": seed}
+
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
