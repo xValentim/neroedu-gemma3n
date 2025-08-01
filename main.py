@@ -11,9 +11,15 @@ from langchain_ollama.llms import OllamaLLM
 from langchain_ollama.chat_models import ChatOllama
 
 from pydantic import BaseModel
+import random
 
 class InputDataEssayEnem(BaseModel):
     essay: str = example_essay
+    model_name: str = "gemma3n:e2b"
+    
+    
+class InputSimulado(BaseModel):
+    tema: str
     model_name: str = "gemma3n:e2b"
     competencia: int = 1
 
@@ -110,5 +116,96 @@ async def call_model_competencia(input_data: InputDataEssayEnem):
 
     return OutputDataEssayEnem(**output)
 
+
+@app.post("/call-simulado")
+async def call_simulado(input_simulado: InputSimulado):
+    tema = input_simulado.tema
+    model_name = input_simulado.model_name
+    template = [
+        ('system', """Você irá gerar questões para compor um simulado do ENEM."""),
+        ('system', "Não crie questões unicamente objetivas, como 'O que é?', 'Quem foi?', contextualize breventemente o tema e crie questões que exijam raciocínio."),
+        ('system', """Siga a estrutura:
+            [
+                {{
+                "question": "string",
+                "A": "string",
+                "B": "string",
+                "C": "string",
+                "D": "string",
+                "E": "string",
+                "correct_answer": "A|B|C|D|E",
+                "explanation": "string"
+                }},
+                {{
+                "question": "string",
+                "A": "string",
+                "B": "string",
+                "C": "string",
+                "D": "string",
+                "E": "string",
+                "correct_answer": "A|B|C|D|E",
+                "explanation": "string"
+                }},
+                ...
+            ]
+        """),
+        ('system', "Gere 5 questões sobre o tema: {tema}"),
+    ]
+
+    prompt = ChatPromptTemplate.from_messages(template)
+
+    llm = ChatOllama(model=model_name,
+                     temperature=0.0)
+
+    chain_simulado = (
+        prompt
+        | llm
+        | StrOutputParser()
+    )
+
+    response = await chain_simulado.ainvoke({"tema": tema})
+    return response
+
+
+@app.post("/call-simulado-questao")
+async def call_simulado(input_simulado: InputSimulado):
+    tema = input_simulado.tema
+    model_name = input_simulado.model_name
+    template = [
+        ('system', """Você irá gerar questões para compor um simulado do ENEM."""),
+        ('system', "Não crie questões unicamente objetivas, como 'O que é?', 'Quem foi?', crie questões que exijam raciocínio."),
+        ('system', """Siga a estrutura:
+            {{
+                "question": "string",
+                "A": "string",
+                "B": "string",
+                "C": "string",
+                "D": "string",
+                "E": "string",
+                "correct_answer": "A|B|C|D|E",
+                "explanation": "string"
+                }}
+        """),
+        ('system', """Gere a questão sobre o tema: {tema}\n"""),
+
+    ]
+
+    prompt = ChatPromptTemplate.from_messages(template)
+
+    # Sortear um inteiro de 0 a 1000 para o seed e um float de 0 a 1 para a temperatura
+    seed = random.randint(0, 1000)
+    temperature = round(random.uniform(0, 1), 2)
+    llm = ChatOllama(model=model_name, temperature=temperature, seed=seed)
+
+    chain_simulado = (
+        prompt
+        | llm
+        | StrOutputParser()
+    )
+
+    response = await chain_simulado.ainvoke({"tema": tema})
+    return {"response": response, "temperature": temperature, "seed": seed}
+
+
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
