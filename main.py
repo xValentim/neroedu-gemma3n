@@ -1,9 +1,9 @@
 # main.py
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import requests
 import uvicorn
-from src.utils import get_models_info, delete_model, example_essay, prompt_competencia_1
+from src.utils import get_models_info, delete_model, example_essay, prompt_competencia_1, prompt_competencia_2, prompt_competencia_3, prompt_competencia_4, prompt_competencia_5
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -13,7 +13,7 @@ from langchain_ollama.chat_models import ChatOllama
 from pydantic import BaseModel
 import random
 
-class InputData(BaseModel):
+class InputDataEssayEnem(BaseModel):
     essay: str = example_essay
     model_name: str = "gemma3n:e2b"
     
@@ -21,6 +21,13 @@ class InputData(BaseModel):
 class InputSimulado(BaseModel):
     tema: str
     model_name: str = "gemma3n:e2b"
+    competencia: int = 1
+
+class OutputDataEssayEnem(BaseModel):
+    response: str
+    model: str
+    competencia: int
+
 
 app = FastAPI()
 
@@ -74,16 +81,23 @@ async def check_model(model_name: str):
 async def delete_model_endpoint(model_name: str):
     return delete_model(model_name)
 
-@app.post("/call-model-competencia-1")
-async def call_model_competencia_1(input_data: InputData):
+# Enem
+@app.post("/call-model-competencia")
+async def call_model_competencia(input_data: InputDataEssayEnem):
     essay = input_data.essay
     model_name = input_data.model_name
+    competencia = input_data.competencia
 
     llm = ChatOllama(model=model_name, 
                     temperature=0.0)
                     #  num_gpu=1)
 
-    system_prompt = prompt_competencia_1
+    if competencia not in [1, 2, 3, 4, 5]:
+        raise HTTPException(status_code=400, detail="Competência inválida. Deve ser um número entre 1 e 5.")
+        
+    values = [prompt_competencia_1, prompt_competencia_2, prompt_competencia_3, prompt_competencia_4, prompt_competencia_5]
+
+    system_prompt = values[competencia - 1]
 
     prompt = ChatPromptTemplate.from_messages(
             [
@@ -96,7 +110,11 @@ async def call_model_competencia_1(input_data: InputData):
 
     response = await chain.ainvoke({"essay": essay})
     
-    return {"response": response}
+    output = {"response": response,
+            "model": model_name,
+            "competencia": competencia}
+
+    return OutputDataEssayEnem(**output)
 
 
 @app.post("/call-simulado")
