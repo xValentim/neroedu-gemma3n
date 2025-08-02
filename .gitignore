@@ -10,3 +10,4 @@ dist/
 Pods/
 old_langgraph/
 CLAUDE.md
+node_modules/
