@@ -8,5 +8,6 @@ build/
 dist/
 *.task
 Pods/
-node_modules/
 old_langgraph/
+CLAUDE.md
+node_modules/
