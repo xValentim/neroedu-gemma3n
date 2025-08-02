@@ -1,6 +1,7 @@
 # main.py
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from typing import List, Optional
 import requests
 import uvicorn
 from src.utils import get_models_info, delete_model, example_essay, prompt_competencia_1, prompt_competencia_2, prompt_competencia_3, prompt_competencia_4, prompt_competencia_5
@@ -22,6 +23,15 @@ class InputSimulado(BaseModel):
     tema: str
     model_name: str = "gemma3n:e2b"
     competencia: int = 1
+
+class InputFlashcard(BaseModel):
+    tema: str
+    flashcards_existentes: Optional[List[str]] = []
+    model_name: str = "gemma3n:e2b"
+
+class InputDataKeyTopics(BaseModel):
+    tema: str
+    model_name: str = "gemma3n:e2b"
 
 class OutputDataEssayEnem(BaseModel):
     response: str
@@ -205,6 +215,96 @@ async def call_simulado(input_simulado: InputSimulado):
 
     response = await chain_simulado.ainvoke({"tema": tema})
     return {"response": response, "temperature": temperature, "seed": seed}
+
+
+@app.post("/call-flashcard")
+async def call_flashcard(input_flashcard: InputFlashcard):
+    tema = input_flashcard.tema
+    model_name = input_flashcard.model_name
+    flashcards_existentes = input_flashcard.flashcards_existentes
+
+    if len(flashcards_existentes) == 0:
+        template = [
+            ('system', """Você irá gerar um flashcard educacional para estudo."""),
+            ('system', """Crie o flashcard no formato pergunta-resposta."""),
+            ('system', """Siga EXATAMENTE esta estrutura JSON:
+                {{
+                    "question": "Pergunta sobre o conceito...",
+                    "answer": "Resposta clara e didática..."
+                }}
+            """),
+            ('system', "Gere um flashcard sobre o tema: {tema}"),
+            ('system', "A pergunta deve testar conhecimento essencial e a resposta deve ser completa."),
+        ]
+    else:
+        template = [
+            ('system', """Você irá gerar um flashcard educacional para estudo."""),
+            ('system', """Crie o flashcard no formato pergunta-resposta."""),
+            ('system', """Siga EXATAMENTE esta estrutura JSON:
+                {{
+                    "question": "Pergunta sobre o conceito...",
+                    "answer": "Resposta clara e didática..."
+                }}
+            """),
+            ('system', "Gere um flashcard sobre o tema: {tema}"),
+            ('system', "Considere que já existe um (ou mais) flashcard(s) com essa(s) pergunta(s): {flashcards_existentes}. Não repita perguntas já existentes."),
+            ('system', "A pergunta deve testar conhecimento essencial e a resposta deve ser completa."),
+        ]
+
+    prompt = ChatPromptTemplate.from_messages(template)
+
+    # Aleatoriedade para o seed e temperatura
+    seed = random.randint(0, 1000)
+    temperature = round(random.uniform(0, 1), 2)
+    llm = ChatOllama(model=model_name, temperature=temperature, seed=seed)
+
+    chain_flashcard = (
+        prompt
+        | llm
+        | StrOutputParser()
+    )
+
+    response = await chain_flashcard.ainvoke({"tema": tema, "flashcards_existentes": flashcards_existentes})
+    return response
+
+
+@app.post("/call-key-topics")
+async def call_key_topics(input_data_key_topics: InputDataKeyTopics):
+    tema = input_data_key_topics.tema
+    model_name = input_data_key_topics.model_name
+    
+    template = [
+        ('system', """Você irá gerar tópicos-chave sobre um tema educacional."""),
+        ('system', """Crie uma explicação geral do tema e liste 3 pontos-chave mais importantes."""),
+        ('system', """Siga EXATAMENTE esta estrutura JSON:
+            {{
+                "explanation": "Uma explicação abrangente e didática do tema...",
+                "key_topics": [
+                    "Primeiro ponto-chave mais importante...",
+                    "Segundo ponto-chave mais importante...",
+                    "Terceiro ponto-chave mais importante..."
+                ]
+            }}
+        """),
+        ('system', "Analise o tema: {tema}"),
+        ('system', "A explicação geral deve ser completa mas acessível, e os 3 tópicos-chave devem cobrir os aspectos mais fundamentais."),
+    ]
+
+    prompt = ChatPromptTemplate.from_messages(template)
+
+    # Aleatoriedade para temperatura e seed
+    seed = random.randint(0, 1000)
+    temperature = round(random.uniform(0, 1), 2)
+    llm = ChatOllama(model=model_name, temperature=temperature, seed=seed)
+
+    chain_key_topics = (
+        prompt
+        | llm
+        | StrOutputParser()
+    )
+
+    response = await chain_key_topics.ainvoke({"tema": tema})
+    return response
 
 
 if __name__ == "__main__":
