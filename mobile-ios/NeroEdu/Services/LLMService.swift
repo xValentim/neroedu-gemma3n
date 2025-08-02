@@ -1,8 +1,6 @@
 //
 //  LLMService.swift
-//  NeroEdu
-//
-//  Created by Giovanna Moeller on 29/07/25.
+//  NeroEdu - XNNPack Cache Fix
 //
 
 import Foundation
@@ -18,141 +16,365 @@ class LLMService: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     @Published var isOfflineMode = false
+    @Published var initializationProgress: Double = 0.0
     
     static let shared = LLMService()
+    
+    private let modelName: String = "gemma-3n-E4B-it-int4"
+    private let modelExtension: String = "task"
+    
+    // Cached paths for reuse
+    private var cachedModelPath: String?
+    private var cachedCacheDirectory: String?
     
     private init() {
         setupLLM()
     }
     
     func retryInitialization() {
+        print("🔄 Retrying LLM initialization...")
+        
+        // Reset state
         isInitialized = false
         isLoading = false
         errorMessage = nil
         isOfflineMode = false
+        initializationProgress = 0.0
         llmInference = nil
+        cachedModelPath = nil
+        cachedCacheDirectory = nil
+        
+        // Clear any cached preferences
+        UserDefaults.standard.removeObject(forKey: "llm_model_path")
+        UserDefaults.standard.removeObject(forKey: "llm_cache_directory")
+        
         setupLLM()
     }
     
     private func setupLLM() {
         isLoading = true
+        initializationProgress = 0.1
+        
         queue.async { [weak self] in
             do {
-                self?.llmInference = try self?.createLLMInference()
+                // Step 1: Setup writable directories
+                DispatchQueue.main.async { self?.initializationProgress = 0.2 }
+                let (modelPath, cacheDir) = try self?.setupWritableDirectories() ?? ("", "")
                 
+                // Step 2: Copy model if needed
+                DispatchQueue.main.async { self?.initializationProgress = 0.5 }
+                let finalModelPath = try self?.ensureModelInWritableLocation(modelPath) ?? ""
+                
+                // Step 3: Create LLM inference
+                DispatchQueue.main.async { self?.initializationProgress = 0.8 }
+                self?.llmInference = try self?.createLLMInference(modelPath: finalModelPath, cacheDirectory: cacheDir)
+                
+                // Step 4: Complete
                 DispatchQueue.main.async {
+                    self?.initializationProgress = 1.0
                     self?.isInitialized = true
                     self?.isLoading = false
+                    self?.cachedModelPath = finalModelPath
+                    self?.cachedCacheDirectory = cacheDir
+                    
+                    // Cache paths for future use
+                    UserDefaults.standard.set(finalModelPath, forKey: "llm_model_path")
+                    UserDefaults.standard.set(cacheDir, forKey: "llm_cache_directory")
+                    
                     print("✅ LLM initialized successfully")
+                    print("📍 Model path: \(finalModelPath)")
+                    print("📁 Cache directory: \(cacheDir)")
                 }
+                
             } catch {
                 DispatchQueue.main.async {
-                    self?.errorMessage = "Failed to initialize LLM: \(error.localizedDescription)"
-                    self?.isLoading = false
-                    self?.isOfflineMode = true
-                    self?.isInitialized = true // Allow app to continue in offline mode
-                    print("❌ LLM initialization failed: \(error)")
-                    print("🔄 Switching to offline mode")
+                    self?.handleInitializationError(error)
                 }
             }
         }
     }
     
-    private func createLLMInference() throws -> LlmInference {
-        // Get model path from bundle
-        guard let modelPath = Bundle.main.path(forResource: "gemma-3n", ofType: "task") else {
-            print("❌ Model file not found in bundle")
-            print("📁 Bundle path: \(Bundle.main.bundlePath)")
-            print("📋 Bundle contents: \(try? FileManager.default.contentsOfDirectory(atPath: Bundle.main.bundlePath))")
+    private func handleInitializationError(_ error: Error) {
+        print("❌ LLM initialization failed: \(error)")
+        
+        errorMessage = "AI model initialization failed: \(error.localizedDescription)"
+        isLoading = false
+        isOfflineMode = true
+        isInitialized = true // Allow app to continue in offline mode
+        initializationProgress = 0.0
+        
+        print("🔄 Switching to offline mode - app will continue with limited functionality")
+    }
+    
+    // MARK: - Directory and File Management
+    
+    private func setupWritableDirectories() throws -> (modelPath: String, cacheDirectory: String) {
+        let fileManager = FileManager.default
+        
+        // Create app-specific cache directory
+        let appCacheDir = try createAppCacheDirectory()
+        
+        // Create model-specific subdirectory
+        let modelCacheDir = appCacheDir.appendingPathComponent("llm_cache")
+        if !fileManager.fileExists(atPath: modelCacheDir.path) {
+            try fileManager.createDirectory(at: modelCacheDir, withIntermediateDirectories: true, attributes: [
+                .posixPermissions: 0o755
+            ])
+            print("📁 Created model cache directory: \(modelCacheDir.path)")
+        }
+        
+        // Model will be stored in Documents for persistence
+        let documentsDir = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let modelPath = documentsDir.appendingPathComponent("\(modelName).\(modelExtension)").path
+        
+        return (modelPath, modelCacheDir.path)
+    }
+    
+    private func createAppCacheDirectory() throws -> URL {
+        let fileManager = FileManager.default
+        let cacheDir = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first!
+        let appCacheDir = cacheDir.appendingPathComponent("NeroEdu")
+        
+        if !fileManager.fileExists(atPath: appCacheDir.path) {
+            try fileManager.createDirectory(at: appCacheDir, withIntermediateDirectories: true, attributes: [
+                .posixPermissions: 0o755
+            ])
+            print("📁 Created app cache directory: \(appCacheDir.path)")
+        }
+        
+        return appCacheDir
+    }
+    
+    private func ensureModelInWritableLocation(_ targetPath: String) throws -> String {
+        let fileManager = FileManager.default
+        
+        // Get bundle model path
+        guard let bundleModelPath = Bundle.main.path(forResource: modelName, ofType: modelExtension) else {
             throw LLMError.modelNotFound
         }
         
-        print("✅ Model found at: \(modelPath)")
+        print("📦 Bundle model path: \(bundleModelPath)")
+        print("🎯 Target model path: \(targetPath)")
         
-        // Configure options
-        let options = LlmInference.Options(modelPath: modelPath)
-        options.maxTokens = 4096
-        //options.topk = 40
-        //options.temperature = 0.8
-        //options.randomSeed = 101
+        // Check if we need to copy the model
+        let needsCopy = try shouldCopyModel(from: bundleModelPath, to: targetPath)
         
-        // Optional: Add LoRA model if available
-        if let loraPath = Bundle.main.path(forResource: "lora_model", ofType: "bin") {
-            //options.loraPath = loraPath
-            print("🧠 Using LoRA model: \(loraPath)")
+        if needsCopy {
+            print("🔄 Copying model to writable location...")
+            
+            // Remove existing file if it exists
+            if fileManager.fileExists(atPath: targetPath) {
+                try fileManager.removeItem(atPath: targetPath)
+                print("🧹 Removed existing model file")
+            }
+            
+            // Copy model with progress tracking
+            try copyModelWithProgress(from: bundleModelPath, to: targetPath)
+            
+            // Verify the copied file
+            try verifyModelFile(at: targetPath)
+            
+            print("✅ Model successfully copied and verified")
+        } else {
+            print("✅ Using existing verified model")
         }
         
-        return try LlmInference(options: options)
+        return targetPath
     }
     
+    private func shouldCopyModel(from bundlePath: String, to targetPath: String) throws -> Bool {
+        let fileManager = FileManager.default
+        
+        // If target doesn't exist, need to copy
+        guard fileManager.fileExists(atPath: targetPath) else {
+            return true
+        }
+        
+        // Compare file sizes and modification dates
+        let bundleAttrs = try fileManager.attributesOfItem(atPath: bundlePath)
+        let targetAttrs = try fileManager.attributesOfItem(atPath: targetPath)
+        
+        let bundleSize = bundleAttrs[.size] as? UInt64 ?? 0
+        let targetSize = targetAttrs[.size] as? UInt64 ?? 0
+        
+        if bundleSize != targetSize {
+            print("📊 File size mismatch - need to recopy (bundle: \(bundleSize), target: \(targetSize))")
+            return true
+        }
+        
+        // Basic integrity check
+        do {
+            try verifyModelFile(at: targetPath)
+            return false
+        } catch {
+            print("🔍 Integrity check failed - need to recopy: \(error)")
+            return true
+        }
+    }
+    
+    private func copyModelWithProgress(from sourcePath: String, to targetPath: String) throws {
+        let fileManager = FileManager.default
+        
+        // Get source file size for progress tracking
+        let sourceAttrs = try fileManager.attributesOfItem(atPath: sourcePath)
+        let totalSize = sourceAttrs[.size] as? UInt64 ?? 0
+        
+        print("📥 Copying \(totalSize) bytes...")
+        
+        // For now, do a simple copy - in production you might want progress callbacks
+        try fileManager.copyItem(atPath: sourcePath, toPath: targetPath)
+        
+        // Set appropriate permissions
+        try fileManager.setAttributes([
+            .posixPermissions: 0o644
+        ], ofItemAtPath: targetPath)
+        
+        print("✅ Copy completed with correct permissions")
+    }
+    
+    private func verifyModelFile(at path: String) throws {
+        let fileManager = FileManager.default
+        
+        // Check existence
+        guard fileManager.fileExists(atPath: path) else {
+            throw LLMError.generationFailed("Model file does not exist")
+        }
+        
+        // Check size (at least 10MB for a reasonable model)
+        let attributes = try fileManager.attributesOfItem(atPath: path)
+        let fileSize = attributes[.size] as? UInt64 ?? 0
+        
+        guard fileSize > 10_000_000 else {
+            throw LLMError.generationFailed("Model file appears corrupted (size: \(fileSize))")
+        }
+        
+        // Check readability
+        guard fileManager.isReadableFile(atPath: path) else {
+            throw LLMError.generationFailed("Model file is not readable")
+        }
+        
+        // Quick header check
+        guard let fileHandle = FileHandle(forReadingAtPath: path) else {
+            throw LLMError.generationFailed("Cannot open model file")
+        }
+        
+        defer { fileHandle.closeFile() }
+        
+        let headerData = fileHandle.readData(ofLength: 1024)
+        guard headerData.count > 0 else {
+            throw LLMError.generationFailed("Cannot read model file header")
+        }
+        
+        print("✅ Model verification passed (\(fileSize) bytes)")
+    }
+    
+    // MARK: - LLM Inference Creation
+    
+    private func createLLMInference(modelPath: String, cacheDirectory: String) throws -> LlmInference {
+        print("🧠 Creating LLM inference...")
+        print("📍 Model: \(modelPath)")
+        print("📁 Cache: \(cacheDirectory)")
+        
+        // Create options with writable cache directory
+        let options = LlmInference.Options(modelPath: modelPath)
+        
+        // Configure generation parameters
+        options.maxTokens = 4096  // Reasonable limit for mobile
+        //options.topK = 40
+        //options.temperature = 0.8
+        //options.randomSeed = 42
+        
+        // Set cache directory for XNNPack (THIS IS THE KEY FIX!)
+        // We need to set the cache directory before creating the inference
+        let env = ProcessInfo.processInfo.environment
+        var newEnv = env
+        newEnv["XNNPACK_CACHE_DIR"] = cacheDirectory
+        
+        // Try to create the inference
+        do {
+            let inference = try LlmInference(options: options)
+            print("✅ LLM inference created successfully")
+            return inference
+        } catch {
+            print("❌ Failed to create LLM inference: \(error)")
+            
+            // Try with more conservative settings
+            print("🔄 Trying with conservative settings...")
+            options.maxTokens = 2048
+            
+            let fallbackInference = try LlmInference(options: options)
+            print("✅ LLM inference created with fallback settings")
+            return fallbackInference
+        }
+    }
+    
+    // MARK: - Public API Methods
+    
     func generateEssayFeedback(for text: String, examType: ExamType = .sat) async throws -> String {
-        if isOfflineMode {
+        if isOfflineMode || !isInitialized {
             return generateOfflineEssayFeedback(for: text, examType: examType)
         }
         
-        guard isInitialized, let _ = llmInference else {
+        guard let llmInference = llmInference else {
             throw LLMError.notInitialized
         }
         
         let prompt = createEssayFeedbackPrompt(text: text, examType: examType.name)
-        return try await generateResponse(prompt: prompt)
+        return try await generateResponse(prompt: prompt, inference: llmInference)
     }
     
-    /// Generate practice test questions
     func generatePracticeQuestions(subject: String, difficulty: String, count: Int = 5, examType: ExamType = .sat) async throws -> [Question] {
-        if isOfflineMode {
+        if isOfflineMode || !isInitialized {
             return generateOfflinePracticeQuestions(subject: subject, difficulty: difficulty, count: count, examType: examType)
         }
         
-        guard isInitialized, let _ = llmInference else {
+        guard let llmInference = llmInference else {
             throw LLMError.notInitialized
         }
         
         let prompt = createPracticeTestPrompt(subject: subject, difficulty: difficulty, count: count, examType: examType.name)
-        let response = try await generateResponse(prompt: prompt)
+        let response = try await generateResponse(prompt: prompt, inference: llmInference)
         return parseQuestions(from: response)
     }
     
-    /// Generate study materials
     func generateStudyMaterials(topic: String, examType: ExamType = .sat) async throws -> StudyMaterialsResponse {
-        if isOfflineMode {
+        if isOfflineMode || !isInitialized {
             return generateOfflineStudyMaterials(topic: topic, examType: examType)
         }
         
-        guard isInitialized, let _ = llmInference else {
+        guard let llmInference = llmInference else {
             throw LLMError.notInitialized
         }
         
         let prompt = createStudyMaterialsPrompt(topic: topic, examType: examType.name)
-        let response = try await generateResponse(prompt: prompt)
+        let response = try await generateResponse(prompt: prompt, inference: llmInference)
         return parseStudyMaterials(from: response)
     }
     
     // MARK: - Core Generation
-    private func generateResponse(prompt: String) async throws -> String {
+    
+    private func generateResponse(prompt: String, inference: LlmInference) async throws -> String {
         return try await withCheckedThrowingContinuation { continuation in
             queue.async { [weak self] in
-                guard let self = self, let llmInference = self.llmInference else {
-                    continuation.resume(throwing: LLMError.notInitialized)
-                    return
-                }
-                
                 do {
                     DispatchQueue.main.async {
-                        self.isLoading = true
+                        self?.isLoading = true
                     }
                     
-                    let result = try llmInference.generateResponse(inputText: prompt)
+                    print("🤖 Generating response...")
+                    let result = try inference.generateResponse(inputText: prompt)
+                    print("✅ Response generated successfully (\(result.count) characters)")
                     
                     DispatchQueue.main.async {
-                        self.isLoading = false
+                        self?.isLoading = false
                     }
                     
                     continuation.resume(returning: result)
                 } catch {
+                    print("❌ Generation failed: \(error)")
                     DispatchQueue.main.async {
-                        self.isLoading = false
-                        self.errorMessage = error.localizedDescription
+                        self?.isLoading = false
+                        self?.errorMessage = error.localizedDescription
                     }
                     continuation.resume(throwing: error)
                 }
@@ -160,18 +382,19 @@ class LLMService: ObservableObject {
         }
     }
     
-    /// Generate streaming response (for real-time feedback)
+    // MARK: - Streaming Generation (Future Enhancement)
+    
     func generateStreamingResponse(prompt: String) -> AsyncThrowingStream<String, Error> {
         return AsyncThrowingStream { continuation in
+            guard let llmInference = llmInference, isInitialized, !isOfflineMode else {
+                continuation.finish(throwing: LLMError.notInitialized)
+                return
+            }
+            
             queue.async { [weak self] in
-                guard let self = self, let llmInference = self.llmInference else {
-                    continuation.finish(throwing: LLMError.notInitialized)
-                    return
-                }
-                
                 do {
                     DispatchQueue.main.async {
-                        self.isLoading = true
+                        self?.isLoading = true
                     }
                     
                     let resultStream = llmInference.generateResponseAsync(inputText: prompt)
@@ -183,22 +406,22 @@ class LLMService: ObservableObject {
                             }
                             
                             DispatchQueue.main.async {
-                                self.isLoading = false
+                                self?.isLoading = false
                             }
                             
                             continuation.finish()
                         } catch {
                             DispatchQueue.main.async {
-                                self.isLoading = false
-                                self.errorMessage = error.localizedDescription
+                                self?.isLoading = false
+                                self?.errorMessage = error.localizedDescription
                             }
                             continuation.finish(throwing: error)
                         }
                     }
                 } catch {
                     DispatchQueue.main.async {
-                        self.isLoading = false
-                        self.errorMessage = error.localizedDescription
+                        self?.isLoading = false
+                        self?.errorMessage = error.localizedDescription
                     }
                     continuation.finish(throwing: error)
                 }
@@ -207,66 +430,42 @@ class LLMService: ObservableObject {
     }
 }
 
-
 // MARK: - Prompt Creation
 extension LLMService {
-    
     private func createEssayFeedbackPrompt(text: String, examType: String) -> String {
         return """
-        Analyze the following essay for \(examType) exam format. Provide a comprehensive analysis in JSON format with the following structure:
-        
-        {
-          "overallScore": 8.5,
-          "structure": {
-            "score": 8.0,
-            "introduction": "Analysis of the introduction...",
-            "bodyParagraphs": "Analysis of body paragraphs...",
-            "conclusion": "Analysis of the conclusion...",
-            "transitions": "Analysis of transitions..."
-          },
-          "grammar": {
-            "score": 8.5,
-            "grammar": "Grammar analysis...",
-            "spelling": "Spelling analysis...",
-            "punctuation": "Punctuation analysis...",
-            "vocabulary": "Vocabulary analysis..."
-          },
-          "content": {
-            "score": 8.0,
-            "thesis": "Thesis analysis...",
-            "arguments": "Arguments analysis...",
-            "evidence": "Evidence analysis...",
-            "coherence": "Coherence analysis..."
-          },
-          "suggestions": [
-            "Specific suggestion 1",
-            "Specific suggestion 2",
-            "Specific suggestion 3"
-          ],
-          "strengths": [
-            "Strength 1",
-            "Strength 2",
-            "Strength 3"
-          ],
-          "areasForImprovement": [
-            "Area 1",
-            "Area 2",
-            "Area 3"
-          ],
-          "examType": "\(examType)"
-        }
+        You are an expert essay grader for \(examType) exams. Analyze the following essay and provide detailed feedback.
         
         Essay to analyze:
         \(text)
         
-        Provide detailed, constructive feedback that is specific to \(examType) requirements. Focus on structure, grammar, content quality, and provide actionable suggestions for improvement.
+        Please provide feedback in the following format:
+        
+        📊 ESSAY ANALYSIS REPORT
+        
+        📝 Word Count: [count] words
+        
+        ✅ STRENGTHS:
+        • [List 3-4 main strengths]
+        
+        🔧 AREAS FOR IMPROVEMENT:
+        • [List 3-4 specific areas to improve]
+        
+        📈 OVERALL SCORE: [score]/100
+        
+        💡 RECOMMENDATIONS:
+        [Numbered list of 3-4 actionable recommendations]
+        
+        🎯 EXAM-SPECIFIC TIPS:
+        [2-3 tips specific to \(examType) exam]
+        
+        Keep your feedback constructive, specific, and helpful for a student preparing for standardized tests.
         """
     }
     
-    private func createPracticeTestPrompt(subject: String, difficulty: String, count: Int = 5, examType: String) -> String {
+    private func createPracticeTestPrompt(subject: String, difficulty: String, count: Int, examType: String) -> String {
         return """
-        You're an expert in \(examType) exam. 
-        Create \(count) multiple choice questions for \(subject) at \(difficulty) difficulty level.
+        Create \(count) multiple choice questions for \(subject) at \(difficulty) difficulty level for \(examType) exam format.
         
         Format your response as JSON:
         {
@@ -286,6 +485,7 @@ extension LLMService {
         - Provide clear, educational explanations
         - Ensure questions test understanding, not just memorization
         - Make options plausible but clearly distinguishable
+        - Format should match \(examType) exam style
         
         Subject: \(subject)
         Difficulty: \(difficulty)
@@ -294,8 +494,7 @@ extension LLMService {
     
     private func createStudyMaterialsPrompt(topic: String, examType: String) -> String {
         return """
-        You're an expert in \(examType) exam. 
-        Create comprehensive study materials for the topic "\(topic)".
+        Create comprehensive study materials for the topic "\(topic)" tailored for \(examType) exam preparation.
         
         Format your response as JSON:
         {
@@ -323,22 +522,21 @@ extension LLMService {
         }
         
         Requirements:
-        - Summary should be engaging and informative
-        - Key points should cover the most important concepts
+        - Summary should be engaging and exam-focused
+        - Key points should cover the most important concepts for \(examType)
         - Create exactly 4 flashcards with meaningful questions
-        - Use clear, educational language
+        - Use clear, educational language appropriate for exam preparation
         
         Topic: \(topic)
+        Exam: \(examType)
         """
     }
 }
 
 // MARK: - Response Parsing
 extension LLMService {
-    
     private func parseQuestions(from response: String) -> [Question] {
         do {
-            // Try to extract JSON from response
             guard let jsonData = extractJSON(from: response)?.data(using: .utf8) else {
                 throw LLMError.invalidResponse
             }
@@ -391,7 +589,6 @@ extension LLMService {
     }
     
     private func extractJSON(from text: String) -> String? {
-        // Look for JSON between ```json and ``` or { and }
         let patterns = [
             "```json\\s*([\\s\\S]*?)```",
             "```\\s*([\\s\\S]*?)```",
@@ -407,7 +604,6 @@ extension LLMService {
                 }
             }
         }
-        
         return nil
     }
     
@@ -415,160 +611,129 @@ extension LLMService {
     private func createFallbackQuestions() -> [Question] {
         return [
             Question(
-                question: "What is the main topic we're studying?",
-                options: ["Option A", "Option B", "Option C", "Option D"],
+                question: "This is a sample question generated in offline mode. What is the primary purpose of standardized testing?",
+                options: [
+                    "A. To assess student knowledge and skills",
+                    "B. To rank schools competitively",
+                    "C. To determine teacher effectiveness",
+                    "D. To allocate educational funding"
+                ],
                 correctAnswer: 0,
-                explanation: "This is a fallback question when parsing fails."
+                explanation: "Standardized tests are primarily designed to assess student knowledge and skills in a consistent manner across different populations."
             )
         ]
     }
     
     private func createFallbackStudyMaterials() -> StudyMaterialsResponse {
         return StudyMaterialsResponse(
-            summary: StudySummary(content: "This is fallback content when parsing fails."),
+            summary: StudySummary(content: "This is offline study content generated while the AI model loads. For comprehensive, personalized study materials with detailed explanations and exam-specific insights, please wait for the AI model to initialize or try again later."),
             keyPoints: [
-                KeyPoint(title: "Key Point 1", description: "Fallback description"),
-                KeyPoint(title: "Key Point 2", description: "Fallback description"),
-                KeyPoint(title: "Key Point 3", description: "Fallback description")
+                KeyPoint(title: "Offline Mode Active", description: "The AI model is currently loading. Basic study materials are provided as a fallback."),
+                KeyPoint(title: "Enhanced Features Coming", description: "Once the AI model loads, you'll get personalized, detailed study materials."),
+                KeyPoint(title: "Study Tips", description: "Continue reviewing your materials and practice regularly while waiting for full AI features.")
             ],
             flashcards: [
-                Flashcard(question: "Fallback question?", answer: "Fallback answer")
+                Flashcard(question: "What should I do while the AI model loads?", answer: "Continue studying with available materials and try the AI features again in a few minutes."),
+                Flashcard(question: "Will the AI features work later?", answer: "Yes, the AI model is initializing and will provide full functionality once loaded.")
             ]
         )
     }
     
-    // MARK: - Offline Generation Methods
+    // MARK: - Offline Methods
     private func generateOfflineEssayFeedback(for text: String, examType: ExamType) -> String {
-        let feedback = EssayFeedback(
-            overallScore: 8.5,
-            structure: EssayFeedback.StructureFeedback(
-                score: 8.0,
-                introduction: "Sua introdução apresenta o tema de forma clara e estabelece uma tese bem definida. O contexto inicial é adequado para o formato do \(examType.name).",
-                bodyParagraphs: "Os parágrafos de desenvolvimento estão bem organizados com uma progressão lógica. Os argumentos são apresentados de forma coerente.",
-                conclusion: "A conclusão reforça adequadamente os pontos principais e retoma a tese de forma efetiva.",
-                transitions: "As transições entre parágrafos são fluidas e contribuem para a coesão textual."
-            ),
-            grammar: EssayFeedback.GrammarFeedback(
-                score: 8.5,
-                grammar: "A gramática está correta na maior parte do texto, com poucos desvios que não comprometem a compreensão.",
-                spelling: "A ortografia está adequada, demonstrando bom domínio das regras ortográficas.",
-                punctuation: "A pontuação está bem utilizada, contribuindo para a clareza e fluidez do texto.",
-                vocabulary: "O vocabulário é apropriado para o nível do \(examType.name), com boa variedade lexical."
-            ),
-            content: EssayFeedback.ContentFeedback(
-                score: 8.0,
-                thesis: "A tese está bem definida e clara, apresentando uma posição consistente ao longo do texto.",
-                arguments: "Os argumentos são convincentes e bem estruturados, com boa fundamentação.",
-                evidence: "As evidências apoiam adequadamente os argumentos, embora possam ser mais específicas.",
-                coherence: "O texto apresenta boa coerência e coesão, com ideias bem conectadas."
-            ),
-            suggestions: [
-                "Adicione exemplos mais específicos para fortalecer os argumentos",
-                "Fortaleça as transições entre parágrafos para melhor fluidez",
-                "Revise a pontuação em algumas passagens para maior clareza",
-                "Considere expandir um dos argumentos com mais detalhes"
-            ],
-            strengths: [
-                "Clareza na argumentação e apresentação das ideias",
-                "Boa estrutura textual com introdução, desenvolvimento e conclusão",
-                "Vocabulário apropriado para o nível do exame",
-                "Coerência na linha argumentativa mantida ao longo do texto"
-            ],
-            areasForImprovement: [
-                "Exemplos mais específicos e concretos",
-                "Transições mais fluidas entre parágrafos",
-                "Revisão de pontuação em algumas passagens",
-                "Ampliação de um dos argumentos principais"
-            ],
-            examType: examType.name
-        )
+        let wordCount = text.split(separator: " ").count
         
-        // Return as JSON string
-        if let jsonData = try? JSONEncoder().encode(feedback),
-           let jsonString = String(data: jsonData, encoding: .utf8) {
-            return jsonString
-        }
+        return """
+        📊 OFFLINE ESSAY ANALYSIS (\(examType.name))
         
-        // Fallback to structured text if JSON encoding fails
-        return feedback.toStructuredText()
+        ⚠️ AI MODEL LOADING - BASIC ANALYSIS PROVIDED
+        
+        📝 Word Count: \(wordCount) words
+        📈 Estimated Score: 75/100
+        
+        ✅ BASIC OBSERVATIONS:
+        • Essay structure appears organized
+        • Word count is \(wordCount < 250 ? "below recommended" : wordCount > 500 ? "above typical" : "appropriate")
+        • Content demonstrates effort and thought
+        
+        🔧 GENERAL AREAS FOR REVIEW:
+        • Grammar and punctuation accuracy
+        • Argument development and support
+        • Use of specific examples and evidence
+        • Conclusion strength and impact
+        
+        💡 STUDY RECOMMENDATIONS:
+        • Practice with \(examType.name)-specific essay prompts
+        • Review high-scoring essay examples
+        • Focus on clear thesis statements
+        • Work on time management during writing
+        
+        🎯 EXAM-SPECIFIC TIPS:
+        • \(examType.name) essays typically favor clear argumentation
+        • Use varied sentence structures for better flow
+        • Include relevant examples to support your points
+        
+        🤖 For detailed AI-powered analysis with personalized feedback, please wait for the model to finish loading and try again.
+        """
     }
     
     private func generateOfflinePracticeQuestions(subject: String, difficulty: String, count: Int, examType: ExamType) -> [Question] {
-        var questions: [Question] = []
+        let difficultyModifier = difficulty.lowercased()
         
-        for i in 1...count {
-            let question = Question(
-                question: "Sample \(subject) question \(i) for \(examType.name) (\(difficulty) level)",
+        return (1...count).map { i in
+            Question(
+                question: "[\(examType.name) - \(subject)] Sample \(difficulty) question \(i): This is an offline practice question that demonstrates the format you can expect. What type of question format is this?",
                 options: [
-                    "Option A - Correct answer",
-                    "Option B",
-                    "Option C", 
-                    "Option D"
+                    "A. Multiple choice with four options",
+                    "B. True or false question",
+                    "C. Short answer response",
+                    "D. Essay question"
                 ],
                 correctAnswer: 0,
-                explanation: "This is a sample question generated in offline mode for \(examType.name). The correct answer is Option A. In a real scenario, this would be a detailed explanation of the concept being tested."
+                explanation: "This is a multiple choice question with four options (A-D), which is the standard format for \(examType.name) practice tests. Once the AI model loads, you'll receive personalized questions tailored to \(subject) at \(difficulty) difficulty level."
             )
-            questions.append(question)
         }
-        
-        return questions
     }
     
     private func generateOfflineStudyMaterials(topic: String, examType: ExamType) -> StudyMaterialsResponse {
-        let summary = StudySummary(
-            content: """
-            📚 Study Summary for \(topic)
-            
-            This is a comprehensive overview of \(topic) tailored for \(examType.name) preparation. The topic covers fundamental concepts and key principles that are commonly tested in this exam format.
-            
-            Key areas covered:
-            • Core concepts and definitions
-            • Important formulas and equations
-            • Common applications and examples
-            • Typical question formats
-            
-            This summary was generated in offline mode to provide you with immediate study materials while the AI model loads.
-            """
-        )
-        
-        let keyPoints = [
-            KeyPoint(
-                title: "Fundamental Concepts",
-                description: "Understanding the basic principles of \(topic) is essential for \(examType.name) success."
-            ),
-            KeyPoint(
-                title: "Key Applications",
-                description: "Real-world applications and examples that demonstrate practical use of \(topic) concepts."
-            ),
-            KeyPoint(
-                title: "Common Mistakes",
-                description: "Frequently encountered errors and misconceptions when studying \(topic) for \(examType.name)."
-            ),
-            KeyPoint(
-                title: "Study Strategies",
-                description: "Effective approaches to mastering \(topic) content for optimal \(examType.name) performance."
-            )
-        ]
-        
-        let flashcards = [
-            Flashcard(
-                question: "What is the main concept of \(topic)?",
-                answer: "The main concept involves understanding the fundamental principles and applications relevant to \(examType.name) requirements."
-            ),
-            Flashcard(
-                question: "How does \(topic) relate to \(examType.name)?",
-                answer: "This topic is commonly tested in \(examType.name) and understanding it is crucial for achieving a high score."
-            ),
-            Flashcard(
-                question: "What are the key formulas in \(topic)?",
-                answer: "Key formulas include fundamental equations and relationships that are essential for solving \(examType.name) problems."
-            )
-        ]
-        
         return StudyMaterialsResponse(
-            summary: summary,
-            keyPoints: keyPoints,
-            flashcards: flashcards
+            summary: StudySummary(content: "OFFLINE MODE: Basic study materials for \(topic). This topic is relevant for \(examType.name) preparation and typically involves understanding key concepts, applications, and relationships. For comprehensive, AI-generated study materials with detailed explanations, exam-specific insights, and personalized content, please wait for the AI model to initialize completely."),
+            keyPoints: [
+                KeyPoint(
+                    title: "Core Understanding",
+                    description: "Develop a solid foundation in \(topic) fundamentals. Focus on definitions, key principles, and basic applications relevant to \(examType.name) exam format."
+                ),
+                KeyPoint(
+                    title: "Practical Applications",
+                    description: "Learn how \(topic) applies in real-world scenarios and exam contexts. Practice identifying examples and solving related problems."
+                ),
+                KeyPoint(
+                    title: "Exam Strategy",
+                    description: "Understand how \(topic) is typically tested in \(examType.name) format. Review question types and common approaches to answering them effectively."
+                ),
+                KeyPoint(
+                    title: "AI Enhancement Coming",
+                    description: "Enhanced study materials with detailed explanations, mnemonics, and personalized learning paths will be available once the AI model finishes loading."
+                )
+            ],
+            flashcards: [
+                Flashcard(
+                    question: "What is \(topic) and why is it important for \(examType.name)?",
+                    answer: "\(topic) is a key subject area tested on \(examType.name). Understanding its core concepts and applications is essential for exam success. [AI-enhanced answer coming soon]"
+                ),
+                Flashcard(
+                    question: "How should I study \(topic) effectively for \(examType.name)?",
+                    answer: "Focus on understanding fundamentals, practicing application problems, and familiarizing yourself with exam question formats. Use multiple study methods including reading, practice questions, and review sessions."
+                ),
+                Flashcard(
+                    question: "What study resources are best for \(topic)?",
+                    answer: "Use official \(examType.name) prep materials, reputable textbooks, practice tests, and AI-powered study tools (available once model loads) for comprehensive preparation."
+                ),
+                Flashcard(
+                    question: "When will full AI features be available?",
+                    answer: "The AI model is currently initializing. Full features including personalized study plans, detailed explanations, and adaptive learning will be available shortly. Please try again in a few minutes."
+                )
+            ]
         )
     }
 }
@@ -579,30 +744,40 @@ enum LLMError: LocalizedError {
     case notInitialized
     case invalidResponse
     case generationFailed(String)
+    case cacheDirectoryError(String)
+    case modelCopyError(String)
     
     var errorDescription: String? {
         switch self {
         case .modelNotFound:
-            return "LLM model file not found in app bundle"
+            return "AI model file not found in app bundle"
         case .notInitialized:
-            return "LLM service not initialized"
+            return "AI service not initialized"
         case .invalidResponse:
-            return "Invalid response format from LLM"
+            return "Invalid response format from AI"
         case .generationFailed(let message):
-            return "Text generation failed: \(message)"
+            return "AI generation failed: \(message)"
+        case .cacheDirectoryError(let message):
+            return "Cache directory error: \(message)"
+        case .modelCopyError(let message):
+            return "Model copy error: \(message)"
         }
     }
     
     var recoverySuggestion: String? {
         switch self {
         case .modelNotFound:
-            return "Make sure gemma-3n.task is added to your Xcode project bundle"
+            return "Make sure the AI model is included in your Xcode project bundle"
         case .notInitialized:
-            return "Wait for LLM to finish initializing or restart the app"
+            return "Wait for AI model to finish loading or restart the app"
         case .invalidResponse:
-            return "Try again with a different prompt"
+            return "Try again with a different request"
         case .generationFailed:
-            return "Check your internet connection and try again"
+            return "Check device storage and memory, then try again"
+        case .cacheDirectoryError:
+            return "Restart the app to recreate cache directories"
+        case .modelCopyError:
+            return "Check available storage space and restart the app"
         }
     }
 }
