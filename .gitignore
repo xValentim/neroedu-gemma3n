@@ -12,3 +12,5 @@ old_langgraph/
 CLAUDE.md
 node_modules/
 venv/
+my_modified_gemma_3n_model/
+*.exe
