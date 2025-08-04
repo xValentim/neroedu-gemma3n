@@ -1,6 +1,7 @@
 # main.py
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 from typing import List, Optional
 import requests
 import uvicorn
@@ -120,6 +121,21 @@ async def check_model(model_name: str):
 @app.delete("/delete-model/{model_name}")
 async def delete_model_endpoint(model_name: str):
     return delete_model(model_name)
+
+@app.post("/pull-model/{model_name}")
+async def pull_model(model_name: str):
+    def stream_model_pull():
+        url = f"{BASE_URL}/api/pull"
+        payload = {"model": model_name}
+        headers = {"Content-Type": "application/json"}
+
+        with requests.post(url, json=payload, headers=headers, stream=True) as r:
+            for line in r.iter_lines():
+                if line:
+                    # Retorna cada linha do JSON como texto
+                    yield line.decode("utf-8") + "\n"
+
+    return StreamingResponse(stream_model_pull(), media_type="text/plain")
 
 # Enem
 @app.post("/call-model-competencia")
