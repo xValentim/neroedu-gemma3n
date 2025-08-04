@@ -1,116 +1,171 @@
-## Vestibulares Selecionados
+# 🎓 NeroEdu - Democratizing Global Education with AI
 
-1. ENEM (BR)
-2. SAT (USA)
-3. ICFES (Colômbia)
-4. CUET (Índia)
-5. Exames Nacionais (Portugal)
-6. Exani-II (Mexico)
+[![Kaggle Competition](https://img.shields.io/badge/Kaggle-Gemma%203n%20Challenge-blue.svg)](https://www.kaggle.com/competitions/google-gemma-3n-hackathon)
+[![Category](https://img.shields.io/badge/Category-Revolutionize%20Education-green.svg)](https://www.kaggle.com/competitions/google-gemma-3n-hackathon)
+[![Gemma 3n](https://img.shields.io/badge/Powered%20by-Gemma%203n-orange.svg)](https://ai.google.dev/gemma/docs/gemma-3n)
 
+**NeroEdu democratizes global education with autonomous AI agents powered by Gemma 3n, providing personalized essay evaluation, study materials, and practice exams across multiple countries - all running privately on-device.**
 
-## Playlists ENEM
+## 🌟 The Mission: Revolutionizing Education Through AI
 
-```python
-playlist_link_list = [
-    'https://www.youtube.com/playlist?list=PL8vXuI6zmpdiy2Xhd1Tn4_q974HxDUzox', # Kultivi, ENEM | Português, 61 videos
-    'https://www.youtube.com/playlist?list=PLQVUQftDIJQErJmPAGyHrdtxrgLklj6a_', # Curso Enem Gratuito, REDAÇÂO ENEM, 74 videos
-    'https://www.youtube.com/playlist?list=PLdkZd7NEhSen1qvUgdM56njgqWyUHBbVT', # Kaylanne Roberta, GEOGRAFIA PARA O ENEM, 100 videos
-    'https://www.youtube.com/playlist?list=PLMra4G0-Z7pMYLE-D-ptnHt1IW_Y1hn8H', # Parabólica, História para o ENEM, 106 videos
-    'https://www.youtube.com/playlist?list=PLMra4G0-Z7pOBZjKCxen5cRa6iUMAdYKh', # Parabólica, Filosofia para o ENEM, 134 videos
-    'https://www.youtube.com/playlist?list=PLPNLvl90MqKT06er408AFhGbSHt7YuCZS', # Partiu Universidade, Sociologia para o ENEM, 65 videos
-    'https://www.youtube.com/playlist?list=PLGyv8aUrOlzB76mu-Em4JaCFaR2dnccKH', # Gis com Giz Matemática, ENEM MATEMÁTICA, 155 videos
-    'https://www.youtube.com/playlist?list=PLruc42XZPq_beOi5MBhnvnNXuqPuubwWx', # Não Perca a Cabeça, Matemática | Extensivo Enem 2020 NPAC, 26 videos
-    'https://www.youtube.com/playlist?list=PLruc42XZPq_ZOg6er3bnrCwc_SuE0MiD5', # Não Perca a Cabeça, Química | Extensivo Enem 2020 NPAC, 32 videos
-    'https://www.youtube.com/playlist?list=PLruc42XZPq_Z3eTDHPQ6WS2SQdlFGYMFZ', # Não Perca a Cabeça, Biologia | Extensivo Enem 2020 NPAC, 29 videos
-    'https://www.youtube.com/playlist?list=PLruc42XZPq_ZDymwPY1ZM3gNMg53dqTM-', # Não Perca a Cabeça, Física | Extensivo Enem 2020 NPAC, 32 videos
-    'https://www.youtube.com/playlist?list=PL0LfmDSptaT3Lvnf-YsUI18pzihaLPARU', # Marcelão da Química, EXTENSIVO QUÍMICA COMPLETO, 98 videos
-    'https://www.youtube.com/playlist?list=PL8vXuI6zmpdiG6QR-LpXXbUYzPz5rOhF2', # Kultivi, Física, 67 videos
-    'https://www.youtube.com/playlist?list=PL8vXuI6zmpdgu7TOyarRBU42MXOrUJnOS', # Kultivi, Biologia, 121 videos
-]
+Access to high-quality exam preparation remains highly unequal worldwide. Students from privileged backgrounds have tutors, personalized feedback, and comprehensive resources, while millions in underserved communities lack structured preparation, especially in remote areas with limited connectivity.
 
+**NeroEdu bridges this gap using Gemma 3n's groundbreaking on-device AI capabilities**, offering the same level of personalized, intelligent support traditionally available only to elite students — but accessible to everyone, anywhere, even offline.
+
+### 🎯 Built for Impact
+- **🌍 Global Reach**: Support for 6 major standardized exams across different countries
+- **📱 On-Device Privacy**: Powered by Gemma 3n for secure, offline-first learning
+- **🏠 Accessibility**: Works without internet connection in remote areas
+- **💡 Personalized**: AI agents adapt to each student's learning needs
+- **🆓 Democratic**: Free access to premium-quality educational support
+
+## 🚀 Powered by Gemma 3n: The Future of On-Device Education
+
+### Why Gemma 3n Changes Everything for Education:
+
+🔒 **Privacy-First Learning**
+- All AI processing happens locally on the device
+- Student data never leaves their phone/computer
+- Perfect for sensitive educational content and personal feedback
+
+📱 **Mobile-Optimized Performance**
+- Runs efficiently on phones, tablets, and laptops
+- Memory footprint optimized for resource-constrained devices
+- Real-time AI responses without cloud dependency
+
+🌐 **Offline-Ready Education**
+- Functions reliably without internet connection
+- Critical for students in areas with poor connectivity
+- Enables learning in remote or underserved regions
+
+🎭 **Multimodal Understanding**
+- Processes text, audio, and images seamlessly
+- Enhanced video understanding for educational content
+- Voice-driven interactions for accessibility
+
+🗣️ **Multilingual Capabilities**
+- Strong performance across multiple languages
+- Breaks down communication barriers in global education
+- Supports local language nuances for each exam system
+
+## 🌍 Global Exam Coverage
+
+| Country | Exam | Educational Content |
+|---------|------|-------------------|
+| 🇧🇷 Brazil | ENEM | 1,100+ videos |
+| 🇺🇸 USA | SAT | 391 videos |
+| 🇨🇴 Colombia | ICFES | 291 videos |
+| 🇮🇳 India | CUET | 87 videos |
+| 🇵🇹 Portugal | Exames Nacionais | 43 videos |
+| 🇲🇽 Mexico | Exani-II | 118 videos |
+
+**Educational Database: 2,030+ curated videos**
+
+## ✨ Revolutionary AI Features
+
+### 📝 Intelligent Essay Evaluation
+- **5-Competency Analysis**: Comprehensive evaluation based on official criteria
+- **Detailed Feedback**: Personalized improvement suggestions with scoring
+- **AI-Powered Insights**: Grammar, argumentation, cohesion, and content analysis
+- **On-Device Processing**: Private, instant feedback without data sharing
+
+### 🧠 Adaptive Practice Generation
+- **Dynamic Questions**: AI creates contextually relevant practice problems
+- **Difficulty Adaptation**: Adjusts to student's performance level
+- **RAG-Enhanced**: Uses curated educational content for realistic scenarios
+- **Offline Capability**: Generates unlimited practice materials without internet
+
+### 🎯 Personalized Study Materials
+- **Smart Flashcards**: AI-generated cards with duplicate avoidance
+- **Key Concepts**: Automatically extracts essential topics for focused learning
+
+## 🏗️ Technical Architecture
+
+### Multi-Platform Ecosystem
+- **🔧 Backend API**: FastAPI with LangChain + Ollama integration
+- **📱 Mobile iOS**: SwiftUI with on-device Gemma 3n processing
+- **💻 Desktop**: Electron-based cross-platform application
+- **📊 Analytics**: Privacy-preserving learning insights
+
+### Core AI Stack
+- **🤖 Gemma 3n**: On-device multimodal AI processing
+- **🦙 Ollama**: Local LLM runtime for serving Gemma 3n models efficiently
+- **🔗 LangChain**: Advanced framework to connect with LLM's providers
+- **📚 RAG System**: TF-IDF vectorstores for content retrieval
+
+## 🛠️ Getting Started
+
+### Prerequisites
+- Python 3.8+
+- Node.js 16+ (for desktop app)
+- Xcode (for iOS development)
+- Ollama with Gemma 3n models
+
+### Quick Setup
+```bash
+# Clone the repository
+git clone <repository-url>
+cd neroedu-gemma3n
+
+# Backend setup
+pip install -r requirements.txt
+python main.py
+
+# iOS development (coming soon)
+cd mobile-ios && pod install
+
+# Desktop application (coming soon)
+cd desktop && npm install && npm start
 ```
 
-Total videos: 1100
+*Detailed installation and configuration instructions coming soon.*
 
-## Playlists SAT
+## 🎬 Educational Content Database
 
-1. https://www.youtube.com/playlist?list=PLXmJvdMwHZJ-UdQx7Y79LluJpYblQK9yV # (Hayden Rhodea SAT, Free 90-Days of SAT Prep Lessons!!, 93 videos)
+Our curated educational database spans multiple languages and exam systems:
 
-2. https://www.youtube.com/playlist?list=PL0o_zxa4K1BWLRgHW2i8diQ359U5FbKnI # (The Organic Chemistry Tutor, SAT Math, 56 videos)
+### 🇧🇷 ENEM (Brazil) - 1,100+ Videos
+- Portuguese, Mathematics, Natural Sciences, Human Sciences
+- Essay writing techniques and evaluation criteria
+- Comprehensive coverage of all ENEM competencies
 
-3. https://www.youtube.com/playlist?list=PLXmJvdMwHZJ98xsCj2NWsdyCaNac4xX6J # (Hayden Rhodea SAT, Digital SAT Prep, 21 videos)
+### 🇺🇸 SAT (USA) - 391 Videos  
+- Math, Reading & Writing, Digital SAT preparation
+- Test-taking strategies and time management
 
-4. https://www.youtube.com/playlist?list=PLtxyMEBEejjngM0SdF4IJERmllvugNwC1 # (MathPrep with Ahmad Bilal, Digital SAT Math, 37 videos)
+### 🇨🇴 ICFES (Colombia) - 291 Videos
+- Mathematics, Social Sciences, Natural Sciences
+- Critical reading and analytical thinking
 
-5. https://www.youtube.com/playlist?list=PLfCCnEv2UFBGhA3X0GhD6PNOs-_V5w8IL # (Prepworks Education, 2025 DIGITAL SAT READING & WRITING, 46 videos)
+### 🇮🇳 CUET (India) - 87 Videos
+- General Aptitude, English preparation
+- Subject-specific content for university entrance
 
-6. https://www.youtube.com/playlist?list=PLfCCnEv2UFBErzkHx6EC2DWzJO43p3Umv # (Prepworks Education, 2025 DIGITAL SAT MATH, 138 videos)
+### 🇵🇹 Exames Nacionais (Portugal) - 43 Videos
+- Portuguese grammar and literature
+- Mathematics and sciences preparation
 
-Total videos: 391
+### 🇲🇽 Exani-II (Mexico) - 118 Videos
+- Mathematical thinking, writing skills
+- Mexican history and administration
 
-## Playlists ICFES
+## 🏆 Kaggle Gemma 3n Challenge
 
-1. https://www.youtube.com/playlist?list=PLc3AJ6veKFxwRmzseIcfbiP0PCau2xpYL # (Dalton Academy, 2024-1 Matemáticas, 20 videos)
+This project represents our submission to the **Kaggle Gemma 3n Challenge** in the **"Revolutionize Education"** category. We're leveraging Gemma 3n's unique capabilities to create meaningful, positive change in global education access.
 
-2. https://www.youtube.com/playlist?list=PLc3AJ6veKFxxMtIfqaNLOPBBhFGjfa1p_ # (Dalton Academy, SOCIALES EXAMEN 2025 (TODA LA TEORÍA), 22 videos)
+### Why This Matters
+- **Real-World Impact**: Addresses education inequality affecting millions of students
+- **Technical Innovation**: Demonstrates Gemma 3n's potential for social good  
+- **Scalable Solution**: Architecture designed for global deployment
+- **Privacy-Centric**: Aligns with modern data protection requirements
 
-3. https://www.youtube.com/playlist?list=PLfgpI424HxeV9j_saqo8mZNsNmvxWok-P # (andres sandoval acero, Videos preparación de icfes, 19 videos)
+## 📄 License
 
-4. https://www.youtube.com/playlist?list=PLrG8f_FO9cA1dSoVpiKLaGSqQoQuYRrs5 # (ángela, Preparación ICFES, videos, 18 videos)
+This project is open-source and available under the MIT License. We believe education should be free and accessible to all.
 
-5. https://www.youtube.com/playlist?list=PLCDYXrbSVBJEc1qeqL5fDluLmy9xurEj0 # (Las Mates Fáciles, Preparación para el ICFES - MATEMÁTICA, 48 videos)
+---
 
-6. https://www.youtube.com/playlist?list=PLJxMpbL3S1R5jcWCtMe-_7shXos03QmFn # (Praxis Thinks, 40 ejercicios de práctica para las pruebas ICFES, 40 videos)
+**Built with ❤️ for global education equity**  
+*Empowering students worldwide through innovative AI technology*
 
-7. https://www.youtube.com/playlist?list=PLMY6ovNEwSVPd0q7RzsV8pCmutQMxjLhz # (Andrea :3, Icfes, 49 videos)
-
-8. https://www.youtube.com/playlist?list=PLJxMpbL3S1R51_T3hRbBuP0kv9DbF9JRZ # (Praxis Thinks, Lectura Crítica ICFES: Trucos, Tips y Técnica, 8 videos)
-
-9. https://www.youtube.com/playlist?list=PLJxMpbL3S1R4HgIuHX1ionNrD4R-tH899 # (Praxis Thinks, Biología para el ICFES explicada, 17 videos)
-
-10. https://www.youtube.com/playlist?list=PLJxMpbL3S1R6OjrYLlTob7UbSK21a7-__ # (Praxis Thinks, Química ICFES SIN fórmulas, 16 videos)
-
-11. https://www.youtube.com/playlist?list=PLJxMpbL3S1R4dPMe8WQa5ecaEhyyKRPCE # (Praxis Thinks, ICFES Sociales y Ciudadanas, 19 videos)
-
-12. https://www.youtube.com/playlist?list=PLJxMpbL3S1R4e2yL-BcUeV-ZuUdoALJcH # (Praxis Thinks, Física ICFES SIN fórmulas, 15 videos)
-
-Total videos: 291
-
-
-## Playlists CUET
-
-1. https://www.youtube.com/playlist?list=PLhrnHPBcOqMmeWwrMIPT7x94vqG-CKioM # (Dear Sir, CUET 2022 Preparation, 30 videos)
-
-2. https://www.youtube.com/playlist?list=PLhrnHPBcOqMmXznFFIzL3BxrOtSNLPYhr # (Dear Sir, CUET GAT 2025 Exam, 33 videos)
-
-3. https://www.youtube.com/playlist?list=PLhrnHPBcOqMnMjpIc8DgpLVuEKrHv3WJK # (Dear Sir, CUET 2025 | ENGLISH | DEARSIR, 24 videos)
-
-Total videos: 87
-
-## Exames Nacionais (Portugal)
-
-1. https://www.youtube.com/playlist?list=PLptnVRHa5SDKrsEj_zotfxAMh4a2ux1Yk # (EmPortuguês, GRAMÁTICA (Português de Portugal), 12 videos)
-
-2. https://www.youtube.com/playlist?list=PLOnAU1tbviBVcOL2iPwLINvubS0r1CDTA # (Clara, Preparação Exames Nacionais PT, 20 videos)
-
-3. https://www.youtube.com/playlist?list=PLJjXYrAIDW5KSpq-1BPYeuJ8frBKQqB8g # (Prof. Bruno Amorim, Exame Nacional - Portugal - Matemática A, 11 videos)
-
-Total videos: 43
-
-## Exani-II (Mexico)
-
-1. https://www.youtube.com/playlist?list=PLrIEi9PL7EuFVHdc8qXihzilsc0cqPSs_ # (Profe Cristian, CURSO INTEGRAL PLUS 2025, 45 videos)
-
-2. https://www.youtube.com/playlist?list=PLrIEi9PL7EuElFoiP5I2SS7ltgAkg1OAp # (Profe Cristian, CURSO COMPLETO PENSAMIENTO MATEMATICO, 26 videos)
-
-3. https://www.youtube.com/playlist?list=PLrIEi9PL7EuHt05NBceRFFv5o2m_Bj40d # (Profe Cristian, CURSO COMPLETO REDACCIÓN INDIRECT, 13 videos)
-
-4. https://www.youtube.com/playlist?list=PL6diNeAKW2DNuwoS24vpFVumVUpCG2Tsx # (ENTRENA Y ESTUDIA CON TONY, Historia de Mexico Exani ii, 7 videos)
-
-5. https://www.youtube.com/playlist?list=PLPqecczCAWWX2oJq9NnG4fUJOHjNU_qa3 # (Economia Desde Casa, Módulo Administración EXANI-II, 27 videos)
-
-Total videos: 118
-
-## Total 
-
-Total videos: 2030
+> *"Education is the most powerful weapon which you can use to change the world."* - Nelson Mandela
