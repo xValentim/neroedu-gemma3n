@@ -20,3 +20,5 @@ pydantic
 uvicorn
 fastapi
 boto3
+scikit-learn
+nltk

@@ -1,0 +1,2764 @@
+Guía
+para el sustentante
+EXANI-II
+Directorio del Ceneval
+Antonio Ávila Díaz
+Director General
+Lilian Fátima Vidal González
+Directora de los Exámenes Nacionales de Ingreso
+Alejandra Zúñiga Bohigas
+Directora de los Exámenes Generales para el Egreso de la Licenciatura
+Marisela Corres Santana
+Directora de Acreditación y Certificación del Conocimiento
+César Antonio Chávez Álvarez
+Director de Investigación, Calidad Técnica e Innovación Académica
+María del Socorro Martínez de Luna
+Directora de Operación
+Ricardo Hernández Muñoz
+Director de Calificación
+Luis Mariano Hermosillo Sosa
+Director de Administración
+Luis Vega García
+Abogado General
+Dirección de Vinculación Institucional
+María del Consuelo Lima Moreno
+Directora de Planeación
+Flavio Arturo Sánchez Garfias
+Director de Tecnologías de la Información y la Comunicación
+El Centro Nacional de Evaluación para la Educación Superior (Ceneval) es una asociación civil sin fines de lucro 
+creada en 1994 con el objeto de contribuir a mejorar la calidad de la educación mediante el diseño y la aplicación 
+de instrumentos de evaluación de conocimientos, habilidades y competencias, así como el análisis y difusión de 
+los resultados que arrojan las pruebas. Sus actividades se fundamentan en los últimos avances de la psicometría 
+y otras disciplinas y se enriquecen con la experiencia y el compromiso de su equipo, conformado por más de 650 
+personas, junto con el apoyo de numerosos cuerpos colegiados integrados por especialistas provenientes de las 
+instituciones educativas más representativas del país y de organizaciones de profesionales con reconocimiento 
+internacional.
+Guía para el sustentante · EXANI-II
+D.R. © 2025
+Centro Nacional de Evaluación para la Educación Superior, A.C. (Ceneval)
+Av. Camino al Desierto de los Leones 19
+Col. San Ángel, Alc. Álvaro Obregón
+C.P. 01000, México, Ciudad de México
+www.ceneval.edu.mx
+Marzo de 2025
+Índice
+Presentación                                                                                            5
+El EXANI-II                                                                                               6
+Población objetivo                                                                                    7
+Características del EXANI-II                                                                      7
+Contenidos que se evalúan en el EXANI-II                                                  7
+Registro para presentar el EXANI-II                                                        37
+Resultados                                                                                            37
+Preguntas frecuentes                                                                             38
+Anexo I. T emarios, bibliografía de apoyo y ejemplos de reactivos               39
+Módulos de conocimientos disciplinares específicos                                39
+Administración                                                                              39
+Aritmética                                                                                     42
+Biología                                                                                        45
+Cálculo diferencial e integral                                                          48
+Ciencias de la salud                                                                       51
+Derecho                                                                                       54
+Economía                                                                                     57
+Filosofía                                                                                        59
+Física                                                                                            63
+Historia                                                                                        67
+Literatura                                                                                     70
+Matemáticas financieras                                                                 73
+Premedicina                                                                                 77
+Probabilidad y estadística                                                              81
+Psicología                                                                                      84
+Química                                                                                        87
+Módulos de conocimientos disciplinares generales                                   90
+Ciencias experimentales                                                                 90
+Ciencias sociales                                                                            93
+
+5
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Presentación
+El Centro Nacional de Evaluación para la Educación Su-
+perior (Ceneval) es una asociación civil sin fines de lucro 
+creada por mandato de la ANUIES en 1994. Su actividad 
+principal es el diseño y la aplicación de instrumentos de 
+evaluación de conocimientos, habilidades y competencias, 
+así como el análisis y la difusión de los resultados que arro-
+jan las pruebas.
+El Examen Nacional de Ingreso a la Educación Superior 
+(EXANI-II), uno de sus instrumentos, se utiliza en los pro-
+cesos de admisión para quienes desean cursar estudios de 
+nivel licenciatura o técnico superior universitario en la Re-
+pública Mexicana. 
+El propósito de esta guía es mostrar a la población intere-
+sada en presentar el EXANI-II sus características, los temas 
+que en él se evalúan, la bibliografía de apoyo y algunos 
+ejemplos de preguntas. 
+Esta guía no sustituye la formación lograda en los estudios 
+de bachillerato, ya que únicamente proporciona informa-
+ción precisa del examen.
+6
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+El EXANI-II
+El Examen Nacional de Ingreso a la Educación Superior es un instrumento para evaluar integral -
+mente conocimientos esenciales y habilidades académicas de los aspirantes que participan en 
+procesos de ingreso a la educación superior.
+Su propósito es ofrecer a las instituciones y autoridades educativas información auxiliar acerca del 
+dominio de los conocimientos y las habilidades que poseen los aspirantes a estudiar un programa 
+académico de licenciatura o de técnico superior universitario, para apoyar la toma de decisiones de 
+los procesos de ingreso, así como proporcionar información diagnóstica acerca de las habilidades 
+de comprensión lectora y redacción indirecta del inglés como lengua extranjera, con la inten-
+ción de orientar los procesos de ubicación o preparación propedéutica o compensatoria.
+El EXANI-II  fue elaborado con base en la metodología Ceneval, la cual se encuentra registrada 
+ante el Instituto Nacional del Derecho de Autor (Indautor), con el número de registro 03-2008-
+040214170500-01, de fecha 18 de abril de 2008.
+Su denominación constituye una marca registrada a favor de este Centro ante el Instituto Mexicano 
+de la Propiedad Industrial (IMPI).
+El contenido de este instrumento se encuentra protegido por la Ley Federal del Derecho de 
+Autor y la Ley de la Propiedad Industrial, las cuales consideran como infracción la fijación, 
+reproducción, distribución, transportación o comercialización de este material sin el consen-
+timiento de este Centro. En caso de incurrir en alguna de estas situaciones su evaluación será 
+cancelada.
+7
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Población objetivo
+El examen está dirigido a estudiantes que han egresado del bachillerato y que aspiran a cursar 
+una licenciatura o carrera de técnico superior universitario en una institución de educación su -
+perior que ha contratado los servicios del Ceneval.
+Características del EXANI-II
+ › Es un examen estandarizado, con lo cual se logra que su aplicación y calificación garanticen las 
+mismas condiciones para todos los aspirantes.
+ › Está conformado por 168 preguntas con tres opciones de respuesta cada una. Estas preguntas se 
+elaboran cuidadosamente y se prueban en el ámbito nacional antes de incluirlas en el instrumento.
+ › Se puede aplicar en tres modalidades: impresa, en línea y Examen desde casa . La institución 
+educativa decide e informa a sus aspirantes en cuál de ellas se responderá el instrumento. 
+Para mayor información de cada modalidad de aplicación, consulte las Guías de aplicación 
+por modalidad .
+ › Se aplica en una sesión de 4 horas y media.
+Contenidos que se evalúan en el EXANI-II
+ › Habilidades básicas que todos los estudiantes desarrollan a lo largo de su formación previa y que 
+son fundamento indispensable para su desarrollo académico, profesional y social: comprensión 
+lectora, redacción indirecta y pensamiento matemático.
+ › Conocimientos disciplinares esenciales  relacionados con la carrera a la que se desea in -
+gresar. La institución educativa usuaria establece, de entre un menú de 18 módulos, los que 
+deberá presentar cada aspirante.
+ › Dominio de los aspirantes en el idioma inglés como lengua extranjera en un nivel B1 de acuerdo 
+con el Marco Común Europeo de Referencia para las lenguas.
+8
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Estructura general del examen
+La tabla muestra la cantidad de reactivos que integran el EXANI-II  por cada área del instrumento:
+Áreas del examen Número de reactivos
+Conocimientos y habilidades predictivos del desempeño académico
+Módulo de conocimientos disciplinares 1 24
+Módulo de conocimientos disciplinares 2 24
+Comprensión lectora 30
+Redacción indirecta 30
+Pensamiento matemático 30
+Subtotal de reactivos
+(cinco áreas que componen el puntaje global)* 138
+Información diagnóstica (no se considera en el cálculo del puntaje global)
+Inglés como lengua extranjera 30
+T otal de reactivos 168**
+* El módulo de Premedicina está integrado por 48 reactivos, por lo que no se puede combinar con otro módulo de conocimientos 
+disciplinares. En consecuencia, es el único caso en que el puntaje global se integra con el puntaje obtenido en cuatro áreas.
+** Adicionalmente se incorpora 10 % de reactivos piloto y dos reactivos de control, que no se consideran en la calificación.
+9
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+La lista de los 18 módulos disciplinares disponibles, 16 específicos y dos de carácter general, a dis -
+posición de las instituciones educativas es la siguiente:
+Módulos de conocimientos disciplinares específicos
+1. Administración 9. Física
+2. Aritmética 10. Historia
+3. Biología 11. Literatura
+4. Cálculo diferencial e integral 12. Matemáticas financieras
+5. Ciencias de la salud 13. Premedicina
+6. Derecho 14. Probabilidad y estadística
+7. Economía 15. Psicología
+8. Filosofía 16. Química
+Módulos de conocimientos disciplinares generales
+17. Ciencias experimentales 18. Ciencias sociales
+Los dos módulos de conocimientos disciplinares generales están diseñados para atender las necesi-
+dades de las Instituciones de Educación Superior (IES) que tienen procesos de admisión en los cuales 
+los aspirantes seleccionan varias carreras al momento de solicitar su ingreso; en este caso, los aspi-
+rantes señalan sus opciones en un orden de prelación en su solicitud de ingreso. Dependiendo del 
+resultado obtenido en el EXANI-II ingresan a su primera, segunda, tercera o enésima opción. Debido 
+al carácter general de los contenidos evaluados, estos dos módulos solo pueden combinarse entre sí 
+y no con algún módulo de conocimientos disciplinares específicos.
+10
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Por ejemplo:
+¿Cómo sería la estructura de un examen para un aspirante que desea cursar un programa educativo 
+de Ingeniería Civil?
+La institución educativa de interés ha decidido que quienes participen en el proceso de admisión a 
+la carrera de Ingeniería Civil deben contestar los módulos 4 y 9, que corresponden a Cálculo dife -
+rencial e integral y Física, respectivamente. De tal forma, el aspirante resolvería un examen con la 
+siguiente estructura:
+Áreas del examen Número de reactivos 
+Conocimientos y habilidades predictivos del desempeño académico
+Módulo de conocimientos disciplinares específicos de Cálculo  
+diferencial e integral 24
+Módulo de conocimientos disciplinares específicos de Física 24
+Comprensión lectora 30
+Redacción indirecta 30
+Pensamiento matemático 30
+Subtotal de reactivos
+(cinco áreas que componen el puntaje global) 138
+Información diagnóstica (no se considera en el cálculo del puntaje global)
+Inglés como lengua extranjera 30
+T otal de reactivos 168
+11
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ahora bien, como ya se mencionó, el módulo de Premedicina es el único que está integrado por 48 
+reactivos, motivo por el cual no se puede combinar con alguno otro y, en consecuencia, el puntaje 
+global se integra con el resultado de cuatro áreas:
+Áreas del examen Número de reactivos 
+Conocimientos y habilidades predictivos del desempeño académico
+Módulo de conocimientos disciplinares específicos de Premedicina 48
+Comprensión lectora 30
+Redacción indirecta 30
+Pensamiento matemático 30
+Subtotal de reactivos
+(cuatro áreas que componen el puntaje global) 138
+Información diagnóstica (no se considera en el cálculo del puntaje global)
+Inglés como lengua extranjera 30
+T otal de reactivos 168
+Aspectos que se evalúan en cada área
+En el siguiente apartado se muestran la definición, la estructura, el temario, la bibliografía de apoyo 
+y ejemplos de los reactivos de opción múltiple de cada una de las áreas transversales del EXANI-II .
+La información de los 18 módulos de conocimientos disciplinares está a su disposición en el Anexo I 
+de este documento, así como en el apartado Temarios  en el sitio web del EXANI-II .
+12
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Área. Comprensión lectora 
+Definición
+Habilidad que permite al individuo identificar, interpretar y evaluar la forma y el contenido de di -
+versos materiales escritos en ámbitos de estudio, literario y de participación social.
+Estructura del área
+Área Subárea T ema Núm. 
+de reactivos
+Comprensión 
+lectora
+Ámbito de estudio
+Identificación de información
+12Interpretación
+Evaluación de la forma 
+y el contenido
+Ámbito literario
+Identificación de información
+12Interpretación
+Evaluación de la forma 
+y el contenido
+Ámbito 
+de participación social
+Identificación de información
+6Interpretación
+Evaluación de la forma 
+y el contenido
+Temario
+Subárea: Ámbito de estudio
+Textos: argumentativo-periodístico y ensayo académico 
+Identificación de información
+ › El sustentante debe localizar información con distintos criterios de búsqueda, ante la presencia 
+de elementos del texto que podrían dificultar la tarea.
+13
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Interpretación
+ › El sustentante comprende e interpreta el sentido de frases, pasajes cortos o de un texto comple-
+to, por ejemplo, la postura de un autor o el objetivo de una investigación.
+Evaluación de la forma y el contenido
+ › El sustentante selecciona la explicación adecuada de una idea expuesta en el texto o su valora-
+ción extratextual.
+Subárea: Ámbito literario
+Textos: cuento y poema
+Identificación de información
+ › El sustentante debe localizar información con distintos criterios de búsqueda, ante la presencia 
+de elementos del texto que podrían dificultar la tarea.
+Interpretación
+ › El sustentante comprende e interpreta el sentido de frases, pasajes cortos o de un texto comple-
+to, por ejemplo, el mensaje. 
+Evaluación de la forma y el contenido
+ › El sustentante selecciona la explicación adecuada de una idea expuesta en el texto o su valora-
+ción extratextual, por ejemplo, de alguna secuencia narrativa o alguna figura retórica.
+Subárea: Ámbito de participación social
+Textos: noticia y documento administrativo
+Identificación de información
+ › El sustentante debe localizar información con distintos criterios de búsqueda, ante la presencia 
+de elementos del texto que podrían dificultar la tarea.
+Interpretación
+ › El sustentante comprende e interpreta el sentido de frases, pasajes cortos o de un texto comple-
+to, por ejemplo, el tema o el requisito de un formato.
+Evaluación de la forma y el contenido
+ › El sustentante selecciona la explicación adecuada de una idea expuesta en el texto o su valora-
+ción extratextual.
+14
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Bibliografía
+ › La evaluación de la comprensión lectora no está supeditada a la valoración de contenidos o co-
+nocimientos curriculares, razón por la cual no se sugiere una bibliografía en particular. Lo que 
+se evalúa en el EXANI-II es la habilidad para leer textos cuyas temáticas son variadas, aunque 
+acordes con el nivel educativo anterior al que se desea ingresar. De cualquier forma, se hacen 
+algunas recomendaciones generales que, si bien pueden ser aplicadas en cualquier apartado del 
+examen, en el área de Comprensión lectora cobran una importancia central. Dado que esta 
+área se organiza a partir de la lectura de diferentes textos y la respuesta a tres o seis preguntas 
+por cada texto, las sugerencias son las siguientes:
+ › Leer detenidamente el texto de forma completa, de tal forma que al leer las preguntas se tenga 
+una comprensión general de él. Múltiples errores de comprensión provienen de una lectura 
+incompleta del texto. 
+ › Cuando se elija una respuesta, se puede regresar al texto para localizar la información solici-
+tada y verificar la comprensión o evaluación acerca del contenido. El proceso de ir del texto a 
+la pregunta, o de la pregunta al texto, las veces que se necesiten, es una práctica que realizan 
+los lectores expertos. 
+ › Analizar las opciones de respuesta para ver la plausibilidad de cada una de ellas. No existen 
+respuestas parcialmente correctas. La respuesta elegida debe cubrir cabalmente con lo solici-
+tado en la pregunta.
+ › Comprender un texto en esta prueba implica identificar la información (por ejemplo, ¿quién 
+realizó tal o cuál acción?), también interpretar su contenido tanto desde una mirada global (¿de 
+qué trata el texto?) como desde una perspectiva particular (¿qué significa una parte específica 
+del texto?), y evaluar su contenido y forma (¿qué ejemplos se pueden elegir para representar 
+lo dicho en el texto?, o bien, ¿cuál es la razón de incluir o no cierta información en el texto?).
+15
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplos de reactivos
+Lea el texto y responda las preguntas relacionadas.
+Niños prodigio
+¿Qué hace propensos a los adultos a estar fascinados por los niños prodigio? Para empezar, vale la 
+pena recordar que no se puede confundir a los niños prodigio o Wunderkinder (término usado fre-
+cuentemente con el sentido de “niños milagro”) con los niños superdotados. Si esta cualidad se defi-
+ne como “una aptitud innata para la actividad intelectual que no puede ser adquirida por el esfuerzo 
+personal” y, por ende, se relaciona con el cociente intelectual y la inteligencia, ser prodigio supone 
+que se domina a edad precoz una aptitud que se adquiere normalmente en la adultez (generalmente 
+artística, cultural o incluso científica). Prodigio  no significa genio  entonces, ni más inteligente, sino 
+precoz; para romper el primer mito, sin por ello despreciar el mérito. En la historia hay bastantes 
+ejemplos ilustres de niños prodigio: Gari Kaspárov (ajedrez), Arthur Rimbaud (literatura), Ludwig 
+van Beethoven (música), Pablo Picasso (pintura y escultura), Drew Barrymore (cine). Todos tienen 
+en común […] que fueron niños prodigio con mucho éxito y hasta se podría decir que tuvieron un 
+cierto impacto en la sociedad humana de su época y para la posteridad. Wolfgang Amadeus Mozart 
+es quizás el más famoso de todos, pues componía obras completas de música desde los cinco años. 
+Existe un mérito en los niños prodigio que efectivamente hay que reconocer, pues no es sencillo 
+dominar a temprana edad una aptitud que un adulto normal típicamente tarda años en adquirir 
+gracias a entrenamientos y estudios sostenidos. Pero lo que suele desconocerse y nos explican los 
+múltiples estudios científicos y análisis históricos sobre niños prodigio es que se puede pasar de 
+ser una gran promesa a temprana edad a ser una verdadera referencia en su campo solamente si 
+se supo aprovechar la precocidad para superar a los demás, gracias a un esfuerzo constante desde 
+la identificación de su condición. En otras palabras, parten con ventaja, no desde cero, pero sin 
+práctica continua esa ventaja se puede perder. Y de ahí surge la necesidad de contar con una escuela 
+especializada o de mantener una estimulación constante para progresar. Y para eso se requiere de 
+la presencia de un adulto que identifique la precocidad de la niña o del niño en algún tema (algunos 
+le llaman “el don”) y que la estimule. En la biografía de Mozart, por ejemplo, se sabe todo del don del 
+niño de cinco años que impresionaba a los músicos adultos y con mucha experiencia de su época, 
+pero pocos hablan de la necesaria perseverancia de su padre, que buscaba a los mejores profesores y 
+pedagogos de toda Europa, capaces de entrenar a un niño como si fuera un adulto, para que su hijo 
+progresara rápida y eficientemente. No se sabe qué habría dejado Mozart a la posteridad sin esa 
+escuela especializada para niños prodigio […].
+Entonces, como lo mencionamos antes, la mayoría de los niños prodigio son al fin y al cabo hijos 
+prodigio, ya que se requiere de la estimulación constante para alimentar sus capacidades extraordi-
+narias. Por más precoces que sean, siguen siendo niños, con necesidades y deseos propios de la in -
+fancia. Seguramente, y se puede observar en estudios y análisis sobre el tema, los papás, tíos, abuelos
+16
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+y hermanos mayores son los que empujan a los chiquitos a superarse, a convertirse en los mejores. 
+Hoy este fenómeno se observa con mayor potencia en el mundo de la farándula, de los deportes y 
+del espectáculo. ¡Cuántos ejemplos tenemos actualmente de niñas y niños prodigio que parecen 
+pequeños adultos! Hay hasta concursos y programas de televisión que los ponen a competir para 
+nuestra diversión. Lamentablemente, esto suele tener muy malas consecuencias. La identificación 
+de un niño prodigio se puede convertir en nuestra época en una búsqueda de un perfil sobresaliente 
+para obtener fama, dinero o reconocimiento. Es algo que ciertamente ha existido en todas las épo -
+cas (en la de Mozart pasaba algo comparable, pues algunos niños prodigio eran fenómenos de feria). 
+Además, muchos estudios recomiendan un acompañamiento y ayuda psicológica constante para los 
+niños prodigio, ya que el hecho de obsesionarse con ser una referencia (por no decir el/la mejor en 
+su campo) conlleva cierto estrés y mucha presión vinculada con las altas expectativas de la sociedad, 
+que quizá no cuida su trato hacia personas que podrían parecer adultas, pero siguen siendo niñas y 
+niños. [1] El acompañamiento debe ser constante y debe, así como la edad real de los Wunderkinder, 
+respetar sus propias necesidades personales, sus derechos como niños (el derecho a no tener que 
+trabajar, a jugar, a no preocuparse por las tareas de los adultos a temprana edad, etcétera).
+Mathieu Hautefeuille (2019). Revista de la Universidad de México , octubre.
+17
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Subárea o Ámbito: Estudio
+Tema o proceso: Identificación de información
+De acuerdo con el texto, existen estudios que confirman la importancia de que los niños prodi-
+gio reciban atención _______, dado que pueden estar sometidos a presiones ajenas a su edad. 
+Además, otras investigaciones científicas avalan la importancia de la _______ de sus habilida-
+des para potenciarlas.
+Opción Argumentación
+A) pedagógica - comprensión Incorrecta. Los estudios a los que el reactivo se refiere seña-
+lan atención psicológica por las presiones y estrés que los 
+niños prodigio puedan llegar a sentir y la detección opor-
+tuna de las habilidades, mas no la comprensión de éstas.
+Opción Argumentación
+B) psicológica - detección Correcta. En el último párrafo el autor expone que existen 
+estudios que recomiendan mantener a los niños prodigio 
+bajo seguimiento psicológico: “Además, muchos estudios 
+recomiendan un acompañamiento y ayuda psicológica 
+constante para los niños prodigio, ya que el hecho de obse-
+sionarse con ser una referencia (por no decir el/la mejor en 
+su campo) conlleva cierto estrés y mucha presión vinculada 
+con las altas expectativas de la sociedad…” Y es a la mitad 
+del primer párrafo, en el que se señala que estudios cien-
+tíficos e históricos avalan la importancia de la detección 
+de las habilidades del niño prodigio a temprana edad para 
+potenciarlas: “Pero lo que suele desconocerse y nos expli-
+can los múltiples estudios científicos y análisis históricos 
+sobre niños prodigio es que se puede pasar de ser una gran 
+promesa a temprana edad a ser una verdadera referencia 
+en su campo solamente si se supo aprovechar la precocidad 
+para superar a los demás, gracias a un esfuerzo constante 
+desde la identificación de su condición”.
+18
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Opción Argumentación
+C) jurídica - explotación Incorrecta. El texto no menciona implicaciones jurídicas de 
+manera explícita por la presión a la que los niños prodi-
+gio puedan estar sometidos, por lo que la opción funciona 
+como distractor. La explotación de las habilidades no es la 
+acción que el texto marca como la vía para poder detectar-
+las o potenciarlas.
+Respuesta correcta: B
+19
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Subárea o Ámbito: Estudio
+Tema o proceso: Interpretación
+Una consecuencia de mantener un acompañamiento inadecuado con un niño identificado 
+como prodigio es que este...
+Opción Argumentación
+A) intente demostrar constantemente  
+su habilidad
+Correcta. Los niños al ser catalogados como 
+prodigios constantemente deben demostrar 
+su habilidad en las diferentes áreas, pues se 
+sienten presionados por cumplir con las ex-
+pectativas.
+Opción Argumentación
+B) logre satisfacer las expectativas  
+de sus padres
+Incorrecta. En el texto se menciona que los 
+niños prodigio al “obsesionarse con ser una 
+referencia (por no decir el/la mejor en su 
+campo) conlleva cierto estrés y mucha pre-
+sión vinculada con las altas expectativas de la 
+sociedad”, por lo que si no llevan un acom-
+pañamiento adecuado puede ser perjudicial 
+para ellos.
+Opción Argumentación
+C) busque incrementar su coeficiente  
+intelectual
+Incorrecta. La consecuencia de un mal acom-
+pañamiento detonará en que el niño prodigio 
+intente demostrar constantemente la habili-
+dad en la que sobresale no el incrementar su 
+coeficiente intelectual.
+Respuesta correcta: A
+20
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Subárea o Ámbito: Estudio
+Tema o proceso: Evaluación de la forma y el contenido
+Sara es una niña de 5 años que diseña maquetas sofisticadas con cajas de cartón.
+¿Qué sucederá si ni sus padres ni sus maestros notan sus habilidades arquitectónicas?
+Opción Argumentación
+A) Sus derechos fundamentales  
+se verán quebrantados
+Incorrecta. Entre los derechos de la infan-
+cia a los que alude el autor no se menciona 
+la obligatoriedad de los adultos a contribuir 
+a la precocidad de los niños. En todo caso, se 
+trataría de un compromiso moral.
+Opción Argumentación
+B) Perderá la aptitud que desarrolló  
+a edad temprana
+Correcta. El autor es enfático en que detrás de 
+niños prodigio hay adultos dispuestos a apo-
+yarlos, por lo que éstos son fundamentales 
+para el desarrollo de aquéllos; de lo contrario, 
+las habilidades prematuras se perderán.
+Opción Argumentación
+C) Deberá esforzarse más para mantener  
+su habilidad
+Incorrecta. Debido a que los niños dependen 
+de los adultos, el apoyo de éstos es fundamen-
+tal para conservar la precocidad, de lo con-
+trario, esta cualidad se perderá.
+Respuesta correcta: B
+Área. Redacción indirecta
+En Redacción indirecta no se busca medir conceptos memorísticos ni teóricos, evalúa sobre todo 
+el uso de la redacción en su contexto (el sustentante elige fragmentos textuales escritos de forma 
+correcta). Por lo tanto, el temario que se presenta a continuación es solo el listado de áreas que cubre 
+el examen y, si bien puede servir como estudio y ejercicio, no es una relación de conceptos que se 
+solicitarán en él.
+21
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Definición
+Es la habilidad que permite al individuo seleccionar pasajes textuales que cumplan con las conven-
+ciones gramaticales, semánticas y ortográficas propias de la lengua, a partir de un propósito deter -
+minado de comunicación, y considerando la audiencia a la que van dirigidos, ya sea en el ámbito de 
+estudio o el de participación social.
+Estructura del área
+Área Subárea T ema Núm. 
+de reactivos
+Redacción 
+indirecta
+Estudio
+Comunicativa
+15Gramatical y semántica
+Ortográfica
+Participación social
+Comunicativa
+15Gramatical y semántica
+Ortográfica
+Temario
+Subárea: Estudio
+Comunicativa
+ › Registro lingüístico: reseña, ensayo
+ › Género textual: prólogo
+Subárea: Participación social
+Comunicativa
+ › Registro lingüístico: artículo de opinión, noticia
+ › Género textual: crónica
+22
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+En las dos subáreas de estudio y participación social
+Gramatical y semántica
+ › Concordancia nominal
+ › Concordancia verbal
+ › Cohesión gramatical
+ › Cohesión léxico-semántica
+ › Cohesión textual
+Ortográfica
+ › Grafofonética
+ › Puntuación
+ › Acentuación
+Bibliografía 
+ › Real Academia Española (2010). Ortografía de la lengua española. Espasa.
+ › Real Academia Española (2014). Diccionario de la lengua española (23a ed.). Espasa.
+ › Real Academia Española y Asociación de Academias de la Lengua Española (2005). Diccionario 
+panhispánico de dudas. Santillana. Es importante remitirse a la primera edición del diccionario. 
+Por ejemplo, para el apartado de Concordancia nominal y verbal, de la dimensión Gramatical y 
+semántica, la información original se encuentra en la siguiente liga (consultada el 28 de agosto 
+de 2023): https://www.rae.es/dpd/concordancia
+ › Real Academia Española y Asociación de Academias de la Lengua Española (2009). Nueva gramá-
+tica de la lengua española. Espasa.
+Nota: Parte del contenido de esta prueba se diseñó a partir de la versión original del Diccionario 
+panhispánico de dudas , editado en 2005. Por lo tanto, las preguntas se elaboraron con base en este 
+documento, y no se considerarán versiones provisionales, segundas ediciones o actualizacio -
+nes para esta evaluación.
+23
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplos de reactivos
+Subárea o Ámbito: Estudio
+Tema o proceso: Comunicativa
+La revista de una universidad publicó una convocatoria para escribir ensayos académicos so-
+bre la responsabilidad de la humanidad con respecto a los animales. En la redacción recibieron 
+tres propuestas.
+¿Cuál propuesta es pertinente para publicar en la revista?
+Opción Argumentación
+A) En los últimos años me he comprometido 
+con los animales. He dejado de usar ropa 
+de piel y he optado por vestir prendas sin-
+téticas. No soy la única persona: han cre-
+cido los grupos que defienden los derechos 
+de los animales y se han creado santuarios 
+para resguardar las especies que están en 
+peligro de extinción. Además de eso, cada 
+día somos más los vegetarianos y conti-
+nuamos luchando para erradicar las co-
+rridas de toros y otro tipo de prácticas que 
+atentan contra la vida de los animales
+Incorrecta. El registro de la opción es informal y 
+resulta inapropiado para el ámbito académico.
+Opción Argumentación
+B) Las vacas me parecen inteligentísimas. Por 
+ejemplo, si tú las dejas a la orilla de un río 
+y hay un puente, lo utilizarán para atra-
+vesar sin necesidad de pastor. También los 
+perros son listos. La otra vez me guardé 
+cuatro croquetas en el pantalón y mi perro 
+me vio y me siguió por toda la casa hasta 
+que se las di. Pero sólo le di tres. Entonces 
+no dejó de seguirme hasta que le di la que 
+faltaba. Prueba de que sabe contar. Los 
+pulpos tienen memoria. He visto en algu-
+nos documentales que incluso pueden ser 
+más inteligentes que mucha gente
+Incorrecta. El registro de la opción es colo-
+quial y resulta inapropiado para el ámbito 
+académico.
+24
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Opción Argumentación
+C) Pitágoras pensaba que los animales y los 
+humanos poseen alma. Independiente-
+mente de si la tienen o no, la humanidad 
+está obligada a replantearse el trato hacia 
+los animales. No sólo somos responsables 
+de los que tienen sistema nervioso central; 
+también lo somos con las hormigas o las 
+cucarachas que tienen un sistema nervioso 
+periférico y que aún no sabemos si sien-
+ten dolor. Ellos también buscan alimento 
+e intentan protegerse del peligro, lo que 
+nos indica que se nos parecen más de lo 
+que creemos. Cuando decimos que estos 
+bichos han invadido nuestra casa, debe-
+ríamos pensar si no ha sido al revés. En la 
+mayoría de los casos, los invasores somos 
+nosotros
+Correcta. El registro formal que emplea este 
+ejemplo es propio del ensayo académico.
+Respuesta correcta: C
+25
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Subárea o Ámbito: Participación social
+Tema o proceso: Gramatical y semántica
+Elija la palabra cuyo significado sea opuesto a la marcada en negritas en el texto. 
+En un gimnasio, un entrenador no se comportó profesionalmente, ya que se burló de un chico 
+por cargar poco peso y a otro quería obligarlo a cargar más peso de lo que éste podía. Un joven 
+presenció estos actos, consideró que el entrenador era pesado  y decidió no solicitarle ayuda 
+nuevamente.
+Opción Argumentación
+A) animado Incorrecta. El adjetivo “pesado” tiene varias 
+acepciones, en el caso del texto significa ‘mo-
+lesto, enfadoso e impertinente’, mas no signi-
+fica que sea ‘aburrido’, por lo que “animado” 
+no es el adjetivo correspondiente.
+Opción Argumentación
+B) afable Correcta. El adjetivo “pesado” tiene varias 
+acepciones, en el caso del texto significa ‘mo-
+lesto, enfadoso e impertinente’; el antónimo 
+de este adjetivo es “afable”, ya que significa 
+que ‘es agradable, cordial o que es suave en su 
+trato’.
+Opción Argumentación
+C) ligero Incorrecta. El adjetivo “pesado” tiene varias 
+acepciones, en el caso del texto significa ‘mo-
+lesto, enfadoso e impertinente’, mas no ‘que 
+pesa mucho’, por lo que “ligero” no es el adje-
+tivo correspondiente.
+Respuesta correcta: B
+26
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Subárea o Ámbito: Estudio
+Tema o proceso: Ortográfica
+Elija la oración acentuada correctamente.
+Opción Argumentación
+A) Diversas tradiciones alrededor  
+del múerdago lo asocian con la fertilidad
+Incorrecta. De acuerdo con la Ortografía de 
+la lengua española, en las palabras que inclu-
+yen diptongos con vocal abierta tónica (a, e, 
+o) y una cerrada átona (i, u) o viceversa, la til-
+de se coloca sobre la vocal abierta, por lo que 
+“muérdago” debe llevar tilde en la “e”.
+Opción Argumentación
+B) Las religiones mesiánicas esperan la  
+llegada de un redentor de la humanidad
+Correcta. De acuerdo con la Ortografía de la 
+lengua española, en las palabras que incluyen 
+diptongos con vocal abierta tónica (a, e, o) y 
+una cerrada átona (i, u) o viceversa, la tilde se 
+coloca sobre la vocal abierta, como en “me-
+siánicas”.
+Opción Argumentación
+C) A pesar de ser antihigíenico, muchas  
+personas olvidan lavarse las manos
+Incorrecta. De acuerdo con la Ortografía de 
+la lengua española, en las palabras que inclu-
+yen diptongos con vocal abierta tónica (a, e, 
+o) y una cerrada átona (i, u) o viceversa, la til-
+de se coloca sobre la vocal abierta, por lo que 
+“antihigiénico” debe llevar tilde en la “e”.
+Respuesta correcta: B
+27
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Área. Pensamiento matemático
+Definición
+Es la habilidad para reconocer y emplear lo matemático en la vida cotidiana, al incorporar un len -
+guaje para construir conceptos, procedimientos y representaciones necesarias al resignificar cono-
+cimientos aritméticos, algebraicos, geométricos, estadísticos y probabilísticos en la formulación y 
+resolución de problemas pertenecientes a diversos contextos para la toma de decisiones fundamen-
+tadas matemáticamente.
+Estructura del área
+Área Subárea T ema Núm. 
+de reactivos
+Pensamiento 
+matemático
+Comprensión de lo matemático
+Conexiones
+18Estimación
+Sentido numérico
+Matematización
+Desarrollo de usos
+12Lenguaje matemático
+Resignificaciones
+Temario
+Subárea: Comprensión de lo matemático
+Sentido numérico
+ › Inecuaciones lineales
+ › Simplificación de expresiones algebraicas
+ › Razones trigonométricas
+ › Área
+ › Desviación estándar
+ › Media aritmética
+Conexiones
+ › Razones y proporciones
+ › Interpretación gráfica de ecuaciones lineales
+28
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+ › Ejes de simetría
+ › Estimación de trayectorias
+ › Frecuencias
+ › Probabilidad clásica de eventos simples
+Estimación
+ › Leyes de los exponentes
+ › Porcentaje
+ › Unidades de medida como patrón de comparación
+ › Espacio muestral
+Subárea: Matematización
+Desarrollo de usos
+ › Representación gráfica de ecuaciones de segundo grado
+ › Comportamiento gráfico de funciones cuadráticas
+ › Relaciones trigonométricas
+ › Representación gráfica de información
+ › Medidas de tendencia central y de dispersión
+Lenguaje matemático
+ › Polinomios
+ › Sistemas de ecuaciones lineales con dos y tres incógnitas 
+Resignificaciones
+ › Variación lineal tabular
+ › Medidas de posición (deciles, cuartiles y percentiles)
+Bibliografía 
+ › Baldor, A. (2019). Álgebra (4a ed.). Grupo Editorial Patria.
+ › Baldor, A. (2004). Geometría plana y del espacio y trigonometría. Publicaciones Cultural.
+ › Johnson, R., & Kuby, P. J. (2012). Estadística elemental (11a ed.). Cengage Learning.
+ › Mendenhall, W., Beaver, R. J., & Beaver, B. M. (2010). Introducción a la probabilidad y estadística (13a 
+ed.). Cengage Learning.
+ › Rees, P. K., & Sparks F. W. (1998). Álgebra. Reverte.
+ › Ruiz Basto, J. (2014). Matemáticas 2, geometría, trigonometría, datos y azar. Grupo Editorial Patria.
+ › Zill, D. G., & Dewar J. M. (2012). Álgebra, trigonometría y geometría analítica (3a ed.). McGraw  Hill.
+29
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+Subárea: Matematización
+Tema: Lenguaje matemático
+¿Cuál es el resultado de la operación B + 2C - A si se consideran los siguientes polinomios?
+A = x - 3
+B = 3x3 - x2
+C = -4x2 + 2x
+Opción Argumentación
+A) 3x3 - 9x2 + 3x + 3 Correcta. Se realiza correctamente la opera -
+ción como se muestra a continuación: B + 2C - 
+A = 3x3 - x2 + 2(-4x2 + 2x) - (x - 3) = 3x3 - x2 - 8x2 
++ 4x - x + 3 = 3x3 - 9x2 + 3x + 3.
+Opción Argumentación
+B) 3x3 - 9x2 + x + 3 Incorrecta. Al realizar las operaciones realiza 
+incorrectamente la propiedad distributiva: B 
++ 2C - A = 3x3 - x2 + 2(-4x2 + 2x) - (x - 3) = 3x3 - 
+x2 - 8x2 + 2x - x + 3 = 3x3 - 9x2 + x + 3.
+Opción Argumentación
+C) 3x3 - 9x2 - 5x + 3 Incorrecta. Al realizar las operaciones reali -
+za incorrectamente la propiedad de los signos 
+para la suma y resta, confundiéndola con la de 
+la multiplicación y sumando los coeficientes: 
+B + 2C - A = 3x3 - x2 + 2(-4x2 + 2 x) - (x - 3) = 
+3x3 - x2 - 8x2 + 4x - x + 3 = 3x3 - 9x2 - 5x + 3.
+Respuesta correcta: A
+30
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Área. Inglés
+Esta área evalúa habilidades de comprensión lectora y redacción indirecta en inglés en un nivel B2 
+de acuerdo con el Marco Común Europeo de Referencia para las lenguas.
+La evaluación del inglés en el EXANI-II  es de tipo diagnóstico; esto significa que los resultados en 
+esta área no cuentan para la calificación del puntaje global.
+Definición
+Comprensión lectora
+Es la habilidad para construir significado de manera estratégica y activa a partir de la interacción 
+con textos académicos en inglés, en función de objetivos específicos de búsqueda y análisis de infor-
+mación e integrando tanto su conocimiento del inglés como sus conocimientos previos relevantes 
+a los temas analizados.
+Redacción indirecta
+Con esta habilidad se identifica un discurso escrito claro y estructurado que proporcione al lector 
+elementos suficientes para construir significado a partir del texto. El proceso, de carácter unidi -
+reccional, prevé como objetivo comunicar e integrar información relevante sobre el o los temas 
+abordados.
+Estructura del área
+Área Subárea T ema Núm. 
+de reactivos
+Inglés
+Comprensión lectora
+Leer para orientarse
+15Leer en busca de información 
+y argumento
+Redacción indirecta
+Escritura creativa
+15
+Redacción de reportes y ensayos
+31
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Temario
+Subárea: Comprensión lectora
+Leer para orientarse
+ › Resumen de información específica de un texto
+ › Identificación de las ideas principales y secundarias de un texto
+ › Reconocimiento de datos específicos y premisas dentro de un texto
+ › Búsqueda de información específica en un texto
+ › Reconocimiento de los tipos de textos y la audiencia a la que están dirigidos
+Leer en busca de información y argumento
+ › Comprensión de los lenguajes idiomático, figurativo, abstracto y conceptual
+ › Identificación del significado de una palabra a partir del contexto en el que se encuentra
+ › Reconocimiento de la estructura de textos discursivos: argumentos, discurso fáctico y discurso 
+persuasivo, relaciones causa-efecto y problema-solución
+ › Identificación del título correspondiente a un texto
+ › Realización de inferencias con base en la información implícita o explícita de un texto
+ 
+Subárea: Redacción indirecta
+Escritura creativa
+ › Uso de las formas verbales para comunicar ideas de manera precisa
+ › Desarrollo de una paráfrasis o síntesis de un texto tomando en cuenta los siguientes elementos: 
+estructura, tono y estilo, variaciones y sutilezas de la gramática del inglés
+ 
+Redacción de reportes y ensayos
+ › Estructuras gramaticales
+ › Uso de vocabulario
+ › Uso del lenguaje concreto, abstracto o idiomático para transmitir una idea
+ › Reconocimiento del subtítulo correspondiente a un texto
+Bibliografía
+ › Council of Europe (2018). Common European Framework of Reference for Languages. Learning, Tea -
+ching, Assessment. Companion volume with new descriptors. https://rm.coe.int/cefr-companion-volu-
+me-with-new-descriptors-2018/1680787989
+32
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplos de reactivos
+Early Earth Was No Inviting Blue Planet—It Was More Like Venus
+New insights on how, and when , terrestrial planets become habitable.
+[I] [1]
+[2]
+[3]
+[4]
+Experiments conducted by a scientific team led by Paolo Sossi from ETH Zurich in 
+Switzerland indicate that the atmosphere of Earth shortly after its origin was like the 
+atmosphere of Venus today. That is, it consisted mostly of carbon dioxide and nitrogen, 
+and was about 100 times denser than it is now.
+[II] [5]
+[6]
+[7]
+[8]
+[9]
+Sossi simulated the early magma planet that was Earth in the laboratory and measured 
+how the magma evolved chemically over time. The gasses fuming from that lava ocean 
+would become Earth’s primordial atmosphere, and would have resembled the thick, 
+hot Venusian atmosphere of today. If so, the two planetary neighbors started out very 
+similar.
+[III] [10]
+[11]
+[12]
+[13]
+[14]
+[15]
+[16]
+But while Venus changed very little, Earth changed dramatically. The prolonged pre-
+sence of water on our planet would have dissolved all that carbon dioxide in sea wa-
+ter, and eventually buried it under the surface thanks to Earth’s major recycling pro-
+cess—plate tectonics. That scrubbed most of the carbon dioxide from our atmosphere. 
+Later, after life arose, even more was removed by plants and other photosynthesizing 
+organisms. Today Earth’s atmosphere is dominated by nitrogen and oxygen, and much 
+thinner than it used to be.
+[IV] [17]
+[18]
+[19]
+[20]
+[21]
+[22]
+[23]
+[24]
+[25]
+[26]
+The authors point out that the ratio of carbon dioxide to nitrogen gas is the same on 
+Venus as it is on Mars: 97 to 3. That, they suggest, may be the starting point for terres-
+trial planets, assuming they had a similar initial endowment of gases. Since the ratio 
+hasn’t really changed, it would also mean that both those planets remained dry for a 
+very long time and lacked an efficient recycling mechanism. Otherwise, their atmos-
+pheres should have evolved very differently. If the authors are correct, and Earth’s early 
+atmosphere was dominated by carbon dioxide and nitrogen (other lines of evidence 
+support that notion as well), it’s bad news for the origin-of-life theory suggested by the 
+famous Miller-Urey Experiment, which requires significant concentrations of methane 
+and ammonia to produce amino acids, the building blocks of life.
+[V] [27]
+[28]
+[29]
+[30]
+[31]
+[32]
+[33]
+[34]
+Those compounds would have been unlikely to exist on early Earth, according to Sos-
+si’s work. If they were present, it would have been only for a short period, after a large 
+impact produced a lot of water vapor. The window could have stayed open just a few 
+million years, although even that may have been long enough for life to arise. In a se-
+minal paper, Antonio Lazcano and Stanley Miller—the same one who conducted the 
+Miller-Urey experiment—estimated that the critical period necessary for life to take 
+hold could have been as short as a few thousand years. So the methane-ammonia origin 
+theory is not fully off the table after all.
+Dirk Schulze-Makuch, Air & Space
+33
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Subárea: Comprensión lectora
+Tema: Leer para orientarse
+1. The phrase Those compounds in line 27 refers to…
+Opción Argumentación
+A) carbon dioxide and nitrogen Incorrect. According to the line of argument, “Those com-
+pounds” refers to methane and ammonia.
+Opción Argumentación
+B) methane and ammonia Correct. The direct referent for the phrase “Those com-
+pounds” is located in the final clause of the preceding pa-
+ragraph. There, the author questions the validity of the 
+Miller-Urey Experiment on the grounds that their theory 
+of the origin of life would have required methane and am-
+monia to have been present as essential elements for the 
+production of amino acids.
+Opción Argumentación
+C) amino acids Incorrect. According to the text, amino acids would be the 
+result of the presence of methane and ammonia on early 
+Earth atmosphere.
+Respuesta correcta: B
+34
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Subárea: Comprensión lectora
+Tema: Leer para orientarse
+2. According to paragraph III, which was the main element that led to the reduction of carbon 
+dioxide from early Earth’s atmosphere? 
+Opción Argumentación
+A) Water Correct. The text states that the prolonged presence of wa-
+ter on Earth helped to dissolve carbon dioxide from the at-
+mosphere.
+Opción Argumentación
+B) Plate tectonics Incorrect. Plate tectonics worked as a mechanism to get rid 
+of carbon dioxide previously dissolved by water.
+Opción Argumentación
+C) Photosynthesizing organisms Incorrect. The text indicates that those organisms helped to 
+get rid only of the remains of carbon dioxide.
+Respuesta correcta: A
+35
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Subárea: Redacción indirecta
+Tema: Redacción de reportes y ensayos
+Marie Van Brittan Brown, an African American nurse living _______ Jamaica, Queens in the 
+1960s, was working odd shifts, as was her husband, Albert, an electronics technician. When she 
+_______ home late, she sometimes felt afraid. Serious crimes in Queens jumped nearly 32 per-
+cent _______ 1960 to 1965, and police were slow to respond to emergency calls. Marie wanted 
+to feel safer _______ home.
+Laura Hilgers, “A Brief History of the Invention of the Home Security Alarm”, Smithsonian Magazine
+Opción Argumentación
+A) in - arrived - from - at Correct. “In” is a preposition used to indicate where 
+someone or something is, specifically with regard to cities, 
+countries, or continents. The use of the main verb in its past 
+form (“arrived”) is consistent with the time sequence of the 
+segment. The preposition “from” is correctly used before 
+time intervals. Collocation rules dictate the use of the 
+preposition “at” with “home” in the expression “at home”.
+Opción Argumentación
+B) at - arrive - since - in Incorrect. The preposition to be used in this particular 
+context is “in” to indicate where something or someone is, 
+particularly in the case of cities, countries or continents. 
+“At”, on the other hand, is a preposition used to indicate 
+position at a point or place, which is not the case in this 
+segment. The use of the simple present form of the verb 
+“arrive” is not appropriate, given the time sequence of the 
+segment (totally in the past). “Since” as a preposition must 
+necessarily be followed by the date or time when an action 
+started. Finally, the use of “in” is incorrect since collocation 
+ruling dictates the use of the preposition “at” with “home”.
+36
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Opción Argumentación
+C) on - arrives - until - on Incorrect. The preposition to be used in this particular 
+context is “in” to indicate where something or someone 
+is located, particularly in the case of cities, countries or 
+continents, whereas “on” as a preposition refers to a surface, 
+being also used to indicate streets, specific dates, weekdays 
+and holiday days. “Arrives” is not the correct form of the 
+verb: the time sequence of the narration demands the use 
+of the simple past. Whereas “until” as a preposition is used 
+to express the time or moment when an action finished, 
+the specific segment makes reference to a period of time. 
+Finally, the use of “on” is incorrect since collocation ruling 
+dictates use of the preposition “at” with “home”.
+Respuesta correcta: A
+37
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Registro para presentar el EXANI-II
+El EXANI-II  únicamente pueden solicitarlo al Ceneval las instituciones educativas, no es posible 
+hacerlo a título personal.
+Cada institución define su propia convocatoria, establece la fecha de aplicación del examen, deter-
+mina los requisitos para presentarlo y especifica el pro cedimiento que deberán seguir los aspirantes 
+para registrarse. 
+El Ceneval pone a disposición de las instituciones usuarias un cuestionario de contexto que les per-
+mite conocer mejor a sus aspirantes. Este instrumento tiene las siguientes características:
+ › Se responde durante el registro al EXANI-II , es decir, en una fase previa a la aplicación.
+ › Está integrado por preguntas de opción múltiple.
+ › Tiene el propósito de recabar información personal, social y escolar de los aspirantes.
+ › No existen respuestas correctas o incorrectas. 
+ › Se responde aproximadamente en 30 minutos.
+ › Se contesta en línea. La opción de registro en papel solamente puede utilizarse para aplicaciones 
+en la modalidad impresa y a solicitud de la institución educativa.
+ › Las respuestas emitidas en este cuestionario no influyen en el resultado del examen.
+Resultados
+Las instituciones usuarias son responsables de establecer y dar a conocer, en los medios que consi-
+deren pertinentes, los resultados de su evaluación. Acuda al Área de Servicios Escolares de la insti-
+tución a la que desea ingresar para conocer detalles sobre este proceso.
+38
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Preguntas frecuentes
+¿Puedo utilizar algún material de apoyo durante el examen?
+En la resolución del EXANI-II  está prohibido el uso de materiales de apoyo o dispositivos electróni-
+cos. Solo se permite utilizar una calculadora simple.
+¿Cómo y cuándo se conocen los resultados?
+La institución solicitante decide la forma, los medios y la fecha de comunicación de los resultados. 
+Es necesario consultar la convocatoria o preguntar directamente en su institución.
+¿Cómo se recupera el pase de ingreso en caso de extravío?
+Se recomienda acudir al Área de Servicios Escolares de la institución contratante para mayor 
+orientación.
+¿Cómo saber en qué modalidad se presentará el examen?
+Las convocatorias de las instituciones de interés establecen la modalidad. En caso de dudas, se re -
+comienda acudir al Área de Servicios Escolares para mayor orientación.
+¿Cómo identificar cuáles módulos aplicar?
+Las instituciones usuarias definen, en función del perfil de ingreso de las licenciaturas o programas 
+de técnico superior universitario y del enfoque de enseñanza de los distintos programas, la combi-
+nación de módulos que cada aspirante presentará. Las convocatorias correspondientes establecen 
+esta información; no obstante, en caso de alguna duda, se recomienda acudir al Área de Servicios 
+Escolares.
+39
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Anexo I. Temarios, bibliografía de apoyo y ejemplos de reactivos
+Módulos de conocimientos disciplinares específicos
+Administración
+Definición
+Conocimientos relacionados con los fundamentos, las características y los elementos que consti -
+tuyen cada una de las etapas del proceso administrativo que permiten identificar cómo se debe 
+administrar una organización.
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Administración
+Fundamentos
+Enfoques de la administración
+10
+Clasificación de las organizaciones
+Áreas funcionales
+Emprendimiento
+Proceso 
+administrativo
+Planeación
+14
+Organización
+Dirección
+Control
+40
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Temario
+Subárea: Fundamentos
+ › Teorías y postulados de la Administración
+ › Clasificación de empresas y recursos empresariales
+ › Áreas funcionales de una organización: Producción, Mercadotecnia, Finanzas y Recursos Humanos
+ › Características del emprendimiento y tipos de emprendedor
+Subárea: Proceso administrativo
+ › Etapas y fases del proceso administrativo
+ › Planeación: características, principios y procesos
+ › Organización: procesos, estructura y técnicas
+ › Dirección: principios y elementos
+ › Control: principios, procesos y técnicas
+Bibliografía
+ › Chiavenato, I. (2004). Introducción a la teoría general de la administración. McGraw Hill.
+ › Franklin Fincowsky, E. B. (2003). Organización de empresas. McGraw Hill.
+ › Griffin, R. W. (2011). Administración (10a ed.). Cengage Learning.
+ › Hernández y Rodríguez, S. (2011). Introducción a la administración (5a ed.). McGraw Hill.
+ › Münch Galindo, L. (2014). Administración: Gestión organizacional, enfoques y proceso administrativo. 
+Pearson.
+ › Robbins, S. P., & Coulter, M. (2018). Administración (13a ed.). Pearson.
+ › Sánchez Delgado, M. (2014). Administración I (Serie integral por competencias). Grupo Editorial 
+Patria.
+41
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+¿Qué área funcional de una organización es la encargada de realizar la promoción, distribución 
+y venta de lo fabricado por la empresa?
+Opción Argumentación
+A) Producción Incorrecta. Al área funcional de Producción le 
+corresponde la actividad de manufactura del 
+bien, es decir, la transformación de la materia 
+prima en un producto final; por lo tanto, no 
+corresponde con lo solicitado en el reactivo.
+Opción Argumentación
+B) Finanzas Incorrecta. El área funcional de Finanzas es 
+la encargada de la gestión, obtención y aplica-
+ción de los recursos financieros, es decir, los 
+diferentes capitales con los que dispone y re -
+quiere la empresa; por lo tanto, no se relaciona 
+con lo que se pregunta en el reactivo.
+Opción Argumentación
+C) Mercadotecnia Correcta. El área funcional de Mercadotecnia 
+es la encargada de las actividades vinculadas 
+con la venta, comercialización, promoción, 
+distribución, así como el desarrollo de es -
+trategias comerciales de los productos de la 
+empresa y el de nuevos productos, por lo que 
+corresponde a lo cuestionado en el reactivo.
+Respuesta correcta: C
+42
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Aritmética
+Definición
+Estos conocimientos comprenden los números, las operaciones definidas entre ellos, sus relaciones 
+y el uso del lenguaje matemático, desde los principios de los números reales hasta la modelación y 
+solución de problemas con números racionales. Asimismo, la Aritmética supone la base que permite 
+ejercitar nuevas habilidades para comprender situaciones que se modelan en el lenguaje matemáti-
+co, el sustento aplicativo para resolver problemas de distinto orden, la adquisición de algoritmos y 
+conceptos para futuros temas avanzados de Matemáticas.
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Aritmética
+Principios
+de números 
+reales
+Leyes de los signos
+14
+Leyes de los exponentes
+Jerarquía de operaciones
+Múltiplos y divisores
+Problemas
+con números
+racionales
+Razones
+10
+Variaciones
+Temario
+Subárea: Principios de números reales
+ › Operaciones básicas con números enteros, fracciones y decimales
+ › Ley de los signos
+ › Potenciación
+ › Signos de agrupación
+ › Expresiones algebraicas con radicales
+ › Notación científica
+ › Factores primos
+ › Reglas de divisibilidad
+ › Mínimo común múltiplo
+ › Máximo común divisor
+43
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Subárea: Problemas con números racionales
+ › Razón y proporción
+ › Porcentaje
+ › Progresión geométrica
+ › Progresión aritmética
+ › Reparto proporcional
+ › Interés simple
+ › Regla de tres
+Bibliografía
+ › Baldor, A. (2017). Álgebra. Grupo Editorial Patria.
+ › Ibañez Carrasco, P. (2018). Matemáticas I . Cengage Learning.
+ › Ibañez Carrasco, P., & García Torres, G. (2011). Matemáticas y vida cotidiana 1: con enfoque en 
+competencias. Cengage Learning.
+44
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+Resuelva la operación.
+-9{9 - [(-8) ÷ (-4)] + 9 - 6}
+Opción Argumentación
+A) -90 Correcta. Se realiza respetando la jerarquía 
+de operaciones y la eliminación de los signos 
+de agrupación conforme al orden correcto. 
+Por lo tanto: -9{+9 - [(-8)/(-4)] + 9 - 6} = -9{+9 
+- [-8/-4] + 9 - 6} = -9{+ 9 - [+2] + 9 - 6} = -9} + 
+9 - 2 + 9 - 6} = -9{+10} = -90.
+Opción Argumentación
+B) -19 Incorrecta. Al finalizar no se respeta la jerar -
+quía de operaciones y la eliminación de los 
+signos de agrupación conforme al orden co -
+rrecto. La última eliminación de los signos de 
+agrupación se hace sumando los últimos 2 nú-
+meros y no multiplicándolos, además de que 
+la suma está incorrecta porque no se respetan 
+los signos. -9{+9 - [(-8)/(-4)] + 9 - 6} = -9{+9 - 
+[-8/-4] + 9 - 6} = -9{+9 - [+2] + 9 - 6} = -9{+9 -2 
++ 9 - 6} = -9{+10} = -19.
+Opción Argumentación
+C) 1 Incorrecta. Debido a que al finalizar no se res-
+petan la jerarquía de operaciones y la elimina-
+ción de los signos de agrupación conforme al 
+orden correcto. La última eliminación de los 
+signos de agrupación se hace sumando los úl-
+timos 2 números y no multiplicándolos. Por lo 
+tanto: -9{+9 - [(-8)/(-4)] + 9 - 6} = -9{+9 -[-8/-4] 
++ 9 - 6} = -9{+9 - [+2] + 9 - 6} = -9{+9 - 2 + 9 - 6} 
+= -9{+10} = +1.
+Respuesta correcta: A
+45
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Biología
+Definición
+Aborda los procesos relacionados con la vida de los seres vivos en términos de su estructura, fun-
+cionamiento, evolución e interacciones, así como el funcionamiento celular y el estudio de la bio-
+diversidad como consecuencia de la evolución y la clasificación de los organismos en relación con 
+sus características, además de la importancia de los seres vivos en la naturaleza y el uso sustentable 
+de los recursos naturales.
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Biología
+La célula
+Estudio de la célula a través del tiempo
+12Procesos celulares
+La genética y sus aplicaciones
+Biodiversidad
+Estudio de la diversidad biológica
+12
+Seres vivos
+Temario
+Subárea: La célula
+ › Teoría celular
+ › Método científico
+ › Tipos de célula
+ › Organelos celulares
+ › Procesos metabólicos de obtención de energía
+ › Respiración y fotosíntesis
+ › Herencia mendeliana y no mendeliana
+ › Biotecnología e ingeniería genética
+ › Técnicas de biotecnología e ingeniería genética
+46
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Subárea: Biodiversidad
+ › Técnicas de estudio de la biodiversidad
+ › Protección al medio ambiente
+ › Estructura de la planta
+ › Estructura de los organismos
+ › Estructura morfológica del reino Fungi
+ › Estructura de los mamíferos
+ › Proceso metabólico de los hongos
+ › Procesos vitales de la planta
+Bibliografía
+ › Biología de bachillerato. Unidad 2: Células [Software]. Khan Academy. https://es.khanacademy.
+org/science/high-school-biology/hs-cells
+ › Curtis, H., Barnes, N. S., Shnek, A., & Massarini, A. (2008). Biología (7a ed.). Médica Panamericana.
+ › Gama Fuertes, M. A. (2018). Biología 1. Competencias + aprendizaje + vida  (4a ed.). Pearson.
+ › Granillo Velázquez, M. P., Valdivia Urdiales, B. A., & Villarreal Domínguez, M. S. (2014). Biolo-
+gía general: los sistemas vivientes. Grupo Editorial Patria.
+ › Miller, G. T., & Spoolman, S. E. (2010). Principios de ecología (5a ed.). Cengage Learning Editores.
+ › Odum, E. P., & Barret, G. W. (2006). Fundamentos de ecología (5a ed.). Thomson Editores.
+ ›  Smallwood, W. L., & Green, E. R., (2010). Biología. Publicaciones Cultural.
+ › Starr, C., Taggart, R., Evers C., & Starr, L. (2009). Biología. La unidad y la diversidad de la vida (12a 
+ed.). Cengage Learning.
+ › Vázquez Torre, A. M. G. (2001). Ecología y formación ambiental (2a ed.). McGraw Hill.
+47
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+Los productos finales de la respiración aerobia son _______, mientras que los de la respira -
+ción anaerobia de los hongos son _______. Por su parte, los productos de la fotosíntesis son 
+_______.
+Opción Argumentación
+A) ATP y CO2 - O2 y glucosa - NADH y etanol Incorrecta. Durante la respiración anaerobia 
+de los hongos no se produce oxígeno (O 2) ni 
+glucosa, sino NADH y etanol. Los productos 
+de la fotosíntesis son oxígeno (O 2) y glucosa, 
+no etanol ni NADH.
+Opción Argumentación
+B) O2 y glucosa - NADH y etanol - ATP y CO2 Incorrecta. El oxígeno y la glucosa son reacti-
+vos de la respiración aerobia, no los productos 
+finales. Por su parte, la fotosíntesis no produce 
+dióxido de carbono (CO2), sino oxígeno (O2).
+Opción Argumentación
+C) ATP y CO2 - NADH y etanol - O2 y glucosa Correcta. Durante la respiración celular, la 
+glucosa reacciona con el oxígeno, lo que ge -
+nera adenosín trifosfato (ATP) y dióxido de 
+carbono (CO2). Por otra parte, los productos 
+resultantes de la respiración anaerobia de los 
+hongos son etanol y dinucleótido de nicotina-
+mida (NADH). Por último, los productos re -
+sultantes de la fotosíntesis son oxígeno (O 2) y 
+glucosa.
+Respuesta correcta: C
+48
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Cálculo diferencial e integral
+Definición
+El conocimiento de la relación entre el Cálculo diferencial e integral por medio del teorema funda-
+mental del Cálculo permite definir el concepto de límite de funciones, los procesos de derivación e 
+integración, la derivada y la integral, con las cuales es posible solucionar diversos problemas, tanto 
+teóricos, como de aplicación a situaciones o fenómenos reales.
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Cálculo 
+diferencial
+e integral
+Cálculo 
+diferencial
+Límites
+12La derivada
+Aplicaciones de la derivada
+Cálculo integral
+La integral
+12Métodos de integración
+Aplicaciones de la integral definida
+Temario
+Subárea: Cálculo diferencial
+ › Propiedades de los límites
+ › Límites de funciones polinomiales y con variables independientes
+ › Derivadas por definición, de funciones trigonométricas, de funciones exponenciales y logarít-
+micas y de funciones polinomiales
+ › Recta tangente de funciones algebraicas
+ › Aplicaciones físicas de la derivada (velocidad instantánea, distancia, rapidez de cambio y de 
+optimización)
+49
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Subárea: Cálculo integral
+ › Partición de funciones
+ › Manipulación algebraica y aritmética
+ › Propiedades de la integral
+ › Métodos de integración
+ › Problemas de área, volumen y movimiento con integrales definidas
+Bibliografía
+ › Granville, W. A. (2009). Cálculo diferencial e integral. Limusa.
+ › Larson, R., Hostetler, R. P., & Edwards, B. H. (2006). Cálculo con geometría analítica (8a ed., Vol. 1). 
+McGraw Hill.
+ › Thomas, G. B. Jr. (2006). Cálculo. Una variable (11a ed.). Pearson Educación.
+50
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+Determine el resultado de la operación f’(30°) + g’(60°) de las derivadas de las funciones.
+f(x) = 3 cot x
+g(x) = 5 tan x
+Opción Argumentación
+A) 4 Incorrecta. Obtiene correctamente la deriva -
+da de cada función, sustituye correctamen -
+te el valor de x para cada función, así como 
+también de las relaciones trigonométricas. Sin 
+embargo, no considera que la función resul -
+tante de la derivada y su identidad trigonomé-
+trica está al cuadrado, donde al realizar la 
+operación de fracciones compuestas obtiene 
+la operación -3(2) + 5(2) = 4.
+Opción Argumentación
+B) 8 Correcta. Obtiene adecuadamente la deriva -
+da de cada una de las funciones, además de 
+que sustituye el valor que corresponde al de 
+x en cada función posterior a la derivación; 
+así también la aplicación de identidades trigo-
+nométricas csc2 x = 1/sen2 x y sec2 x = 1/cos2 x. 
+Finalmente, realiza la operación de fracciones 
+compuestas para obtener el resultado.
+Opción Argumentación
+C) 32 Incorrecta. Omite el signo de la derivada de la 
+cotangente dejándolo positivo 3 csc2 x + 5 sec2 
+x y sustituye los valores (3)(4) + (5)(4) = 32.
+Respuesta correcta: B
+51
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ciencias de la salud
+Definición
+Conocimientos relacionados con los componentes del cuerpo humano y su funcionamiento, el es-
+tudio de las características de la triada ecológica y su relación con el proceso salud-enfermedad del 
+cuerpo, las consecuencias de las conductas de riesgo y su actuación ante situaciones de emergencia. 
+Estos conocimientos permiten la toma de decisiones respecto al cuidado de la salud.
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Ciencias 
+de la salud
+Estudio
+del proceso
+salud-enfermedad
+Terminología de ciencias de la salud
+11
+Triada ecológica
+Historia natural de la enfermedad
+Conductas de riesgo y situaciones 
+de emergencia
+Morfofisiología del 
+cuerpo humano
+Sistemas de referencia anatómica
+13Anatomía y fisiología de los aparatos 
+y sistemas del cuerpo humano
+Temario
+Subárea: Estudio del proceso salud-enfermedad
+ › Términos técnicos de ciencias de la salud
+ › Triada ecológica
+ › Propagación de enfermedades
+ › Prevención de enfermedades
+ › Trastornos alimentarios
+ › Factores de riesgo en accidentes
+52
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Subárea: Morfofisiología del cuerpo humano
+ › Planimetría
+ › Sistema músculo esquelético (estructura y funciones básicas)
+ › Sistema tegumentario (estructura y funciones básicas)
+ › Sistema endócrino (estructura y funciones básicas)
+ › Sistema nervioso (estructura y funciones básicas)
+ › Sistema linfático (estructura y funciones básicas)
+ › Sistema inmunológico (estructura y funciones básicas)
+ › Aparato cardiovascular (estructura y funciones básicas)
+ › Aparato respiratorio (estructura y funciones básicas)
+ › Aparato digestivo (estructura y funciones básicas)
+ › Aparato urinario (estructura y funciones básicas)
+ › Aparato reproductor (estructura y funciones básicas)
+Bibliografía
+ › Higashida Hirose, B. (2014). Ciencias de la salud (7a ed.). McGraw Hill.
+ › Rizzo, D. C. (2011). Fundamentos de anatomía y fisiología (3a ed.). Cengage Learning Editores.
+ › Rosas Munive, M., & Mora Magaña, I. (2018). Educación para la salud (3a ed.). Pearson Educación.
+ › Ruiz Vargas, J. C. (2002). Anatomía topográfica. Universidad Autónoma de Ciudad Juárez.
+ › Saladin, K. S. (2013). Anatomía y fisiología. La unidad entre forma y función (8a ed.). McGraw Hill.
+ › Sánchez Mora, M. del C., & Contreras Sánchez, E. (2018). Educación para la salud . Santillana.
+ › Tortora, G. J., & Derrickson, B. (2018). Principios de anatomía y fisiología (15a ed.). Médica Panamericana.
+ › Vargas Domínguez, A., & Palacios Álvarez, V. P. (2018). Educación para la salud . Grupo Editorial 
+Patria.
+53
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+La bacteria Salmonella spp. posee mecanismos de virulencia, como la liberación de toxinas, que 
+producen efectos adversos a la salud. 
+¿A qué integrante de la triada ecológica hace referencia esta descripción?
+Opción Argumentación
+A) Huésped Incorrecta. El huésped es aquel organismo que 
+aloja a otro que es capaz de producirle alguna 
+enfermedad. Las características referidas no 
+pertenecen al hospedero sino a la bacteria Sal-
+monella spp.
+Opción Argumentación
+B) Agente Correcta. Los agentes de la triada ecológica 
+son aquellos factores localizados en el medio 
+ambiente o en el propio hospedero que pue -
+den ser causa de la aparición de alguna enfer-
+medad en este.
+Opción Argumentación
+C) Ambiente Incorrecta. El ambiente es el conjunto de fac -
+tores biológicos, físicos y socioculturales que 
+pueden desencadenar enfermedades en el 
+huésped; en este caso, se hace referencia a la 
+bacteria Salmonella spp., que es un agente cau-
+sal biológico.
+Respuesta correcta: B
+54
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Derecho
+Definición
+Son conocimientos básicos que permiten entender la clasificación e importancia de las reglas de 
+conducta que rigen a una sociedad, además de comprender la creación, la función y la aplicación 
+del derecho en los diversos ámbitos en los cuales se relaciona la persona con otros individuos y con 
+el Estado, con la finalidad de contribuir a una convivencia social armónica.
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Derecho
+Nociones 
+de Derecho
+Acepciones
+10
+Normas de conducta
+Fuentes del derecho
+Proceso jurisdiccional
+Ramas 
+del derecho
+Laboral
+14
+Civil
+Mercantil
+Constitucional
+Penal
+Administrativa
+55
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Temario
+Subárea: Nociones de Derecho
+ › Definición de Derecho
+ › Significados del derecho (facultad, ciencia y norma)
+ › Acepciones del derecho (vigente, no vigente, positivo, objetivo y subjetivo)
+ › Tipos de normas de conducta y sus sanciones
+ › Características de las normas jurídicas
+ › Sanciones
+ › Fuentes del derecho
+ › Etapas y parte del proceso judicial
+Subárea: Ramas del derecho
+ › Sujetos y condiciones generales de los actos laborales
+ › Figuras jurídicas del derecho familiar
+ › Tipos de bienes y atributos de la personalidad
+ › Sociedades mercantiles y títulos de crédito
+ › Derechos humanos
+ › Proceso legislativo y sus etapas
+ › División de poderes
+ › Elementos del delito y bienes jurídicos tutelados
+ › Organización de la administración pública
+Bibliografía
+ › Abarca Mejía, A. (2013). Derecho. Santillana.
+ › Ceballos Albarrán, M., & Molina Téllez, C. J. (2015). Derecho I, Quinto semestre. Secretaría de 
+Educación Pública.
+ › Flores Gómez González, F., & Carvajal Moreno, G. (2004). Nociones de derecho positivo mexicano  
+(44a ed.). Porrúa.
+ › García Máynez, E. (2012). Introducción al estudio del derecho. Porrúa.
+ › Gómez Lara, C. (2006). Nociones de derecho positivo. McGraw Hill.
+ › Instituto de Investigaciones Jurídicas (1985). Diccionario Jurídico Mexicano (Tomo IV). Porrúa.
+ › Ortiz Luna, M. A. (2014). Acercamiento al derecho (2a ed.). Grupo Editorial Patria.
+ › Pereznieto Castro, L. (2012). Introducción al estudio del derecho (7a ed.). Oxford University Press.
+ › Santiago Hernández, A. R. (2011). Derecho. Esfinge.
+ › Santos Azuela, H. (2002). Nociones de derecho positivo mexicano (3a ed.). Pearson Educación.
+56
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+La finalidad del derecho humano de _______ es limitar la actividad que el Estado realiza frente 
+a las personas para evitar que se violen sus derechos naturales al momento de elegir aquello que 
+más les convenga y haga bien.
+Opción Argumentación
+A) igualdad Incorrecta. Su objetivo es proteger la condi -
+ción de igualdad de la cual gozan todas las 
+personas y ciudadanos mexicanos y que los 
+hacen iguales ante las leyes y autoridades.
+Opción Argumentación
+B) seguridad Incorrecta. Su intención es que las autorida -
+des del Estado apliquen de forma justa las dis-
+posiciones jurídicas a los individuos, para que 
+sus derechos básicos estén a salvo.
+Opción Argumentación
+C) libertad Correcta. Su finalidad es limitar la actividad 
+que el Estado realiza frente a las personas 
+para evitar que se violen sus derechos natu -
+rales al momento de elegir aquello que más les 
+convenga y haga bien.
+Respuesta correcta: C
+57
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Economía
+Definición
+Conocimiento de los principales conceptos económicos, a partir de las distintas corrientes del pen-
+samiento económico, las cuales dan las bases para comprender los elementos que integran a la 
+microeconomía y a la macroeconomía, y permiten relacionarlos con su entorno.
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Economía
+Principios
+de economía
+Elementos básicos de la economía
+10
+Escuelas del pensamiento económico
+Microeconomía
+y Macroeconomía
+Oferta y demanda
+14
+Competencia
+Teoría del consumidor y teoría del productor
+Indicadores y variables macroeconómicas
+Ciclo económico
+Políticas económicas
+Globalización y bloques comerciales
+Temario
+Subárea: Principios de economía
+ › Objeto de estudio de la economía
+ › Subdivisiones de estudio de la economía
+ › Etapas del proceso económico
+ › Factores de producción y agentes económicos
+ › Tipos de sistemas económicos
+ › Postulados de las escuelas de pensamiento económico y sus representantes (mercantilista, fisió-
+crata, clásica, neoclásica, marxista y keynesiana)
+58
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Subárea: Microeconomía y Macroeconomía
+ › Comportamiento de la ley de la oferta
+ › Comportamiento de la ley de la demanda
+ › Características y tipos de competencia perfecta e imperfecta
+ › Comportamiento del consumidor
+ › Características de la teoría del productor
+ › Cálculo de variables e indicadores económicos
+ › Características de las fases del ciclo económico
+ › Acciones de política fiscal
+ › Instrumentos de la política monetaria
+ › Características de la globalización económica
+ › Bloques comerciales
+Bibliografía
+ › Astudillo Moya, M. (2012). Fundamentos de economía. Universidad Nacional Autónoma de México.
+ › Ekelund, R. B., & Hébert, R. F. (2009). Historia de la teoría económica y de su método (3a ed.). 
+McGraw Hill.
+ › Heilbroner, R. L., & Lester C. T. (1987). Economía (7a ed.). Prentice Hall.
+ › Hernández Hernández, A. (2002). Matemáticas financieras: teoría y práctica (5a ed.). Ecafsa.
+ › Méndez Morales, J. S. (2009). Fundamentos de economía para la sociedad del conocimiento  (5a ed.). 
+McGraw Hill.
+ › Parkin, M., Matthews, K., & Powell, M. (2013). Introducción a la economía . Pearson.
+ › Schumpeter, J. A., & de Lucas, A. (1971). Diez grandes economistas: de Marx a Keynes (3a ed.). Alianza.
+ › Zalduendo, E. A. (1994). Breve historia del pensamiento económico (2a ed.). Macchi.
+59
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+A diferencia de la escuela clásica, la marxista plantea que la ganancia del capitalista proviene 
+del…
+Opción Argumentación
+A) plusvalor Correcta. De acuerdo con Marx, la jornada de 
+trabajo se divide en tiempo de trabajo social -
+mente necesario y trabajo excedente; este ex -
+cedente es apropiado por el capitalista y, aun 
+cuando las mercancías se vendieran a su valor, 
+la ganancia proviene de ese plusvalor que no 
+le es pagado al trabajador.
+Opción Argumentación
+B) capital Incorrecta. La concepción que plantea que 
+la ganancia proviene del capital y que, por lo 
+tanto, es un pago justo por el riesgo y empren-
+dimiento del empresario corresponde a los 
+clásicos como Adam Smith.
+Opción Argumentación
+C) comercio Incorrecta. La argumentación por el comercio 
+como fuente de la ganancia se acerca al plan -
+teamiento mercantilista.
+Respuesta correcta: A
+Filosofía
+Definición
+Conocimiento de los fundamentos de la filosofía, los elementos que caracterizan este tipo de pen-
+samiento y su relación con el contexto, así como del quehacer filosófico, el cual permite reconocer 
+el abordaje de la realidad a través de las herramientas propias de la filosofía.
+60
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Filosofía
+Fundamentos
+Origen de la filosofía
+10Sentido de la vida como problema filosófico
+Filosofía mexicana
+Quehacer 
+filosófico
+Problemas contemporáneos
+14Conocimiento filosófico sobre sí mismo 
+y la relación con otras personas
+Identidad nacional
+Temario
+Subárea: Fundamentos
+ › La duda, el asombro y la pregunta filosófica en los presocráticos
+ › El saber filosófico
+ › Ramas de la filosofía
+ › Aportaciones a la filosofía clásica
+ › Características de la naturaleza humana
+ › Noción del buen vivir
+ › Características del cuidado de sí mismo
+ › Posturas en torno a la justicia
+ › Corrientes filosóficas en México durante el siglo XIX
+ › Integrantes de los grupos filosóficos en México durante el siglo XX
+Subárea: Quehacer filosófico
+ › Tipos de discriminación
+ › Discursos culturales contemporáneos
+ › Posturas axiológicas
+ › Posturas éticas
+ › Principios bioéticos
+ › Problemas filosóficos sobre nuevas tecnologías
+ › Tipos de racionalidad
+ › Características de la globalización
+61
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+ › Aspectos de la condición humana
+ › Dimensiones del ser humano
+ › Cosmovisión filosófica prehispánica
+ › Identidad del mexicano
+ › Multiculturalidad en México
+ › Nacionalismo mexicano
+Bibliografía
+ › Bauman, Z. (2001). La globalización. Consecuencias humanas  (2a ed.). FCE.
+ › Escobar Velenzuela, G. (2014). Filosofía (Serie integral por competencias). Grupo Editorial Patria.
+ › Frondizi, R. (1972). ¿Qué son los valores? Introducción a la axiología (3a ed.). FCE.
+ › Guthrie, W. K. C. (2008). Los filósofos griegos. De Tales a Aristóteles. FCE.
+ › Hurtado, G. (2007). El búho y la serpiente. Ensayos sobre la filosofía en México en el siglo XX. Univer-
+sidad Nacional Autónoma de México.
+ › López Martínez, M. I., & Martínez Albarrán, A. Arturo. (2011). Vive la filosofía. Progreso.
+ › Maclntyre, A. (2019). Historia de la ética. Paidós.
+ › Priani Saisó, E., & Aguilar Rocha, I. S. (2017). Filosofía,  (10a ed.). Pearson.
+ › Reale, G., & Antiseri D. (2010). Historia del pensamiento filosófico y científico I. Antigüedad y Edad 
+Media. Herder.
+ › Santander, R. L. (2009). Filosofía (3a ed.). St Editorial.
+ › Vizcaíno Guerra, F. (2004). El nacionalismo mexicano en los tiempos de la globalización y el multicul -
+turalismo. Universidad Nacional Autónoma de México.
+ › Zubiri, X. (2006). Tres dimensiones del ser humano: individual, social e histórica. Alianza.
+62
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+Los presocráticos hicieron uso de la _______ para ir más allá de explicaciones míticas e indagar 
+por el arjé de la physis.
+Opción Argumentación
+A) capacidad de asombro Correcta. Debido a la capacidad de asombro 
+los presocráticos comenzaron a interrogarse 
+por la naturaleza y a dar explicaciones sobre 
+el origen del cosmos.
+Opción Argumentación
+B) duda Incorrecta. Los presocráticos no experimenta-
+ron una incertidumbre ante los hechos, ya que la 
+duda es carencia de certezas en el pensamiento.
+Opción Argumentación
+C) pregunta filosófica Incorrecta. Una pregunta filosófica nos lleva a 
+filosofar. La pregunta filosófica que todos los 
+presocráticos se hicieron fue: ¿Cuál es el arjé 
+de la physis? Sin embargo, antes de la pregunta 
+su capacidad de asombro los llevó a indagar y 
+cuestionar por el arjé.
+Respuesta correcta: A
+63
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Física
+Definición
+Conocimientos que permiten explicar los fenómenos físicos, como estática, cantidad de movi-
+miento, dinámica rotacional, electromagnetismo, movimiento ondulatorio y óptica. Con “cono-
+cimientos que permitan explicar” se refiere a conceptos, clasificaciones, leyes, teorías, relaciones, 
+descripciones, según corresponda, para explicar los sistemas intrínsecos a cada fenómeno.
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Física
+Mecánica
+Sistema de fuerza
+10
+Aceleración y fuerza centrípeta
+Trabajo y energía cinética rotacional
+Momento angular
+Relación entre impulso y cantidad 
+de movimiento
+Óptica, ondas 
+y electromagnetismo
+Campos magnéticos y fuerza magnética
+14
+Aplicaciones del electromagnetismo
+Movimiento vibratorio armónico simple
+Ondas y fenómenos ondulatorios
+Ondas electromagnéticas
+Óptica geométrica y ondulatoria
+Reflexión y refracción
+64
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Temario
+Subárea: Mecánica
+ › Sistemas de fuerzas coplanares concurrentes y distribuidos
+ › Elementos que intervienen en el movimiento circular uniforme
+ › Cálculo de fuerza centrípeta
+ › Variables relacionadas con el trabajo rotacional y la energía cinética rotacional
+ › Conservación del momento angular
+ › Ley de la conservación de la cantidad de movimiento
+ › Tipos de choque y variables relacionadas
+Subárea: Óptica, ondas y electromagnetismo
+ › Sistemas de objetos que interactúan a través de sus campos magnéticos
+ › Generación de fuerza magnética
+ › Sistemas de fuerzas entre corrientes
+ › Sistemas conductores que generan campos magnéticos
+ › Tipos y variables que intervienen en el movimiento armónico simple
+ › Clasificación, componentes y representación gráfica de ondas
+ › Aplicación tecnológica de fenómenos ondulatorios
+ › Tipos de lente
+ › Características y parámetros que intervienen en los fenómenos ópticos
+Bibliografía
+ › Tippens, P. E. (2011). Física, conceptos y aplicaciones (7a ed.). McGraw Hill.
+ › Wilson, J., Buffa, A., & Lou, B. (2007). Física (6a ed.). Pearson Educación.
+ › Young, H. D., & Freedman, R. A. (2019). Física universitaria, con física moderna (12a ed., Vol. 2). 
+Pearson Educación.
+65
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+Un niño amarra su lonchera con una cuerda de 0.5 m y la hace girar en forma circular sobre su 
+cabeza, consiguiendo una magnitud para el momento angular de 1.25 N · m · s. Si la lonchera 
+tiene una masa de 0.5 kg y la masa de la cuerda se considera despreciable, ¿qué rapidez angular 
+tiene la lonchera?
+Opción Argumentación
+A) 2.5 rad/s Incorrecta. El sustentante considera el mo -
+mento angular y el momento lineal como 
+equivalentes; por lo tanto, utiliza la ecuación 
+L = mv, despeja la velocidad que encuentra en 
+la ecuación v = L/m = 1.25 N · m · s/0.5 kg = 
+2.5 y erróneamente deduce que v = 2.5 rad/s.
+Opción Argumentación
+B) 5.0 rad/s Incorrecta. El sustentante comete el error co-
+mún de sustituir el valor del radio sin elevar al 
+cuadrado; por lo que, L = Iw = mrw produce 
+que w = L/mr. Entonces w = 1.25/(0.5 x 0.5) = 
+5 y reporta 5.0 rad/s.
+66
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Opción Argumentación
+C) 10.0 rad/s Correcta. La magnitud del momento angular 
+de un cuerpo que describe una trayectoria cir-
+cular es equivalente al momento de inercia del 
+sistema (I) por su rapidez angular (w). De aquí 
+que L = Iw = m x (r 2) x w; despejando se tie -
+ne que: w = L/m(r2); sustituyendo valores w = 
+(1.25 N · m · s)/[0.5 kg x (0.52)] = 10 rad/s (que 
+son las unidades asociadas al módulo de la ve-
+locidad angular; es decir, la rapidez angular).
+Respuesta correcta: C
+67
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Historia
+Definición
+Conocimientos de Historia de México e Historia Universal que permiten entender acontecimien-
+tos y procesos políticos, económicos, sociales y culturales a través del tiempo y el espacio, para 
+comprender asimismo la continua y acelerada transformación de las sociedades. 
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Historia
+Historia
+de México
+México prehispánico
+14
+Virreinato hasta la crisis de independencia
+México independiente hasta la Reforma 
+(1821-1876)
+Porfiriato y Revolución Mexicana
+México posrevolucionario (1920-1940)
+México actual (1940-hasta nuestros días)
+Historia
+Universal
+Imperialismo y el proceso de expansión 
+colonial (1870-1914)
+10
+Primera Guerra Mundial
+Segunda Guerra Mundial
+Descolonización y Guerra Fría
+Globalización y neoliberalismo
+Temario
+Subárea: Historia de México
+ › Características de los grupos humanos y las rutas migratorias del poblamiento del continente 
+americano
+ › Horizonte histórico de áreas culturales del México prehispánico
+ › Características de las instituciones políticas, sociales, económicas o culturales novohispanas
+68
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+ › Causas y consecuencias del proceso de independencia
+ › Planteamientos de los proyectos de organización política durante el siglo XIX
+ › Aportaciones de las legislaciones del siglo XIX
+ › Consecuencias de las intervenciones extranjeras durante el siglo XIX
+ › Sucesos políticos, económicos, sociales y culturales del porfiriato
+ › Causas y consecuencias de la Revolución mexicana
+ › Características y acciones de los gobiernos postrevolucionarios (1920 a 1940)
+ › Características del desarrollo económico de 1940 a 1982
+ › Causas y consecuencias de los movimientos sociales ocurridos de 1968 al 2000
+ › Causas y consecuencias de los hechos relacionados con la transición democrática de 1980 a la 
+actualidad
+Subárea: Historia Universal
+ › Ejes de la política económica imperialista
+ › Consecuencias de la política militar del dominio colonial (1870 a 1914)
+ › Causas y consecuencias de la Primera Guerra Mundial
+ › Causas y consecuencias de la Segunda Guerra Mundial
+ › Características del proceso de descolonización
+ › Causas y consecuencias de la Guerra Fría (1945 a 1991)
+ › Características de la globalización a partir de la segunda mitad del siglo XX
+ › Consecuencias del neoliberalismo
+Bibliografía
+ › Cruz Martín del Campo, A., León Ochoa, M., & Marín Hernández, L. (2015). Historia de México II. 
+Secretaría de Educación Pública.
+ › Escalante Gonzalbo, P., García Martínez, B., Jáuregui, L., Vázquez, J. Z., Speckman Guerra, E., 
+Garciadiego, J., & Aboites Aguilar, L. (2008). Nueva historia mínima de México ilustrada. El Colegio 
+de México.
+ › Menchaca Espinosa, F. J., & Martínez Ruiz, H. (2018). Historia de México 1 (3a ed., Serie integral 
+por competencias) [versión eBook]. https://books.google.com.mx/books?id=yI55DwAAQBA-
+J&printsec=frontcover&hl=es&source=gbs_ge_summary_r&cad=0#v=onepage&q&f=false
+ › Navarro Cruz, R. A., & López Meraz, Ó. F. (2015). Historia universal contemporánea . Dirección 
+General de Bachillerato, Secretaría de Educación de Veracruz.
+ › Palos Gómez, L. (2015). Historia Universal Contemporánea. Secretaría de Educación Pública.
+ › Serrano, J. (2019). Historia de México I. Endora Ediciones. 
+ › Sosa Ameneyro, M., & Suazo Sánchez, A. (2016). Historia de México I. Dirección General del 
+Bachillerato.
+69
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+La búsqueda de autonomía para participar en la toma de decisiones de programas económicos, 
+políticos y sociales, garantizar el respeto a los derechos humanos, construir un Estado pluriét -
+nico que preservara las distintas culturas e incluyera a campesinos y obreros fueron algunas de 
+las causas que confluyeron en el movimiento...
+Opción Argumentación
+A) magisterial de 1958 Incorrecta. El movimiento magisterial de 
+1958 derivó de demandas salariales, ya que 
+muchos sueldos se encontraban congelados, 
+al igual que mejores condiciones laborales, e 
+independencia del SNTE, así como de la lu -
+cha de otros sindicatos, como el ferrocarrilero 
+o de telegrafistas; jamás buscó la autonomía 
+para decidir sobre programas de apoyo gu -
+bernamental ni la construcción de un Estado 
+pluriétnico.
+Opción Argumentación
+B) estudiantil de 1968 Incorrecta. Las principales causas que deri -
+varon en la movilización estudiantil de 1968 
+tenían que ver con el ejercicio ciudadano de la 
+participación política, la represión de expre -
+siones, la inconformidad con el artículo 145 
+del código penal “disolución social”, el cual 
+justificaba las represiones, así como la desti -
+tución de varios jefes policiacos y del cuerpo 
+de granaderos.
+Opción Argumentación
+C) zapatista de 1994 Correcta. Los acuerdos de San Andrés deriva-
+ron del abandono de las comunidades indíge-
+nas en Chiapas, la imposición de programas 
+gubernamentales, el rezago de las distintas et-
+nias y la falta de derechos humanos hacia las 
+comunidades marginadas.
+Respuesta correcta. C
+70
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Literatura
+Definición
+Estos conocimientos permiten identificar los textos literarios a partir de las marcas propias y las 
+características para reconocer el género, la época y las formas narrativas de los textos; permiten 
+también distinguir los detalles de forma, fondo, contexto y evolución del género lírico, las caracte-
+rísticas del teatro antiguo y el contemporáneo, del ensayo literario y de las manifestaciones de la 
+literatura contemporánea y de la emergente.
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Literatura
+Ubicación 
+espacio 
+temporal de la 
+obra literaria
+Antigüedad y Medievo
+10
+Renacimiento, Siglos de Oro y Neoclasicismo
+Romanticismo y Realismo
+Vanguardismo
+Literatura contemporánea y emergente
+Géneros 
+literarios 
+y sus elementos 
+estructurales
+Narrativo
+14
+Lírico
+Dramático
+Ensayo literario
+Temario
+Subárea: Ubicación espacio temporal de la obra literaria
+ › Características, representantes y obras literarias
+ › Literatura griega y romana (características, representantes y obras literarias)
+ › Tradiciones literarias del medievo (italiana, española, francesa, inglesa o alemana), (caracterís-
+ticas, representantes y obras literarias)
+ › Literatura renacentista (características, representantes y obras literarias)
+ › Literatura neoclasicista (características, representantes y obras literarias)
+71
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+ › Literatura del romanticismo (características, representantes y obras literarias)
+ › Literatura del realismo (características, representantes y obras literarias)
+ › Literatura de las vanguardias (surrealismo, dadaísmo y futurismo), (características, represen-
+tantes y obras literarias)
+ › Corrientes literarias contemporáneas (existencialismo, teatro del absurdo, grupo de los con-
+temporáneos o boom latinoamericano), (representantes y obras literarias)
+ › Literatura emergente (características)
+Subárea: Géneros literarios y sus elementos estructurales
+ › Narrativa (características, subgéneros, elementos estructurales y formales)
+ › Lírica (características, subgéneros, lenguaje connotativo y denotativo, figuras retóricas)
+ › Representación teatral (características, subgéneros y elementos)
+ › Ensayo literario (estructura, elementos paratextuales, tesis, postura, hecho y opinión)
+Bibliografía
+ › Beristáin, H. (1995). Diccionario de retórica y poética (7a ed.). Porrúa.
+ › de la Calleja López, M. A., & Salazar López, J. (2018). Literatura universal . Santillana.
+ › Chorén, J., Goicoechea, G., & Rull, M. de los Á. (2014). Literatura Mexicana e Hispanoamericana . 
+Grupo Editorial Patria.
+ › Correa Pérez, A., & Orozco Torre, A. (2011). Literatura universal (3a ed.). Pearson.
+ › del Río Martínez, M. A. (2004). Literatura. Un viaje a través de los géneros. McGraw Hill.
+72
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+¿Cuál es la obra literaria que pertenece a la cultura romana?
+Opción Argumentación
+A) La teogonía Incorrecta. La teogonía fue escrita por el poe -
+ta griego Hesíodo, versa en torno a la historia 
+del origen de los dioses griegos y desarrolla 
+a los personajes muy similares a los mortales 
+humanos.
+Opción Argumentación
+B) Historia de la guerra del Peloponeso Incorrecta. Este texto fue escrito por Tucídi -
+des, un poeta ateniense, que desarrolla el tema 
+de las guerras que sucedieron en el Pelopone-
+so, entre la Liga del Peloponeso y la Liga de 
+Delos.
+Opción Argumentación
+C) Las metamorfosis Correcta. Las metamorfosis es un texto escrito 
+por Publio Ovidio Nasón, un poeta romano 
+que escribe cómo fue la evolución del hombre 
+a través de las diferentes edades y, después, 
+expone casos donde algunos personajes divi -
+nos se transforman por diferentes razones.
+Respuesta correcta. C
+73
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Matemáticas financieras
+Definición
+Conocimientos de aritmética en cuanto a razones, proporciones directas e inversas, porcentaje, 
+descuentos, sucesiones y series que son aplicables en situaciones financieras, así como uso de fór-
+mulas que permiten el cálculo de alguna variable involucrada en el interés simple y las inversiones, 
+estas en el ámbito de las finanzas personales. Conocimiento y aplicación de los elementos básicos 
+de las Matemáticas financieras, además de la identificación y el cálculo de rubros que intervienen 
+en la obtención del interés simple, en problemas que se presentan día a día por el uso de dinero.
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Matemáticas
+financieras
+Elementos 
+financieros 
+básicos
+Razones
+14
+Proporciones directas e inversas
+Porcentajes
+Descuentos
+Sucesiones y series
+Interés simple
+Elementos de interés simple y amortización
+10
+Inversiones
+Temario
+Subárea: Elementos financieros básicos 
+ › Razón aritmética a partir de su antecedente y consecuente y como proporción
+ › Proporcionalidad directa e inversa en el ámbito financiero
+ › Cantidad inicial y final, incremento y decremento
+ › Precio inicial, porcentaje de descuento y precio final
+ › Términos, diferencias y valores faltantes de sucesiones con números enteros y fraccionarios
+74
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Subárea: Interés simple
+ › Saldo insoluto
+ › Tasa y periodo de interés
+ › Monto de inversión
+ › Tiempo de inversión
+ › Capital de inversión
+Bibliografía
+ › Baldor, A. (2007). Aritmética (2a ed.). Grupo Editorial Patria.
+ › Colegio Nacional de Matemáticas (2009). Matemáticas simplificadas  (2a ed.). Pearson.
+ › Díaz Mata, A., & Aguilera Gómez, V. M. (2013). Matemáticas financieras  (5a ed.). McGraw Hill. 
+ › García Hernández, J. (1992). Cálculo mercantil . Trillas.
+ › Portus Govinden, L. (1990). Matemáticas financieras (3a ed.). McGraw Hill.
+ › Rodríguez Franco, J., Rodríguez Jiménez, E. C., & Pierdant Rodríguez, A. I. (2014). Matemáticas 
+financieras. Grupo Editorial Patria.
+ › Vidaurri Aguirre, H. M. (2020). Matemáticas financieras (7a ed.). Cengage Learning.
+ › Villalobos, José Luis (2009). Matemáticas financieras (3a ed.). Pearson.
+75
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+¿Cuál es el precio total que pagó una persona por su auto, con precio original de $335,900 si 
+dio 23 % de enganche, y lo compró a un plazo de 1 año con un interés de 15 % anual sobre el 
+remanente?
+Opción Argumentación
+A) $297,439.45 Incorrecta. El valor original se debe multipli -
+car por 23 % de anticipo para conocerlo. Apar-
+te se debe multiplicar el valor original por 77 
+%, que es lo que se financió, y lo que resulte 
+por 1.15, que es la suma de lo financiado más 
+el interés anual; pero incorrectamente no se 
+agrega el valor del anticipo. Primero $335,900 
+por 23 % igual a $77,257. Aparte $335,900 por 
+77 % igual a $258,643, luego esta última canti-
+dad por 1.15 igual a $297,439.45.
+Opción Argumentación
+B) $374,696.45 Correcta. El valor original se debe multiplicar 
+por 23 % de anticipo para conocerlo. Aparte 
+se debe multiplicar el valor original por 77 %, 
+que es lo que se financió, y lo que resulte por 
+1.15, que es la suma de lo financiado más el 
+interés anual y a la cantidad resultante se le 
+suma el valor del anticipo. Primero $335,900 
+por 23 % igual a $77,257. Aparte $335,900 por 
+77 % igual a $258,643, luego esta última canti-
+dad por 1.15 igual a $297,439.45 y por último 
+$297,439.45 más $77,257 para dar el total co-
+rrecto pagado de $374,696.45.
+76
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Opción Argumentación
+C) $386,285.00 Incorrecta. Se multiplica el valor del vehículo 
+de $335,900 por 15 %, que es el interés anual, 
+y esa cantidad se suma a la primera cifra. 
+$335,900 por 15 % igual a $50,385 y la suma 
+de estas dos cantidades da un resultado inco -
+rrecto de $386,285.
+Respuesta correcta: B
+77
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Premedicina
+Definición
+Son conocimientos relacionados con el proceso salud-enfermedad bajo una perspectiva que com-
+prende desde la salud pública y comunitaria hasta el organismo, los componentes de este y sus 
+niveles de organización, entendiéndolo como un sistema compuesto por órganos, tejidos, células y 
+moléculas, además de las relaciones, fenómenos y procesos vitales que en ellos ocurren.
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Premedicina
+Salud pública 
+y medicina 
+comunitaria
+Concepto de salud y enfermedad
+10
+Triada ecológica
+Historia natural de la enfermedad
+Signos y síntomas
+Anatomía 
+y fisiología
+Niveles de organización y divisiones anatómicas
+18
+Sistema nervioso
+Sistema endócrino y aparato digestivo
+Sistemas inmunológico y linfático
+Sistemas tegumentario y músculo esquelético
+Aparatos cardiovascular y respiratorio
+Aparatos urinario y reproductor
+Biología celular
+y microbiología
+Organelos celulares y sus funciones
+10
+Metabolismo y respiración celular
+Genética y mecanismos de la herencia
+Microbiología y parasitología médica
+Bioquímica 
+y biología 
+molecular
+Transporte membranal
+10Biomoléculas
+Farmacología
+78
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Temario
+Subárea: Salud pública y medicina comunitaria
+ › Concepto de salud y enfermedad
+ › Elementos de la triada ecológica
+ › Eslabones de la cadena epidemiológica
+ › Tipos de agente causal
+ › Definición de historia natural de la enfermedad
+ › Periodos de la historia natural de la enfermedad y niveles de prevención de acuerdo con el mo-
+delo de Leavell y Clark
+ › Signos y síntomas (datos clínicos y sus parámetros)
+Subárea: Anatomía y fisiología
+ › Características morfofuncionales de sistemas, aparatos y órganos
+ › Representación gráfica de los planos anatómicos
+ › Términos anatómicos de relación y comparación en función de las zonas anatómicas
+ › Sistema nervioso (estructura y funciones básicas)
+ › Sistema endócrino (función de las hormonas)
+ › Sistema inmunológico (componentes y tipos de respuesta)
+ › Sistema linfático (estructura y funciones básicas)
+ › Sistema tegumentario (estructura y funciones básicas)
+ › Sistema músculo esquelético (estructura y funciones básicas)
+ › Aparato cardiovascular (estructura y funciones básicas)
+ › Aparato respiratorio (estructura y funciones básicas)
+ › Aparato digestivo (estructura, funciones básicas y etapas)
+ › Aparato urinario (estructura y funciones básicas)
+ › Aparato reproductor (estructura y funciones básicas)
+Subárea: Biología celular y microbiología 
+ › Estructura y función celular
+ › Tipos de células
+ › Tipos de reacciones metabólicas
+ › Productos de la glucólisis
+ › Productos del ciclo de Krebs
+ › Mecanismos que provocan enfermedades hereditarias
+ › Componentes de los elementos generales del material genético humano
+ › Características morfológicas de los hongos, parásitos, virus y bacterias
+79
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Subárea: Bioquímica y biología molecular 
+ › Componentes de los distintos elementos de la membrana celular
+ › Tipos de transporte membranal
+ › Características y funciones de carbohidratos, lípidos, proteínas y vitaminas
+ › Características, funciones y vías de administración de los grupos farmacológicos
+ › Objeto de estudio de las ramas de la farmacología
+ › Gradiente de concentración de los tipos de solución
+Bibliografía
+ › Chávez Hernández, A. (2014). Farmacología general. Una guía de estudio. McGraw Hill.
+ › Fortoul Van der Goes, T. I. (2017). Histología y biología celular (3a ed.). McGraw Hill.
+ › Higashida Hirose, B. (2014). Ciencias de la salud (7a ed.). McGraw Hill.
+ › Kierszenbaum, A., & Tres, L. (2020). Histología y biología celular. Introducción a la anatomía patológica 
+(5a ed.). Elsevier.
+ › Lozano Teruel, J. A., Galindo Cascales, J. D., García-Borrón Martínez, J. C., Martínez-Liarte, J. 
+H., Peñafiel García, R., & Solano Muñoz, F. (2005). Bioquímica y biología molecular para ciencias de 
+la salud (3a ed.). McGraw Hill.
+ › Mathews, C. K., van Holde, K. E., & Ahern, K. G. (2002). Bioquímica (3a ed.). Pearson.
+ › Moore, K. L., Dailey, A. F., & Agur, A. M. R. (2019). Moore. Fundamentos de anatomía con orientación 
+clínica (6a ed.). Wolters Kluwer.
+ › Murray, P. R., Rosenthal, K. S., & Pfaller, M. A. (2017). Microbiología médica (8a. ed.). Elsevier.
+ › Organización Panamericana de la Salud (s.f.). Módulos de Principios de Epidemiología para el 
+Control de Enfermedades ( MOPECE). https://www3.paho.org/hq/index.php?option=com_con-
+tent&view=article&id=9161:2013-mopece-training-modules-epidemiology&Itemid=0&lan-
+g=es#gsc.tab=0
+ › Rizzo, D. C. (2011). Fundamentos de anatomía y fisiología (3a ed.). Cengage Learning Editores.
+ › Saladin, K. S. (2013). Anatomía y fisiología. La unidad entre forma y función (8a ed.). McGraw Hill.
+ › Tortora, G. J., & Derrickson, B. (2018). Principios de anatomía y fisiología (15a ed.). Médica Panamericana.
+80
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+Un paciente presenta los siguientes signos vitales: temperatura de 36.6 °C, presión arterial de 
+140/95 mmHg y frecuencia cardiaca de 60/min.
+Identifique el dato clínico que se encuentra fuera de parámetros normales.
+Opción Argumentación
+A) Temperatura Incorrecta. La temperatura corporal normal 
+se ubica entre 36.5 y 37 °C.
+Opción Argumentación
+B) Frecuencia cardiaca Incorrecta. La frecuencia cardiaca normal se 
+ubica entre 60 y 100 lpm.
+Opción Argumentación
+C) Presión arterial Correcta. Se considera presión normal a aque-
+lla ubicada por debajo de 130/90 mmHg.
+Respuesta correcta. C
+81
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Probabilidad y estadística
+Definición
+Se trata de conocimientos acerca de los elementos fundamentales estadísticos para la comprensión 
+y representación de datos como frecuencias para su organización y análisis, mediante gráficas y 
+medidas descriptivas. El cálculo de probabilidades y las técnicas de conteo empleadas para cuan-
+tificar la posibilidad de ocurrencia en conjunto de eventos, la comprensión y aplicación de las 
+distribuciones de los fenómenos; con el dominio de estos conocimientos, el sustentante será capaz 
+de manejar datos en su vida académica de nivel superior, así como extraer información de reportes 
+y artículos que incluyen datos en términos estadísticos y que en conjunto apoyan la toma de deci-
+siones informadas.
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Probabilidad 
+y estadística
+Estadística
+Fundamentos: población, muestra 
+y tipos de variables
+12Frecuencias y sus representaciones
+Medidas descriptivas
+Probabilidad
+Elementos: conjuntos y eventos
+12Cálculo de la probabilidad
+Distribuciones
+Temario
+Subárea: Estadística
+ › Concepto de población y muestra
+ › Tipos de variables estadísticas
+ › Frecuencia relativa, absoluta y acumulada
+ › Representación gráfica y tabular de frecuencias
+ › Media, moda y mediana
+ › Varianza y desviación estándar
+ › Percentil
+82
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Subárea: Probabilidad
+ › Cardinalidad del espacio muestral
+ › Teoría de conjuntos
+ › Permutaciones, ordenaciones y variaciones
+ › Axiomas
+ › Técnicas de conteo
+ › Tipos y cálculo de distribución
+Bibliografía
+ › De Oteyza, E., Hernández, C., Lam, E., & Carrillo, A. (2015). Probabilidad y estadística . Pearson.
+ › Garza Olvera, B. (2014). Estadística y probabilidad . Pearson.
+ › Lipschutz, S., & Lipson, M. (2010). Probabilidad. McGraw Hill.
+83
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+Calcule la media de los siguientes datos.
+15, 22, 13, 17, 12, 16, 21, 22, 11, 26, 23
+Opción Argumentación
+A) 16 Incorrecta. El sustentante suma los valores de 
+la lista, pero omite un 22 que se repite, con lo 
+que obtiene 176; posteriormente, divide entre 
+el total de datos, que es 11, y obtiene como re-
+sultado 16.
+Opción Argumentación
+B) 17 Incorrecta El sustentante confunde la media 
+con la mediana, por lo que ordena los datos 
+en forma ascendente y toma el dato central; 
+esto es, 11,12, 13, 15, 16, 17, 21, 22, 22, 23, 26. 
+Así, el dato central o que divide a los datos en 
+dos cantidades de datos iguales es el sexto que 
+corresponde con 17.
+Opción Argumentación
+C) 18 Correcta. Para calcular la media es necesa -
+rio sumar todos los datos y dividirlos entre el 
+total. Entonces, la suma de todos los datos es 
+198, que dividido entre 11 resulta en 18.
+Respuesta correcta. C
+84
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Psicología
+Definición
+Evalúa conocimientos acerca de diferentes corrientes teóricas de la psicología, sus principales 
+aportaciones y áreas de aplicación; la estructura y el funcionamiento del sistema nervioso central 
+y periférico; la función de las neuronas y las hormonas, así como la comprensión de los procesos 
+psicológicos que permiten interactuar con el entorno y reflexionar sobre los factores que determi-
+nan el comportamiento humano.
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Psicología
+Bases 
+biopsicosociales 
+de la conducta
+Sistema nervioso y endócrino
+14Procesos psicológicos
+Motivación, emoción y personalidad
+Aportaciones 
+de la psicología
+Etapa precientífica
+10Corrientes psicológicas
+Áreas de especialización
+Temario
+Subárea: Bases biopsicosociales de la conducta
+ › Sistema nervioso
+ › Sistema nervioso central y periférico
+ › Funciones de las neuronas
+ › Sistema endócrino
+ › Glándulas y hormonas
+ › Procesos psicológicos
+ › Clasificación
+ › Tipos de memoria
+ › Tipos de atención
+ › Estilos de aprendizaje
+ › Tipos de pensamiento
+85
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+ › Motivación, emoción y personalidad
+ › Teoría de la personalidad de Erikson
+ › Tipos de temperamento
+ › Tipos de motivación
+ › Componentes de la emoción
+Subárea: Aportaciones de la Psicología
+ › Etapa precientífica
+ › Objetivos de la psicología
+ › Características científicas de la psicología
+ › Postulados filosóficos
+ › Corrientes psicológicas
+ › Postulados
+ › Condicionamiento clásico y operante
+ › Teoría del desarrollo de Freud
+ › Teoría del desarrollo de Piaget
+ › Áreas de especialización
+ › Funciones del psicólogo
+Bibliografía
+ › Alonso García, J. I. (2012). Psicología (2a ed.). McGraw Hill.
+ › Arana Arana, F. (2012). Biología para bachillerato . Trillas.
+ › Coon, D., & Mitterer, J. (2010). Introducción a la psicología. El acceso a la mente y la conducta  (12a 
+ed.). Cengage Learning.
+ › Fregoso Vera, M. J., & Gutiérrez Domínguez, M. A. (2008). Psicología básica (2a ed.). Edere.
+ › Morris, C. G., & Maisto, A. A. (2011). Introducción a la psicología (13a ed.). Pearson.
+ › Morris, C. G., & Maisto, A. A. (2009). Psicología (13a ed.). Pearson.
+ › Navarro Cruz, R. (2012). Psicología 1. Nueva Imagen.
+ › Navarro Cruz, R. (2015). Psicología 2. Nueva Imagen.
+ › Ormrod, E. J. (2005). Aprendizaje humano (4a ed.). Pearson.
+ › Papalia, D., & Martorell, G. (2017). Desarrollo humano (13a ed.). McGraw Hill.
+86
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+Seleccione el tipo de memoria presente en la situación.
+Un joven recibe una invitación para celebrar un cumpleaños y recuerda con alegría los festejos 
+que le hacían sus padres cuando era niño.
+Opción Argumentación
+A) Sensorial Incorrecta. La memoria sensorial es capaz de 
+almacenar, durante unos segundos o milise -
+gundos, la información captada por los senti -
+dos de manera auditiva, visual, táctil, olfativa 
+o gustativa. Dichas características no están 
+presentes en la situación descrita.
+Opción Argumentación
+B) Episódica Correcta. La memoria episódica evoca re -
+cuerdos de momentos, lugares, emociones, 
+sucesos autobiográficos y detalles de los epi -
+sodios más importantes de la vida de una per-
+sona. En la situación descrita, cuando el joven 
+recuerda cada festejo de cumpleaños que le 
+celebraban sus padres, está empleando dicha 
+memoria.
+Opción Argumentación
+C) Semántica Incorrecta. La memoria semántica hace refe -
+rencia a los conocimientos que aprendemos 
+sobre el mundo y sobre nuestra propia vida; 
+es decir, se basa en las relaciones intraperso -
+nales de cada contexto en el que nos desenvol-
+vemos, lo cual no se relaciona con la situación 
+descrita.
+Respuesta correcta. B
+87
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Química
+Definición
+Estos conocimientos permiten identificar las características de los materiales y sus propiedades 
+a través de los enlaces químicos, los distintos tipos de soluciones, y el conocimiento del compor-
+tamiento físico y químico del átomo de carbono, para lograr entender la estructura y los enlaces 
+de compuestos orgánicos y biomoléculas; asimismo, permiten aplicar cálculos estequiométricos y 
+ecuaciones químicas como representación de los procesos para la resolución de problemas.
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Química
+Fundamentos 
+generales
+Enlaces químicos y su relación 
+con la electronegatividad
+14
+Soluciones
+Balanceo de ecuaciones químicas
+Estequiometría
+Reacciones químicas
+Química 
+orgánica
+Átomo de carbono
+10
+Estructura y nomenclatura
+de hidrocarburos
+Estructura y nomenclatura de grupos 
+funcionales
+Enlaces glucosídico y peptídico
+en las biomoléculas
+88
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Temario
+Subárea: Fundamentos generales 
+ › Tipos de enlaces químicos (ejemplos y diferencia numérica de electronegatividad)
+ › Tipos, porcentaje, partes por millón y molaridad de soluciones
+ › Tipos de reacciones químicas en ecuaciones balanceadas 
+ › Coeficientes de reactivos y productos
+ › Ecuaciones químicas que resultan de situaciones o experimentos científicos
+ › Átomos de elementos y compuestos en ecuaciones químicas
+ › Relación estequiométrica entre reactivos y compuestos 
+ › Gramos y moles de reactivos y productos
+ › Ejemplos de procesos endotérmicos y exotérmicos
+ › Valor de entalpía de reacciones químicas de síntesis y combustión
+ › Constante de equilibrio
+Subárea: Química orgánica  
+ › Propiedades e hibridación del átomo de carbono
+ › Estructura lineal y geometría de alcanos, alquenos y alquinos
+ › Reglas de la nomenclatura IUPAC para estructuras de hidrocarburos y compuestos orgánicos
+ › Estructura y descripción de grupos funcionales
+ › Nombre y estructura de carbohidratos y aminoácidos
+ › Estructura de los enlaces glucosídico y peptídico
+Bibliografía
+ › Brown, T. L., LeMay, H. E., Jr., Bursten, B. E., & Burdge, J. R. (2004). Química. La ciencia central 
+(9a ed.). Pearson Educación.
+ › Chang, R., & Goldsby, K. A. (2013). Química. McGraw Hill.
+ › Dingrando, L., Gregg, K. V., Hainen, N., & Wistrom, C. (2003). Química: materia y cambio. 
+McGraw Hill.
+ › McMurry, J. (2012). Química orgánica (8a ed.). Cengage Learning.
+89
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+Determine el tipo de reacción representada en la ecuación química.
+Fe + CuSO4 → FeSO4 + Cu
+Opción Argumentación
+A) Sustitución simple Correcta. La reacción química de sustitución 
+simple es aquella en la que, a partir de dos re -
+activos (un elemento y el otro compuesto), una 
+parte del reactivo compuesto es sustituido por 
+el reactivo elemental. En este caso, se tiene 
+como reactivos Fe + CuSO4; el Fe es el reacti-
+vo elemental y CuSO4 corresponde al reactivo 
+compuesto. Por lo que Fe++ se une a SO 4--, 
+sustituyendo así al Cu++ para dar como pro -
+ducto FeSO4 + Cu. El modelo algebraico es A 
++ BC → AC + B.
+Opción Argumentación
+B) Doble sustitución Incorrecta. La reacción química de doble sus-
+titución es aquella en la que, a partir de dos 
+reactivos compuestos, una fracción de los 
+reactivos es desplazada por una fracción del 
+otro reactivo y ambas forman un nuevo com-
+puesto, lo que no sucede en la ecuación, ya que 
+el resultado no genera este compuesto. Su mo-
+delo algebraico es AB + CD → AD + BC.
+Opción Argumentación
+C) Análisis Incorrecta. La reacción de análisis es aquella 
+en la que a partir de un solo producto se obtie-
+nen dos o más productos. En la ecuación no se 
+tiene un solo producto, si se considera FeSO 4 
++ Cu, por lo que no parte del modelo algebrai-
+co, que es AB → A + B, propio de las reacciones 
+de análisis.
+Respuesta correcta. A
+90
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Módulos de conocimientos disciplinares generales
+Ciencias experimentales
+Definición
+Evalúa el conocimiento y la comprensión de teorías, leyes, principios y conceptos relacionados con 
+fenómenos científicos, considerando aspectos de la naturaleza y sus respectivos procesos en las 
+asignaturas de Química, Física y Biología. De igual forma, evalúa el conocimiento y la comprensión 
+de los métodos y procedimientos de las ciencias experimentales para la resolución de problemas 
+cotidianos y para la comprensión racional del entorno.
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Ciencias 
+experimentales
+Química
+Estructura y cambios de la materia
+8
+Lenguaje químico inorgánico
+Cuantificación en las reacciones químicas
+Compuestos del carbono y macromoléculas
+Física
+Cinemática
+8
+Dinámica
+Termología
+Electricidad y magnetismo
+Biología
+Estructura y metabolismo celular
+8
+Sistemas de integración y regulación
+Genética y sus aplicaciones
+Evolución y diversidad biológica
+91
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Temario
+Subárea: Química
+ › Configuración química de los elementos y cambios de estado de la materia
+ › Tipos de reacciones y ecuaciones químicas
+ › Cálculo de materia, de reactivo limitante o el rendimiento de una reacción química en una 
+ecuación balanceada
+ › Funciones, estructura o tipos de enlace de las macromoléculas y nomenclatura IUPAC
+Subárea: Física
+ › Representación del movimiento rectilíneo uniforme y uniformemente acelerado y cálculo de la 
+magnitud de la distancia, la aceleración o el tiempo
+ › Leyes de Newton en fenómenos de la vida cotidiana y cálculo de la magnitud de la aceleración, 
+la masa o la fuerza
+ › Equilibrio térmico y cálculo de capacidad calorífica o calor específico
+ › Ley de Coulomb, ley de Ohm, cálculo de carga eléctrica y campo eléctrico
+Subárea: Biología
+ › Estructuras, funciones celulares y procesos metabólicos
+ › Estructuras y alteraciones de los sistemas nervioso, endócrino y reproductivo
+ › Tipos de herencia y técnicas de ingeniería genética
+ › Teorías, mecanismos evolutivos y acciones que contribuyen a la preservación o al deterioro de 
+la biodiversidad
+Bibliografía
+ › Audesirk, T., Audesirk, G., & Byers, B. E. (2013). Biología. La vida en la Tierra con fisiología (9a ed.). 
+Pearson Educación. 
+ › Carabias, J., Meave, J. A., Valverde, T., & Cano-Santana, Z. (2009). Ecología y medio ambiente en el 
+siglo XXI. Pearson Educación.
+ › Chang, R., & Goldsby, K. A. (2013). Química. McGraw Hill.
+ › Curtis, H., Barnes, S., Schnek, A., & Massarini, A. (2008). Biología (7a ed.). Médica Panamericana.
+ › McMurry, J. (2012). Química orgánica (8a ed.). Cengage Learning.
+ › Miller, K. R., & Levine, J. S. (2010). Biología. Pearson Educación.
+ › Tippens, P. E. (2007). Física, conceptos y aplicaciones (7a ed.). McGraw Hill.
+92
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ejemplo de reactivo
+¿En cuál de las siguientes aplicaciones de calor que se realizan en un spa  se presenta un equili -
+brio térmico?
+Opción Argumentación
+A) Baño de vapor Incorrecta. Para generar vapor el agua debe 
+tener 100 °C; estas temperaturas ayudan a ca-
+lentar el ambiente, pero nunca llegan a la mis-
+ma temperatura (equilibrio térmico), ya que 
+los gases son malos conductores del calor.
+Opción Argumentación
+B) Remojo de pies en agua caliente Correcta. El agua caliente, en contacto con la 
+piel, transmite su temperatura a los pies para 
+que sea fácil la exfoliación. En un momento 
+dado, la piel de los pies y el agua tendrán la 
+misma temperatura.
+Opción Argumentación
+C) Secado de cabello Incorrecta. El aire caliente, al ser un gas, no 
+es buen conductor del calor y no transmite su 
+temperatura al cabello; únicamente ayuda a 
+reducir la humedad, pero no se logra un equi-
+librio térmico.
+Respuesta correcta. B
+93
+Guía para el sustentante · Examen Nacional de Ingreso 
+a la Educación Superior · EXANI-II
+Ciencias sociales
+Definición
+Evalúa los elementos básicos de las disciplinas que conforman el campo de estudio de las Ciencias so-
+ciales, así como el conocimiento de los procesos históricos, su evolución y las problemáticas sociales. 
+También aborda la comprensión de los fenómenos y problemas sociales actuales, el análisis y la 
+interpretación del entorno social y las implicaciones de asumirse como un ser social consciente de 
+su hacer en un mundo cambiante.
+Estructura del área
+Área Subárea T ema Número 
+de reactivos
+Ciencias 
+sociales
+Construcción 
+del conocimiento
+Tipos de conocimiento
+12
+Acontecimientos históricos y concepciones 
+ideológicas
+Objeto de estudio de las ciencias
+Interpretaciones científicas
+Estudio de los 
+fenómenos sociales
+Proceso de socialización del ser social 
+e individual
+12El ser social en el entorno social
+Categorías y fenómenos sociales
+Instituciones del Estado mexicano
+Temario
+Subárea: Construcción del conocimiento
+ › Tipos de conocimiento: intuitivo, empírico, religioso, filosófico o científico
+ › Acontecimientos históricos: Revolución Científica, Revolución Industrial y Revolución francesa
+ › Concepciones ideológicas: Ilustración, racionalismo, empirismo y evolucionismo unilineal
+› Objeto de estudio de las ciencias sociales: antropología, ciencia política, derecho, economía, 
+geografía, historia, psicología y sociología
+ › Interpretaciones científicas: positivismo, materialismo histórico, estructural funcionalismo, 
+teoría comprensiva y teoría crítica
+Subárea: Estudio de los fenómenos sociales
+ › Definición y características del ser social, ser individual, acción social y acción individual
+ › Tipos de acciones sociales: con arreglo a fines y arreglo a valores
+ › Etapas de socialización: primaria, secundaria y terciaria
+ › Influencia de los entornos sociales: familiar, educativo, laboral, cultural e histórico
+ › Sociedad y categorías sociales: clase social, grupo social, proceso social y práctica social
+ › Fenómenos sociales: transvaloración, derechos humanos, discriminación y migración
+ › Finalidad y funciones de las instituciones del Estado mexicano
+Bibliografía
+ › Berger, P. L., & Luckmann, T. (1986). La construcción social de la realidad. Amorrortu editores.
+ › Castañón Moreno, J., Hilario de la Luz, O., Romero Rivas, H., Sosa Menera A., Ortiz Ceballos, 
+V., Trujillo Mutio, M. G., Medina González, M., & Mendoza Castro, M. E. (2000). Introducción a 
+las ciencias sociales II. Colegio de Bachilleres.
+ › Chesnokov, D. I. (1966). Materialismo histórico. Pueblos Unidos.
+ › Cortés Xiqui, J. P. (2016). Introducción a las Ciencias Sociales. Primer semestre. Secretaría de Educa-
+ción Pública.
+ › Durkheim, É. (1986). Las reglas del método sociológico. Fondo de Cultura Económica.
+ › Escudero Gutiérrez, A. (2009). La Revolución Industrial. Una nueva era. Grupo Anaya.
+ › Gómez Jara, F. A. (2005). Sociología. De acuerdo con los programas vigentes. Porrúa.
+ › Kaminsky, G. (1990). Socialización. Trillas.
+ › Kottak, C. P. (2011). Antropología cultural (14a ed.). McGraw Hill.
+ › Morales Alcantar, S. (2013). Ciencias Sociales 1. Análisis de mi comunidad . Limusa.
+ › Petruccelli, A. G. (2010). Materialismo histórico: interpretaciones y controversias. Prometeo Libros.
+ › Piña Osorio, J. M., & Chávez Arellano, M. E. (2017). Introducción a las ciencias sociales  (4a ed.). 
+Grupo Editorial Patria.
+ › Rico Diener, E., Nudelman Speckman, D., & Vázquez del Mercado, M. B. (2015). Introducción a 
+las ciencias sociales (3a ed.). Macmillan Education.
+ › Rico Diener, E., & Nudelman Speckman, D. (2018). Introducción a las ciencias sociales. Macmillan 
+Education.
+ › Schettino, M. (2018). Introducción a las ciencias sociales (5a ed.). Pearson.
+ › Weber, M. (2014). Economía y sociedad (3a ed.). FCE.
+Ejemplo de reactivo
+¿A qué tipo de socialización corresponde el ejemplo?
+En una escuela primaria, un grupo de niños pelea antes de comenzar la ceremonia cívica; el 
+profesor los calma y pone como ejemplo de buen comportamiento a los héroes nacionales. Los 
+estudiantes reaccionan positivamente y saludan con respeto a la bandera nacional.
+Opción Argumentación
+A) Primaria Correcta. Esta se desarrolla desde que el indi-
+viduo nace hasta los primeros años de vida, y 
+por medio de ella se convierte en miembro de 
+la colectividad. Comienza en el núcleo familiar 
+y luego se traslada a las primeras instituciones 
+educativas, en donde socializa con sus iguales 
+por medio de la enseñanza del profesor.
+Opción Argumentación
+B) Secundaria Incorrecta. En esta etapa la sociabilidad co -
+mienza a darse entre sus iguales en un am -
+biente en el que aprende a respetar a los demás 
+y a ser respetado; comienza en la última etapa 
+de la adolescencia y continúa en su etapa adul-
+ta. Las instituciones educativas superiores, el 
+ambiente laboral, las instituciones políticas, 
+económicas o civiles son el ambiente de este 
+tipo de socialización.
+Opción Argumentación
+C) Resocialización Incorrecta. Los casos de resocialización se 
+dan cuando los individuos han superado las 
+dos etapas previas, pero han incurrido en 
+conductas antisociales, por ello se busca su 
+reinserción.
+Respuesta correcta. A
+El Centro Nacional de Evaluación para la Educación Superior es una asociación civil 
+sin fines de lucro constituida formalmente el 28 de abril de 1994, como consta en la 
+escritura pública número 87036 pasada ante la fe del notario 49 del Distrito Federal. 
+Sus órganos de gobierno son la Asamblea General, el Consejo Directivo y la Dirección 
+General. Su máxima autoridad es la Asamblea General, cuya integración se presenta 
+a continuación, según el sector al que pertenecen los asociados:
+Asociaciones e instituciones educativas: Asociación Nacional de Universidades e Insti -
+tuciones de Educación Superior, A.C.; Federación de Instituciones Mexicanas Parti -
+culares de Educación Superior, A.C.; Instituto Politécnico Nacional; Tecnológico de 
+Monterrey; Universidad Autónoma del Estado de México; Universidad Autónoma 
+de San Luis Potosí; Universidad Autónoma de Yucatán; Universidad Popular Autóno-
+ma del Estado de Puebla; Universidad Tecnológica de México.
+Asociaciones y colegios de profesionales: Barra Mexicana Colegio de Abogados, A.C.; 
+Colegio Nacional de Actuarios, A.C.; Colegio Nacional de Psicólogos, A.C.; Federación 
+de Colegios y Asociación de Médicos Veterinarios y Zootecnistas de México, A.C.; 
+Instituto Mexicano de Contadores Públicos, A.C.
+Organizaciones productivas y sociales: Academia de Ingeniería, A.C.; Academia Mexicana 
+de Ciencias, A.C.; Academia Nacional de Medicina, A.C.; Fundación ICA, A.C.
+Autoridades educativas gubernamentales:  Secretaría de Educación Pública. 
+El Centro está inscrito desde el 10 de marzo de 1995 en el Registro Nacional de Ins -
+tituciones Científicas y Tecnológicas del Consejo Nacional de Ciencia y Tecnología, 
+con el número 506. Asimismo, es miembro de estas organizaciones: International 
+Association for Educational Assessment; European Association of Institutional Re -
+search; Consortium for North American Higher Education Collaboration; Institutional 
+Management for Higher Education de la OCDE.
+

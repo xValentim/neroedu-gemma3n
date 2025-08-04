@@ -5,6 +5,8 @@ from typing import List, Optional
 import requests
 import uvicorn
 from src.utils import get_models_info, delete_model, example_essay, prompt_competencia_1, prompt_competencia_2, prompt_competencia_3, prompt_competencia_4, prompt_competencia_5
+from src.retriever import Retriever
+from contextlib import asynccontextmanager 
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -23,6 +25,7 @@ class InputSimulado(BaseModel):
     tema: str
     model_name: str = "gemma3n:e2b"
     competencia: int = 1
+    lite_rag: None | bool = False
 
 class InputFlashcard(BaseModel):
     tema: str
@@ -39,7 +42,34 @@ class OutputDataEssayEnem(BaseModel):
     competencia: int
 
 
-app = FastAPI()
+# Cron job/Background task
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    print("Init Vectorstores...")
+
+    global retrieve_enem
+    retrieve_enem = Retriever(path_csv="./vectorstore/data_playlists_enem.csv", 
+                          path_model='./vectorstore/tfidf_model_enem.pkl')
+
+    retrieve_cuet = Retriever(path_csv="./vectorstore/cuet_edital.csv", 
+                            path_model='./vectorstore/tfidf_model_cuet_edital.pkl')
+
+    retrieve_exames = Retriever(path_csv="./vectorstore/exames_nacionais_edital.csv", 
+                                path_model='./vectorstore/tfidf_model_exames_nacionais_edital.pkl')
+
+    retrieve_exani = Retriever(path_csv="./vectorstore/exani_edital.csv", 
+                            path_model='./vectorstore/tfidf_model_exani_edital.pkl')
+
+    retrieve_icfes = Retriever(path_csv="./vectorstore/icfes_edital.csv", 
+                            path_model='./vectorstore/tfidf_model_icfes_edital.pkl')
+
+    retrieve_sat = Retriever(path_csv="./vectorstore/sat_edital.csv", 
+                            path_model='./vectorstore/tfidf_model_sat_edital.pkl')
+    print("Vectorstores initialized!")
+    yield
+    print("Shutdown Server...")
+
+app = FastAPI(lifespan=lifespan)
 
 BASE_URL = "http://localhost:11434"
 
@@ -181,6 +211,8 @@ async def call_simulado(input_simulado: InputSimulado):
 async def call_simulado(input_simulado: InputSimulado):
     tema = input_simulado.tema
     model_name = input_simulado.model_name
+    lite_rag = input_simulado.lite_rag
+    
     template = [
         ('system', """Você irá gerar questões para compor um simulado do ENEM."""),
         ('system', "Não crie questões unicamente objetivas, como 'O que é?', 'Quem foi?', crie questões que exijam raciocínio."),
@@ -197,8 +229,12 @@ async def call_simulado(input_simulado: InputSimulado):
                 }}
         """),
         ('system', """Gere a questão sobre o tema: {tema}\n"""),
-
     ]
+    
+    if lite_rag:
+        retrieved_content = retrieve_enem.query(tema, k=1)[0].content
+        print(f"Retrieved content: {retrieved_content}")
+        template.append(('system', f"""Use o seguinte conteúdo para embasar a questão (se o conteúdo não for relevante, ignore):\n""" + retrieved_content))
 
     prompt = ChatPromptTemplate.from_messages(template)
 
@@ -307,5 +343,6 @@ async def call_key_topics(input_data_key_topics: InputDataKeyTopics):
     return response
 
 
+
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run(app, host="127.0.0.1", port=8000)
