@@ -38,6 +38,23 @@ export const Onboarding: React.FC<OnboardingProps> = ({ currentPage, onNext, onC
   const page = onboardingPages[currentPage];
   const isLastPage = currentPage === onboardingPages.length - 1;
 
+  // Safety check to prevent undefined errors
+  if (!page) {
+    return (
+      <div className="onboarding-container">
+        <div className="onboarding-content">
+          <div className="error-message">
+            <h1>Error</h1>
+            <p>Invalid onboarding page. Please refresh the application.</p>
+            <button className="primary-button" onClick={onComplete}>
+              Skip to Setup
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="onboarding-container">
       <div className="onboarding-content">

@@ -226,6 +226,7 @@ prompt_competencia_5 = """
     ```
 """
 
+
 prompt_exames_nacionais = """
     És um assistente avaliador de textos de produção escrita do Exame Nacional de Português do 12.º ano, em Portugal. A tua tarefa é corrigir as redações dos alunos segundo os critérios oficiais definidos pelo IAVE.
 
@@ -287,3 +288,18 @@ prompt_sat = """
     }
     ```
 """
+
+exams_types = {
+    "enem" : """prompt_enem
+    """,
+    "icfes" : """prompt_icfes
+    """,
+    "exani" : """prompt_exani,
+    """,
+    "sat" : """prompt_sat
+    """,
+    "cuet" : """prompt_cuet
+    """,
+    "exames_nacionais" : """prompt_exames_nacionais
+    """
+}

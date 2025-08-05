@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { apiService } from '../services/api';
-import { FlashcardResponse, KeyTopicsResponse, ModelInfo } from '../types';
+import { FlashcardResponse, KeyTopicsResponse } from '../types';
 
 interface StudyMaterialProps {
-  availableModels: ModelInfo[];
+  examType: string;
+  modelName: string;
   onBack: () => void;
 }
 
-export const StudyMaterial: React.FC<StudyMaterialProps> = ({ availableModels, onBack }) => {
+export const StudyMaterial: React.FC<StudyMaterialProps> = ({ examType, modelName, onBack }) => {
   const [currentView, setCurrentView] = useState<'selection' | 'flashcards' | 'key-topics'>('selection');
   const [topic, setTopic] = useState('');
-  const [selectedModel, setSelectedModel] = useState(availableModels[0]?.model || 'gemma3n:e2b');
   const [isLoadingFlashcard, setIsLoadingFlashcard] = useState(false);
   const [isLoadingKeyTopics, setIsLoadingKeyTopics] = useState(false);
   const [flashcards, setFlashcards] = useState<FlashcardResponse[]>([]);
@@ -34,7 +34,9 @@ export const StudyMaterial: React.FC<StudyMaterialProps> = ({ availableModels, o
       const response = await apiService.generateFlashcard({
         tema: topic.trim(),
         flashcards_existentes: existingQuestions,
-        model_name: selectedModel,
+        model_name: modelName,
+        exam_type: examType,
+        lite_rag: true
       });
 
       setFlashcards(prev => [...prev, response]);
@@ -61,7 +63,9 @@ export const StudyMaterial: React.FC<StudyMaterialProps> = ({ availableModels, o
     try {
       const response = await apiService.generateKeyTopics({
         tema: topic.trim(),
-        model_name: selectedModel,
+        model_name: modelName,
+        exam_type: examType,
+        lite_rag: true
       });
 
       setKeyTopics(response);
@@ -85,7 +89,9 @@ export const StudyMaterial: React.FC<StudyMaterialProps> = ({ availableModels, o
       const response = await apiService.generateFlashcard({
         tema: topic.trim(),
         flashcards_existentes: existingQuestions,
-        model_name: selectedModel,
+        model_name: modelName,
+        exam_type: examType,
+        lite_rag: true
       });
 
       setFlashcards(prev => [...prev, response]);
@@ -120,77 +126,46 @@ export const StudyMaterial: React.FC<StudyMaterialProps> = ({ availableModels, o
 
   const renderSelection = () => (
     <div className="study-material-selection">
-      <div className="study-header">
-        <button className="back-button" onClick={onBack}>
-          ← Back
-        </button>
-        <h1>Study Material</h1>
-        <p>Generate personalized flashcards and key topics with AI</p>
-      </div>
+      <button className="back-button" onClick={onBack}>
+        ← Back to Home
+      </button>
 
-      <div className="topic-input-section">
-        <div className="input-group">
-          <label htmlFor="topic">Study Topic</label>
+      <div className="selection-content">
+        <h1>Study Material Generator</h1>
+        <p>Generate flashcards and key topics for effective studying</p>
+
+        <div className="input-section">
+          <label htmlFor="topic">Study Topic:</label>
           <input
-            id="topic"
             type="text"
+            id="topic"
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
-            placeholder="e.g., World War II, French Revolution..."
+            placeholder="Enter a topic to study (e.g., World War II, Calculus, Photosynthesis)"
             className="topic-input"
             disabled={isLoadingFlashcard || isLoadingKeyTopics}
           />
         </div>
 
-        <div className="model-select-group">
-          <label htmlFor="model">AI Model</label>
-          <select
-            id="model"
-            value={selectedModel}
-            onChange={(e) => setSelectedModel(e.target.value)}
-            className="model-select"
-            disabled={isLoadingFlashcard || isLoadingKeyTopics}
-          >
-            {availableModels.map((model) => (
-              <option key={model.model} value={model.model}>
-                {model.model}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {error && (
-          <div className="error-message">
-            <span className="error-icon">⚠️</span>
-            {error}
-          </div>
-        )}
-      </div>
-
-      <div className="study-options">
-                <div className="study-option-card" onClick={handleGenerateFlashcard}>
-          <div className="option-icon">🃏</div>
-          <h3>Generate Flashcard</h3>
-          <p>Create study cards with questions and answers about the topic</p>
+        <div className="action-buttons">
           <button
-            className="option-button"
-            disabled={isLoadingFlashcard || isLoadingKeyTopics}
+            className="generate-button flashcard-button"
+            onClick={handleGenerateFlashcard}
+            disabled={isLoadingFlashcard || isLoadingKeyTopics || !topic.trim()}
           >
-            {isLoadingFlashcard ? 'Generating...' : 'Create Flashcard'}
+            {isLoadingFlashcard ? 'Generating...' : 'Generate Flashcard'}
+          </button>
+
+          <button
+            className="generate-button topics-button"
+            onClick={handleGenerateKeyTopics}
+            disabled={isLoadingFlashcard || isLoadingKeyTopics || !topic.trim()}
+          >
+            {isLoadingKeyTopics ? 'Generating...' : 'Generate Key Topics'}
           </button>
         </div>
 
-        <div className="study-option-card" onClick={handleGenerateKeyTopics}>
-          <div className="option-icon">🎯</div>
-          <h3>Key Topics</h3>
-          <p>Get a complete explanation and the most important points</p>
-          <button
-            className="option-button"
-            disabled={isLoadingFlashcard || isLoadingKeyTopics}
-          >
-            {isLoadingKeyTopics ? 'Generating...' : 'Generate Topics'}
-          </button>
-        </div>
+        {error && <div className="error-message">{error}</div>}
       </div>
     </div>
   );
