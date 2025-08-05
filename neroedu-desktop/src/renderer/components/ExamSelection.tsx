@@ -1,54 +1,53 @@
 import React, { useState } from 'react';
-import { ExamType } from '../types';
 
 interface ExamSelectionProps {
-  onExamSelected: (examType: ExamType) => void;
+  onExamSelected: (examType: string) => void;
 }
 
-const examTypes: { type: ExamType; name: string; description: string; icon: string }[] = [
+const examTypes = [
   {
-    type: 'enem',
+    id: 'enem',
     name: 'ENEM',
-    description: 'Exame Nacional do Ensino Médio - Brazil\'s main university entrance exam',
-    icon: '🎓'
-  },
-  {
-    type: 'icfes',
-    name: 'ICFES',
-    description: 'Instituto Colombiano para la Evaluación de la Educación - Colombian education assessment',
+    description: 'Exame Nacional do Ensino Médio (Brazil)',
     icon: '📚'
   },
   {
-    type: 'exani',
-    name: 'EXANI',
-    description: 'Examen Nacional de Ingreso - Mexican university entrance exam',
-    icon: '🏛️'
+    id: 'icfes',
+    name: 'ICFES',
+    description: 'Instituto Colombiano para la Evaluación de la Educación',
+    icon: '🎓'
   },
   {
-    type: 'sat',
+    id: 'exani',
+    name: 'EXANI',
+    description: 'Examen Nacional de Ingreso (Mexico)',
+    icon: '📝'
+  },
+  {
+    id: 'sat',
     name: 'SAT',
-    description: 'Scholastic Assessment Test - US college admissions test',
+    description: 'Scholastic Assessment Test (United States)',
     icon: '🇺🇸'
   },
   {
-    type: 'cuet',
+    id: 'cuet',
     name: 'CUET',
-    description: 'Common University Entrance Test - Indian university entrance exam',
-    icon: '🇮🇳'
+    description: 'Common University Entrance Test (India)',
+    icon: '🎯'
   },
   {
-    type: 'exames_nacionais',
+    id: 'exames_nacionais',
     name: 'Exames Nacionais',
-    description: 'National Exams - General standardized testing',
-    icon: '🌍'
+    description: 'National Exams (Portugal)',
+    icon: '🇵🇹'
   }
 ];
 
 const ExamSelection: React.FC<ExamSelectionProps> = ({ onExamSelected }) => {
-  const [selectedExam, setSelectedExam] = useState<ExamType | null>(null);
+  const [selectedExam, setSelectedExam] = useState<string>('');
 
-  const handleExamSelect = (examType: ExamType) => {
-    setSelectedExam(examType);
+  const handleExamSelect = (examId: string) => {
+    setSelectedExam(examId);
   };
 
   const handleContinue = () => {
@@ -62,15 +61,15 @@ const ExamSelection: React.FC<ExamSelectionProps> = ({ onExamSelected }) => {
       <div className="exam-selection-content">
         <div className="exam-selection-header">
           <h1>Choose Your Exam Type</h1>
-          <p>Select the exam you're preparing for to get personalized study materials and practice questions.</p>
+          <p>Select the standardized exam you're preparing for to get personalized content</p>
         </div>
 
         <div className="exam-grid">
           {examTypes.map((exam) => (
             <div
-              key={exam.type}
-              className={`exam-card ${selectedExam === exam.type ? 'selected' : ''}`}
-              onClick={() => handleExamSelect(exam.type)}
+              key={exam.id}
+              className={`exam-card ${selectedExam === exam.id ? 'selected' : ''}`}
+              onClick={() => handleExamSelect(exam.id)}
             >
               <div className="exam-icon">{exam.icon}</div>
               <div className="exam-info">
@@ -95,4 +94,4 @@ const ExamSelection: React.FC<ExamSelectionProps> = ({ onExamSelected }) => {
   );
 };
 
-export default ExamSelection; 
+export default ExamSelection;

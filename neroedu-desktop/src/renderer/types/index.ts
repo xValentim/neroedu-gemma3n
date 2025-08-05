@@ -46,13 +46,12 @@ export interface AppState {
 }
 
 // Study Material Types
-export type ExamType = 'enem' | 'icfes' | 'exani' | 'sat' | 'cuet' | 'exames_nacionais';
-
 export interface FlashcardRequest {
   tema: string;
-  flashcards_existentes?: string[];
+  flashcards_existentes: string[];
   model_name: string;
-  exam_type: ExamType;
+  exam_type: string;
+  lite_rag?: boolean;
 }
 
 export interface FlashcardResponse {
@@ -63,7 +62,8 @@ export interface FlashcardResponse {
 export interface KeyTopicsRequest {
   tema: string;
   model_name: string;
-  exam_type: ExamType;
+  exam_type: string;
+  lite_rag?: boolean;
 }
 
 export interface KeyTopicsResponse {
@@ -73,20 +73,20 @@ export interface KeyTopicsResponse {
 
 export interface StudyMaterialState {
   currentView: 'selection' | 'flashcards' | 'key-topics';
+  topic: string;
+  selectedModel: string;
+  isLoading: boolean;
   flashcards: FlashcardResponse[];
-  currentFlashcardIndex: number;
   keyTopics: KeyTopicsResponse | null;
-  isLoadingFlashcard: boolean;
-  isLoadingKeyTopics: boolean;
-  selectedExamType: ExamType | null;
+  error: string | null;
 }
 
 // Practice Test Types
 export interface SimuladoRequest {
   tema: string;
   model_name: string;
+  exam_type: string;
   lite_rag?: boolean;
-  exam_type: ExamType;
 }
 
 export interface QuestionResponse {
@@ -96,7 +96,7 @@ export interface QuestionResponse {
   C: string;
   D: string;
   E: string;
-  correct_answer: string;
+  correct_answer: 'A' | 'B' | 'C' | 'D' | 'E';
   explanation: string;
 }
 
@@ -107,13 +107,14 @@ export interface SimuladoResponse {
 }
 
 export interface PracticeTestState {
-  currentView: 'selection' | 'questions' | 'results';
+  currentView: 'selection' | 'questions';
+  topic: string;
+  selectedModel: string;
+  useRAG: boolean;
+  isLoading: boolean;
   questions: QuestionResponse[];
   currentQuestionIndex: number;
-  selectedAnswers: string[];
-  isLoading: boolean;
-  score: number;
-  selectedExamType: ExamType | null;
+  error: string | null;
 }
 
 // Essay Review Types
@@ -123,23 +124,32 @@ export interface EssayRequest {
   competencia: number;
 }
 
-export interface CompetenciaResult {
+export interface EssayEvaluation {
   nota: number;
   feedback: string;
   justificativa: string;
 }
 
 export interface EssayResponse {
+  response: string;
+  model: string;
   competencia: number;
-  result: CompetenciaResult;
+}
+
+export interface CompetenciaResult {
+  competencia: number;
+  evaluation: EssayEvaluation;
+  isLoading: boolean;
+  error: string | null;
 }
 
 export interface EssayReviewState {
   currentView: 'input' | 'results';
   essay: string;
-  results: EssayResponse[];
-  isLoading: boolean;
-  totalScore: number;
+  selectedModel: string;
+  competencias: CompetenciaResult[];
+  isEvaluating: boolean;
+  error: string | null;
 }
 
 // Onboarding Page Data

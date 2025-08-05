@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { apiService } from '../services/api';
-import { EssayResponse } from '../types';
+import { EssayResponse, CompetenciaResult } from '../types';
 
 interface EssayReviewProps {
-  selectedModel: string;
+  modelName: string;
   onBack: () => void;
 }
 
-export const EssayReview: React.FC<EssayReviewProps> = ({ selectedModel, onBack }) => {
+export const EssayReview: React.FC<EssayReviewProps> = ({ modelName, onBack }) => {
   const [currentView, setCurrentView] = useState<'input' | 'results'>('input');
   const [essay, setEssay] = useState('');
-  const [results, setResults] = useState<EssayResponse[]>([]);
+  const [results, setResults] = useState<CompetenciaResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [totalScore, setTotalScore] = useState(0);
+  const [error, setError] = useState<string | null>(null);
+  const [totalScore, setTotalScore] = useState<number>(0);
 
   const competencias = [
     { id: 1, name: 'Competência 1', description: 'Demonstrar domínio da norma culta da língua escrita' },
@@ -23,137 +24,164 @@ export const EssayReview: React.FC<EssayReviewProps> = ({ selectedModel, onBack 
   ];
 
   const handleEvaluateEssay = async () => {
-    if (!essay.trim()) return;
+    if (!essay.trim()) {
+      setError('Please enter your essay');
+      return;
+    }
 
     setIsLoading(true);
-    const evaluationResults: EssayResponse[] = [];
-    let total = 0;
+    setError(null);
 
     try {
+      const evaluationResults: CompetenciaResult[] = [];
+      let totalPoints = 0;
+
       for (const competencia of competencias) {
-        const result = await apiService.evaluateEssay({
-          essay: essay,
-          model_name: selectedModel,
+        const response = await apiService.evaluateEssay({
+          essay: essay.trim(),
+          model_name: modelName,
           competencia: competencia.id
         });
-        
+
+        const result: CompetenciaResult = {
+          competencia: competencia.id,
+          nota: response.nota,
+          feedback: response.feedback,
+          justificativa: response.justificativa
+        };
+
         evaluationResults.push(result);
-        total += result.result.nota;
+        totalPoints += response.nota;
       }
 
       setResults(evaluationResults);
-      setTotalScore(total);
+      setTotalScore(Math.round(totalPoints / 5)); // Average score
       setCurrentView('results');
-    } catch (error) {
-      console.error('Error evaluating essay:', error);
+    } catch (err) {
+      setError('Error evaluating essay. Please try again.');
+      console.error('Error evaluating essay:', err);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const resetToInput = () => {
-    setCurrentView('input');
+  const resetEvaluation = () => {
     setEssay('');
     setResults([]);
     setTotalScore(0);
+    setCurrentView('input');
   };
 
-  if (currentView === 'results') {
-    return (
-      <div className="essay-review-results">
-        <button className="back-button" onClick={resetToInput}>
-          ← Back to Input
-        </button>
-        
-        <div className="results-header">
-          <h2>Essay Evaluation Results</h2>
-          <div className="total-score">
-            <h3>Total Score: {totalScore}/1000</h3>
-            <p>Average: {Math.round(totalScore / 5)}/200 per competency</p>
-          </div>
-        </div>
-
-        <div className="competencies-results">
-          {results.map((result, index) => (
-            <div key={result.competencia} className="competency-result">
-              <div className="competency-header">
-                <h3>{competencias[index].name}</h3>
-                <div className="competency-score">
-                  <span className="score">{result.result.nota}/200</span>
-                </div>
-              </div>
-              
-              <div className="competency-description">
-                <p>{competencias[index].description}</p>
-              </div>
-              
-              <div className="feedback-section">
-                <h4>Feedback</h4>
-                <p>{result.result.feedback}</p>
-              </div>
-              
-              <div className="justification-section">
-                <h4>Justification</h4>
-                <p>{result.result.justificativa}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="essay-review-container">
+  const renderInput = () => (
+    <div className="essay-review-input">
       <button className="back-button" onClick={onBack}>
         ← Back to Home
       </button>
-      
-      <div className="essay-review-input">
-        <h2>Essay Review & Feedback</h2>
-        <p>Get detailed feedback on your essay based on ENEM competencies.</p>
-        
-        <div className="competencies-info">
-          <h3>ENEM Competencies</h3>
-          <div className="competencies-grid">
-            {competencias.map((comp) => (
-              <div key={comp.id} className="competency-card">
-                <h4>{comp.name}</h4>
-                <p>{comp.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        
+
+      <div className="input-content">
+        <h1>Essay Review</h1>
+        <p>Get detailed feedback on your essay based on ENEM competencies</p>
+
         <div className="essay-input-section">
-          <label htmlFor="essay">Your Essay</label>
+          <label htmlFor="essay">Your Essay:</label>
           <textarea
             id="essay"
             value={essay}
             onChange={(e) => setEssay(e.target.value)}
             placeholder="Paste your essay here..."
             className="essay-textarea"
+            disabled={isLoading}
             rows={15}
           />
         </div>
-        
+
+        <div className="competencias-info">
+          <h3>ENEM Competencies</h3>
+          <div className="competencias-grid">
+            {competencias.map((comp) => (
+              <div key={comp.id} className="competencia-card">
+                <h4>{comp.name}</h4>
+                <p>{comp.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="action-buttons">
           <button
-            onClick={handleEvaluateEssay}
-            disabled={!essay.trim() || isLoading}
             className="evaluate-button"
+            onClick={handleEvaluateEssay}
+            disabled={isLoading || !essay.trim()}
           >
-            {isLoading ? (
-              <div className="inline-loading">
-                <div className="inline-loading-spinner"></div>
-                Evaluating essay...
-              </div>
-            ) : (
-              'Evaluate Essay'
-            )}
+            {isLoading ? 'Evaluating...' : 'Evaluate Essay'}
           </button>
         </div>
+
+        {error && <div className="error-message">{error}</div>}
       </div>
+    </div>
+  );
+
+  const renderResults = () => (
+    <div className="essay-review-results">
+      <button className="back-button" onClick={resetEvaluation}>
+        ← New Essay
+      </button>
+
+      <div className="results-content">
+        <h2>Essay Evaluation Results</h2>
+        <p>Detailed feedback based on ENEM competencies</p>
+
+        <div className="total-score-card">
+          <h3>Total Score</h3>
+          <div className="score-display">
+            {totalScore}/200
+          </div>
+          <div className="score-percentage">
+            {Math.round((totalScore / 200) * 100)}%
+          </div>
+        </div>
+
+        <div className="competencias-results">
+          {results.map((result) => {
+            const competencia = competencias.find(c => c.id === result.competencia);
+            return (
+              <div key={result.competencia} className="competencia-result">
+                <div className="competencia-header">
+                  <h4>{competencia?.name}</h4>
+                  <div className="competencia-score">
+                    {result.nota}/40
+                  </div>
+                </div>
+
+                <div className="feedback-section">
+                  <h5>Feedback:</h5>
+                  <p>{result.feedback}</p>
+                </div>
+
+                <div className="justification-section">
+                  <h5>Justification:</h5>
+                  <p>{result.justificativa}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <button
+          className="primary-button"
+          onClick={resetEvaluation}
+        >
+          Evaluate Another Essay
+        </button>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="essay-review-container">
+      {currentView === 'input' && renderInput()}
+      {currentView === 'results' && renderResults()}
     </div>
   );
 };
