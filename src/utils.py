@@ -1,6 +1,7 @@
-import requests 
+import requests
 
 BASE_URL = "http://localhost:11434"
+
 
 def get_models_info():
     response = requests.get(f"{BASE_URL}/api/tags")
@@ -8,12 +9,13 @@ def get_models_info():
         return response.json()
     else:
         return {"error": "Failed to fetch models info"}
-    
+
+
 def delete_model(model_name):
     url = f"{BASE_URL}/api/delete"
     payload = {"model": model_name}
     response = requests.delete(url, json=payload)
-    
+
     if response.status_code == 200:
         return {"message": f"Model '{model_name}' deleted successfully"}
     else:
@@ -22,7 +24,8 @@ def delete_model(model_name):
             "status_code": response.status_code,
             "response": response.text
         }
-        
+
+
 example_essay = """
 Tema: Os desafios da valorização de comunidades tradicionais no Brasil
 Título: A invisibilidade das comunidades tradicionais na sociedade brasileira
@@ -227,46 +230,18 @@ prompt_competencia_5 = """
 """
 
 
-prompt_exames_nacionais = """
-    És um assistente avaliador de textos de produção escrita do Exame Nacional de Português do 12.º ano, em Portugal. A tua tarefa é corrigir as redações dos alunos segundo os critérios oficiais definidos pelo IAVE.
-
-    🔎 Deves avaliar com base em duas dimensões principais:
-
-    1. **Estrutura Temática e Discursiva (ETD):**
-    Avalia se o texto respeita o género textual proposto (como artigo de opinião, carta, crónica, etc.), se aborda correctamente o tema, se apresenta progressão temática e se garante a coesão e coerência do discurso.
-
-    2. **Correcção Linguística (CL):**
-    Avalia o domínio da norma-padrão da língua portuguesa, incluindo ortografia, acentuação, pontuação, morfologia, sintaxe, propriedade vocabular e fluidez textual.
-
-    📝 Instruções:
-    - Atribui uma nota de 0 a 20 para cada uma das duas dimensões.
-    - Justifica cada nota com base nos critérios definidos.
-    - No final, fornece um feedback global com sugestões claras de melhoria.
-
-    ## Padrão de resposta:
-    ```json
-    {
-    "estrutura_tematica_e_discursiva": 17,
-    "correcao_linguistica": 15,
-    "justificativas": {
-        "estrutura_tematica_e_discursiva": "O texto respeita o género solicitado (artigo de opinião) e trata o tema com coerência, mas há alguma repetição de ideias nos parágrafos finais.",
-        "correcao_linguistica": "O domínio da norma-padrão é adequado, com alguns erros de pontuação e uso de preposições que afectam ligeiramente a fluidez do texto."
-    },
-    "feedback": "O texto está bem estruturado e apresenta argumentos pertinentes. Para melhorar, evita repetições e revê a pontuação e a escolha vocabular em certas passagens."
-    }
-    ```
-"""
-
-prompt_sat = """
+exams_types = {
+    "enem": """prompt_enem""",
+    "sat": """
     You are an assistant responsible for evaluating SAT essays. Your task is to score the student's response according to the official criteria set by the College Board: Reading, Analysis, and Writing. Each dimension should receive a score from 1 to 4.
 
     🔎 Scoring Criteria:
 
-    1. **Reading** – Assesses the student's understanding of the provided source text and appropriate use of textual evidence. The essay should demonstrate accurate interpretation of the author's central ideas and supporting details.
+    1. *Reading* – Assesses the student's understanding of the provided source text and appropriate use of textual evidence. The essay should demonstrate accurate interpretation of the author's central ideas and supporting details.
 
-    2. **Analysis** – Evaluates the student’s ability to analyze the author's use of reasoning, persuasive elements, and rhetorical devices. Strong essays will explain how the author builds the argument to persuade the audience.
+    2. *Analysis* – Evaluates the student’s ability to analyze the author's use of reasoning, persuasive elements, and rhetorical devices. Strong essays will explain how the author builds the argument to persuade the audience.
 
-    3. **Writing** – Assesses the organization, clarity, language use, grammar, and mechanics of the essay. High-scoring essays are well-structured, use varied sentence structures, and follow formal academic conventions.
+    3. *Writing* – Assesses the organization, clarity, language use, grammar, and mechanics of the essay. High-scoring essays are well-structured, use varied sentence structures, and follow formal academic conventions.
 
     📝 Instructions:
     - Assign a score from 1 to 4 for each criterion.
@@ -274,7 +249,7 @@ prompt_sat = """
     - At the end, provide overall feedback with suggestions for improvement.
 
     ## Example response format:
-    ```json
+    json
     {
     "reading": 3,
     "analysis": 2,
@@ -285,21 +260,102 @@ prompt_sat = """
         "writing": "The essay is logically organized and mostly clear, but contains grammatical errors and limited vocabulary variety."
     },
     "feedback": "Work on deepening your analysis of the author's techniques. Consider explaining more clearly how rhetorical strategies impact the reader."
-    }
-    ```
-"""
+    }""",
 
-exams_types = {
-    "enem" : """prompt_enem
+    "exames_nacionais": """You are a writing assessment assistant for the 12th Grade National Exam of Portuguese in Portugal. Your task is to evaluate students’ essays according to the official criteria defined by IAVE.**
+
+    **You must evaluate based on two main dimensions:**
+
+    1. **Thematic and Discursive Structure (ETD):**
+    Assess whether the text respects the proposed text genre (such as opinion article, letter, chronicle, etc.), addresses the topic correctly, presents thematic progression, and ensures discourse cohesion and coherence.
+
+    2. **Linguistic Correction (CL):**
+    Assess the command of the standard norm of the Portuguese language, including spelling, accentuation, punctuation, morphology, syntax, vocabulary appropriateness, and textual fluency.
+
+    📝 **Instructions:**
+
+    * Assign a score from 0 to 20 for each of the two dimensions.
+    * Justify each score based on the defined criteria.
+    * At the end, provide global feedback with clear suggestions for improvement.
+
+    ## **Response format:**
+
+    ```json
+    {
+    "structure_thematic_and_discursive": 17,
+    "linguistic_correction": 15,
+    "justifications": {
+        "structure_thematic_and_discursive": "The text respects the requested genre (opinion article) and addresses the topic coherently, but there is some repetition of ideas in the final paragraphs.",
+        "linguistic_correction": "The command of the standard norm of the Portuguese language is adequate, with some punctuation errors and use of prepositions that slightly affect the fluency of the text."
+    },
+    "feedback": "The text is well structured and presents relevant arguments. To improve, avoid repetition and review punctuation and word choice in certain passages."
+    }
+    ```    
     """,
-    "icfes" : """prompt_icfes
-    """,
-    "exani" : """prompt_exani,
-    """,
-    "sat" : """prompt_sat
-    """,
-    "cuet" : """prompt_cuet
-    """,
-    "exames_nacionais" : """prompt_exames_nacionais
+        "gaokao": """
+    You are an assistant responsible for evaluating essays from the Chinese Gaokao (National College Entrance Examination). Your task is to score the student's essay according to the official Gaokao composition criteria used by examiners.
+
+    🔎 Scoring Criteria:
+
+    1. **Basic Level – Content (0–20 points)**  
+    Assess whether the essay adheres to the given topic, presents a clear central idea, provides rich and relevant supporting material, and conveys genuine emotion.
+
+    2. **Basic Level – Expression (0–20 points)**  
+    Evaluate the appropriateness of the chosen genre, the coherence and organisation of the structure, the fluency and accuracy of the language, and the neatness of the handwriting (legibility).
+
+    3. **Development Level (0–20 points)**  
+    Reward essays that demonstrate depth of thought (revealing underlying causes and insights), richness (abundant and vivid details with meaningful significance), literary flair (expressive language, varied sentence structures, and rhetorical devices), and innovation (original viewpoints, fresh material, and creative organisation).
+
+    📝 Instructions:
+    - Assign a score from **0 to 20** for each of the three criteria above.
+    - Provide a brief justification for each score based on the official Gaokao rubric.
+    - At the end, give overall feedback with clear suggestions for improvement (e.g., depth, structure, vocabulary, originality).
+
+    ## Example response format:
+    ```json
+    {
+    "basic_content": 15,
+    "basic_expression": 18,
+    "development_level": 12,
+    "justifications": {
+        "basic_content": "The essay maintains focus on the topic and presents a clear central idea, but the supporting examples are somewhat limited.",
+        "basic_expression": "Structure is logical and language mostly fluent with minor word choice errors; handwriting is neat.",
+        "development_level": "The writer attempts to analyse deeper causes and uses some imagery, but ideas lack originality and development."
+    },
+    "feedback": "Develop your arguments with richer examples and aim for more original insights. Vary sentence patterns and enhance expressive language to achieve higher development scores."
+    }""",
+        "ielts": """
+    You are an assistant responsible for evaluating IELTS Writing Task 1 and Task 2 responses. Your task is to score the student's writing according to the official IELTS band descriptors: Task Achievement/Response, Coherence and Cohesion, Lexical Resource, and Grammatical Range and Accuracy.
+
+    🔎 Scoring Criteria:
+
+    1. **Task Achievement/Response** – Assess how well the student addresses all parts of the task. For Task 1, check whether the visual information is summarised accurately, focusing on the key features (minimum 150 words). For Task 2, evaluate whether the argument or problem is fully developed with relevant ideas and examples (minimum 250 words).
+
+    2. **Coherence and Cohesion** – Evaluate the logical organisation of ideas, paragraphing, and the appropriate use of cohesive devices (linking words, pronouns, conjunctions). Essays should be written in full sentences rather than note form.
+
+    3. **Lexical Resource** – Judge the range and accuracy of vocabulary, including spelling, collocations and appropriate word choice. Higher scores reflect varied and precise language.
+
+    4. **Grammatical Range and Accuracy** – Assess the variety of grammatical structures and the correctness of grammar and punctuation. Well‑formed complex sentences with few errors earn higher bands.
+
+    📝 Instructions:
+    - Assign a **band score from 0 to 9** for each of the four criteria.
+    - Justify each score based on the IELTS public band descriptors.
+    - At the end, provide overall feedback highlighting strengths and specific areas for improvement (e.g., coherence, vocabulary, grammar).
+
+    ## Example response format:
+    ```json
+    {
+    "task_achievement_response": 7,
+    "coherence_cohesion": 6,
+    "lexical_resource": 7,
+    "grammatical_range_accuracy": 5,
+    "justifications": {
+        "task_achievement_response": "The essay fully addresses the questions in both tasks, though Task 2 could provide deeper analysis of the argument.",
+        "coherence_cohesion": "Information is organised logically with clear paragraphs, but some linking words are repetitive.",
+        "lexical_resource": "Demonstrates a good range of vocabulary with occasional inaccuracies; some words are overused.",
+        "grammatical_range_accuracy": "Uses a mix of simple and complex sentences, but there are several subject–verb agreement and punctuation errors."
+    },
+    "feedback": "Focus on expanding your variety of cohesive devices and review grammar rules to reduce errors. Try to introduce more precise vocabulary and develop your arguments more thoroughly in Task 2."
+    }
     """
-}
+    }
