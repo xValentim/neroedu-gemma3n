@@ -11,6 +11,7 @@ interface StudyMaterialProps {
 export const StudyMaterial: React.FC<StudyMaterialProps> = ({ examType, modelName, onBack }) => {
   const [currentView, setCurrentView] = useState<'selection' | 'flashcards' | 'key-topics'>('selection');
   const [topic, setTopic] = useState('');
+  const [useLiteRAG, setUseLiteRAG] = useState(true);
   const [isLoadingFlashcard, setIsLoadingFlashcard] = useState(false);
   const [isLoadingKeyTopics, setIsLoadingKeyTopics] = useState(false);
   const [flashcards, setFlashcards] = useState<FlashcardResponse[]>([]);
@@ -36,7 +37,7 @@ export const StudyMaterial: React.FC<StudyMaterialProps> = ({ examType, modelNam
         flashcards_existentes: existingQuestions,
         model_name: modelName,
         exam_type: examType,
-        lite_rag: true
+        lite_rag: useLiteRAG
       });
 
       setFlashcards(prev => [...prev, response]);
@@ -65,7 +66,7 @@ export const StudyMaterial: React.FC<StudyMaterialProps> = ({ examType, modelNam
         tema: topic.trim(),
         model_name: modelName,
         exam_type: examType,
-        lite_rag: true
+        lite_rag: useLiteRAG
       });
 
       setKeyTopics(response);
@@ -91,7 +92,7 @@ export const StudyMaterial: React.FC<StudyMaterialProps> = ({ examType, modelNam
         flashcards_existentes: existingQuestions,
         model_name: modelName,
         exam_type: examType,
-        lite_rag: true
+        lite_rag: useLiteRAG
       });
 
       setFlashcards(prev => [...prev, response]);
@@ -145,6 +146,20 @@ export const StudyMaterial: React.FC<StudyMaterialProps> = ({ examType, modelNam
             className="topic-input"
             disabled={isLoadingFlashcard || isLoadingKeyTopics}
           />
+        </div>
+
+        <div className="rag-option-section">
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              checked={useLiteRAG}
+              onChange={(e) => setUseLiteRAG(e.target.checked)}
+              disabled={isLoadingFlashcard || isLoadingKeyTopics}
+            />
+            <span className="checkbox-text">
+              Use Lite RAG (Enhanced content retrieval for better study materials)
+            </span>
+          </label>
         </div>
 
         <div className="action-buttons">

@@ -11,6 +11,7 @@ interface PracticeTestProps {
 export const PracticeTest: React.FC<PracticeTestProps> = ({ examType, modelName, onBack }) => {
   const [currentView, setCurrentView] = useState<'selection' | 'questions' | 'results'>('selection');
   const [topic, setTopic] = useState('');
+  const [useLiteRAG, setUseLiteRAG] = useState(true);
   const [questions, setQuestions] = useState<QuestionResponse[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<string[]>([]);
@@ -34,7 +35,7 @@ export const PracticeTest: React.FC<PracticeTestProps> = ({ examType, modelName,
         tema: topic.trim(),
         model_name: modelName,
         exam_type: examType,
-        lite_rag: true
+        lite_rag: useLiteRAG
       });
 
       setQuestions([response]);
@@ -66,7 +67,7 @@ export const PracticeTest: React.FC<PracticeTestProps> = ({ examType, modelName,
           tema: topic.trim(),
           model_name: modelName,
           exam_type: examType,
-          lite_rag: true
+          lite_rag: useLiteRAG
         });
 
         setQuestions(prev => [...prev, response]);
@@ -131,6 +132,20 @@ export const PracticeTest: React.FC<PracticeTestProps> = ({ examType, modelName,
             className="topic-input"
             disabled={isLoading}
           />
+        </div>
+
+        <div className="rag-option-section">
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              checked={useLiteRAG}
+              onChange={(e) => setUseLiteRAG(e.target.checked)}
+              disabled={isLoading}
+            />
+            <span className="checkbox-text">
+              Use Lite RAG (Enhanced content retrieval for better question quality)
+            </span>
+          </label>
         </div>
 
         <div className="action-buttons">
