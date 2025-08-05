@@ -77,6 +77,76 @@ export interface StudyMaterialState {
   error: string | null;
 }
 
+// Practice Test Types
+export interface SimuladoRequest {
+  tema: string;
+  model_name: string;
+  lite_rag: boolean;
+}
+
+export interface QuestionResponse {
+  question: string;
+  A: string;
+  B: string;
+  C: string;
+  D: string;
+  E: string;
+  correct_answer: 'A' | 'B' | 'C' | 'D' | 'E';
+  explanation: string;
+}
+
+export interface SimuladoResponse {
+  response: string;
+  temperature: number;
+  seed: number;
+}
+
+export interface PracticeTestState {
+  currentView: 'selection' | 'questions';
+  topic: string;
+  selectedModel: string;
+  useRAG: boolean;
+  isLoading: boolean;
+  questions: QuestionResponse[];
+  currentQuestionIndex: number;
+  error: string | null;
+}
+
+// Essay Review Types
+export interface EssayRequest {
+  essay: string;
+  model_name: string;
+  competencia: number;
+}
+
+export interface EssayEvaluation {
+  nota: number;
+  feedback: string;
+  justificativa: string;
+}
+
+export interface EssayResponse {
+  response: string;
+  model: string;
+  competencia: number;
+}
+
+export interface CompetenciaResult {
+  competencia: number;
+  evaluation: EssayEvaluation;
+  isLoading: boolean;
+  error: string | null;
+}
+
+export interface EssayReviewState {
+  currentView: 'input' | 'results';
+  essay: string;
+  selectedModel: string;
+  competencias: CompetenciaResult[];
+  isEvaluating: boolean;
+  error: string | null;
+}
+
 // Onboarding Page Data
 export interface OnboardingPage {
   title: string;

@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Onboarding } from './components/Onboarding';
 import { ModelSetup } from './components/ModelSetup';
 import { StudyMaterial } from './components/StudyMaterial';
+import { PracticeTest } from './components/PracticeTest';
+import { EssayReview } from './components/EssayReview';
 import { apiService } from './services/api';
 import { ModelInfo } from './types';
 import './App.css';
 
 type AppStep = 'onboarding' | 'model-setup' | 'ready';
-type MainView = 'home' | 'study-material';
+type MainView = 'home' | 'study-material' | 'practice-test' | 'essay-review';
 
 export default function App() {
   const [currentStep, setCurrentStep] = useState<AppStep>('onboarding');
@@ -44,7 +46,7 @@ export default function App() {
     setCurrentStep('ready');
   };
 
-    const renderMainApp = () => {
+  const renderMainContent = () => {
     if (currentView === 'study-material') {
       return (
         <StudyMaterial
@@ -54,38 +56,112 @@ export default function App() {
       );
     }
 
+    if (currentView === 'practice-test') {
+      return (
+        <PracticeTest
+          availableModels={availableModels}
+          onBack={() => setCurrentView('home')}
+        />
+      );
+    }
+
+    if (currentView === 'essay-review') {
+      return (
+        <EssayReview
+          availableModels={availableModels}
+          onBack={() => setCurrentView('home')}
+        />
+      );
+    }
+
     return (
-      <div className="main-app">
-        <div className="app-header">
-          <h1>NeroEdu</h1>
-          <p>Your AI-powered learning companion is ready!</p>
-        </div>
-
-        <div className="features-grid">
-          <div className="feature-card" onClick={() => setCurrentView('study-material')}>
-            <div className="feature-icon">📚</div>
-            <h3>Study Material</h3>
-            <p>Generate personalized flashcards and key topics with AI</p>
+      <div className="main-content">
+        <div className="welcome-section">
+          <div className="welcome-visual">
+            <div className="floating-brain">🧠</div>
           </div>
-
-          <div className="feature-card">
-            <div className="feature-icon">📝</div>
-            <h3>Practice Tests</h3>
-            <p>Take realistic practice exams with instant feedback</p>
-          </div>
-
-          <div className="feature-card">
-            <div className="feature-icon">✍️</div>
-            <h3>Essay Review</h3>
-            <p>Get AI-powered feedback on your writing</p>
-          </div>
-
-          <div className="feature-card">
-            <div className="feature-icon">📊</div>
-            <h3>Progress Tracking</h3>
-            <p>Monitor your improvement over time</p>
+          <div className="welcome-text">
+            <h1>Welcome back!</h1>
+            <p>Start with AI-powered learning and unlock your potential.</p>
           </div>
         </div>
+
+        <div className="quick-actions">
+          <div className="action-card study-card" onClick={() => setCurrentView('study-material')}>
+            <div className="card-visual">📚</div>
+            <div className="card-content">
+              <h3>Study Material</h3>
+              <p>Generate flashcards</p>
+            </div>
+          </div>
+
+          <div className="action-card practice-card" onClick={() => setCurrentView('practice-test')}>
+            <div className="card-visual">📝</div>
+            <div className="card-content">
+              <h3>Practice Tests</h3>
+              <p>Take realistic exams</p>
+            </div>
+          </div>
+
+          <div className="action-card essay-card" onClick={() => setCurrentView('essay-review')}>
+            <div className="card-visual">✍️</div>
+            <div className="card-content">
+              <h3>Essay Review</h3>
+              <p>Get AI feedback</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderMainApp = () => {
+    return (
+      <div className="main-app-container">
+        <div className="app-sidebar">
+          <div className="sidebar-header">
+            <div className="app-logo">
+              <div className="logo-icon">🎓</div>
+              <span className="logo-text">NeroEdu</span>
+            </div>
+          </div>
+
+          <div className="sidebar-menu">
+            <div
+              className={`menu-item ${currentView === 'home' ? 'active' : ''}`}
+              onClick={() => setCurrentView('home')}
+            >
+              <div className="menu-icon">🏠</div>
+              <span>Home</span>
+            </div>
+
+            <div
+              className={`menu-item ${currentView === 'study-material' ? 'active' : ''}`}
+              onClick={() => setCurrentView('study-material')}
+            >
+              <div className="menu-icon">📚</div>
+              <span>Study Material</span>
+            </div>
+
+            <div
+              className={`menu-item ${currentView === 'practice-test' ? 'active' : ''}`}
+              onClick={() => setCurrentView('practice-test')}
+            >
+              <div className="menu-icon">📝</div>
+              <span>Practice Tests</span>
+            </div>
+
+            <div
+              className={`menu-item ${currentView === 'essay-review' ? 'active' : ''}`}
+              onClick={() => setCurrentView('essay-review')}
+            >
+              <div className="menu-icon">✍️</div>
+              <span>Essay Review</span>
+            </div>
+          </div>
+        </div>
+
+        {renderMainContent()}
       </div>
     );
   };

@@ -7,6 +7,12 @@ import {
   FlashcardResponse,
   KeyTopicsRequest,
   KeyTopicsResponse,
+  SimuladoRequest,
+  SimuladoResponse,
+  QuestionResponse,
+  EssayRequest,
+  EssayResponse,
+  EssayEvaluation,
 } from '../types';
 
 const BASE_URL = 'http://127.0.0.1:8000';
@@ -133,6 +139,38 @@ class ApiService {
     } else {
       // Fallback: try to parse the entire response as JSON
       return JSON.parse(response);
+    }
+  }
+
+  async generateQuestion(request: SimuladoRequest): Promise<QuestionResponse> {
+    const response = await this.fetchJson<SimuladoResponse>('/call-simulado-questao', {
+      method: 'POST',
+      body: JSON.stringify(request),
+    });
+
+    // Parse the JSON from the response string
+    const jsonMatch = response.response.match(/```json\n(.*?)\n```/s);
+    if (jsonMatch) {
+      return JSON.parse(jsonMatch[1]);
+    } else {
+      // Fallback: try to parse the entire response as JSON
+      return JSON.parse(response.response);
+    }
+  }
+
+  async evaluateEssay(request: EssayRequest): Promise<EssayEvaluation> {
+    const response = await this.fetchJson<EssayResponse>('/call-model-competencia', {
+      method: 'POST',
+      body: JSON.stringify(request),
+    });
+
+    // Parse the JSON from the response string
+    const jsonMatch = response.response.match(/```json\n(.*?)\n```/s);
+    if (jsonMatch) {
+      return JSON.parse(jsonMatch[1]);
+    } else {
+      // Fallback: try to parse the entire response as JSON
+      return JSON.parse(response.response);
     }
   }
 }
