@@ -4,33 +4,19 @@ import { ModelSetup } from './components/ModelSetup';
 import { StudyMaterial } from './components/StudyMaterial';
 import { PracticeTest } from './components/PracticeTest';
 import { EssayReview } from './components/EssayReview';
-import { apiService } from './services/api';
-import { ModelInfo } from './types';
+import ExamSelection from './components/ExamSelection';
+import { ExamType } from './types';
 import './App.css';
 
-type AppStep = 'onboarding' | 'model-setup' | 'ready';
-type MainView = 'home' | 'study-material' | 'practice-test' | 'essay-review';
+type Step = 'onboarding' | 'exam-selection' | 'model-setup' | 'main-app';
+type View = 'home' | 'study-material' | 'practice-test' | 'essay-review';
 
-export default function App() {
-  const [currentStep, setCurrentStep] = useState<AppStep>('onboarding');
+const App: React.FC = () => {
+  const [currentStep, setCurrentStep] = useState<Step>('onboarding');
+  const [currentView, setCurrentView] = useState<View>('home');
+  const [selectedModel, setSelectedModel] = useState<string>('');
+  const [selectedExamType, setSelectedExamType] = useState<ExamType | null>(null);
   const [onboardingPage, setOnboardingPage] = useState(0);
-  const [currentView, setCurrentView] = useState<MainView>('home');
-  const [availableModels, setAvailableModels] = useState<ModelInfo[]>([]);
-
-  useEffect(() => {
-    if (currentStep === 'ready') {
-      loadAvailableModels();
-    }
-  }, [currentStep]);
-
-  const loadAvailableModels = async () => {
-    try {
-      const response = await apiService.listModels();
-      setAvailableModels(response.models);
-    } catch (error) {
-      console.error('Failed to load models:', error);
-    }
-  };
 
   const handleOnboardingNext = () => {
     if (onboardingPage < 3) {
@@ -39,149 +25,158 @@ export default function App() {
   };
 
   const handleOnboardingComplete = () => {
+    setCurrentStep('exam-selection');
+  };
+
+  const handleExamSelected = (examType: ExamType) => {
+    setSelectedExamType(examType);
     setCurrentStep('model-setup');
   };
 
-  const handleModelSetupComplete = () => {
-    setCurrentStep('ready');
+  const handleModelSetupComplete = (modelName: string) => {
+    setSelectedModel(modelName);
+    setCurrentStep('main-app');
   };
 
   const renderMainContent = () => {
-    if (currentView === 'study-material') {
-      return (
-        <StudyMaterial
-          availableModels={availableModels}
-          onBack={() => setCurrentView('home')}
-        />
-      );
-    }
-
-    if (currentView === 'practice-test') {
-      return (
-        <PracticeTest
-          availableModels={availableModels}
-          onBack={() => setCurrentView('home')}
-        />
-      );
-    }
-
-    if (currentView === 'essay-review') {
-      return (
-        <EssayReview
-          availableModels={availableModels}
-          onBack={() => setCurrentView('home')}
-        />
-      );
-    }
-
-    return (
-      <div className="main-content">
-        <div className="welcome-section">
-          <div className="welcome-visual">
-            <div className="floating-brain">🧠</div>
-          </div>
-          <div className="welcome-text">
-            <h1>Welcome back!</h1>
-            <p>Start with AI-powered learning and unlock your potential.</p>
-          </div>
-        </div>
-
-        <div className="quick-actions">
-          <div className="action-card study-card" onClick={() => setCurrentView('study-material')}>
-            <div className="card-visual">📚</div>
-            <div className="card-content">
-              <h3>Study Material</h3>
-              <p>Generate flashcards</p>
-            </div>
-          </div>
-
-          <div className="action-card practice-card" onClick={() => setCurrentView('practice-test')}>
-            <div className="card-visual">📝</div>
-            <div className="card-content">
-              <h3>Practice Tests</h3>
-              <p>Take realistic exams</p>
-            </div>
-          </div>
-
-          <div className="action-card essay-card" onClick={() => setCurrentView('essay-review')}>
-            <div className="card-visual">✍️</div>
-            <div className="card-content">
-              <h3>Essay Review</h3>
-              <p>Get AI feedback</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  const renderMainApp = () => {
-    return (
-      <div className="main-app-container">
-        <div className="app-sidebar">
-          <div className="sidebar-header">
-            <div className="app-logo">
-              <div className="logo-icon">🎓</div>
-              <span className="logo-text">NeroEdu</span>
-            </div>
-          </div>
-
-          <div className="sidebar-menu">
-            <div
-              className={`menu-item ${currentView === 'home' ? 'active' : ''}`}
-              onClick={() => setCurrentView('home')}
-            >
-              <div className="menu-icon">🏠</div>
-              <span>Home</span>
-            </div>
-
-            <div
-              className={`menu-item ${currentView === 'study-material' ? 'active' : ''}`}
-              onClick={() => setCurrentView('study-material')}
-            >
-              <div className="menu-icon">📚</div>
-              <span>Study Material</span>
-            </div>
-
-            <div
-              className={`menu-item ${currentView === 'practice-test' ? 'active' : ''}`}
-              onClick={() => setCurrentView('practice-test')}
-            >
-              <div className="menu-icon">📝</div>
-              <span>Practice Tests</span>
-            </div>
-
-            <div
-              className={`menu-item ${currentView === 'essay-review' ? 'active' : ''}`}
-              onClick={() => setCurrentView('essay-review')}
-            >
-              <div className="menu-icon">✍️</div>
-              <span>Essay Review</span>
-            </div>
-          </div>
-        </div>
-
-        {renderMainContent()}
-      </div>
-    );
-  };
-
+    switch (currentView) {
+      case 'study-material':
         return (
-    <div className="app">
-      {currentStep === 'onboarding' && (
-        <Onboarding
-          currentPage={onboardingPage}
-          onNext={handleOnboardingNext}
-          onComplete={handleOnboardingComplete}
-        />
-      )}
+          <StudyMaterial
+            selectedModel={selectedModel}
+            selectedExamType={selectedExamType!}
+            onBack={() => setCurrentView('home')}
+          />
+        );
+      case 'practice-test':
+        return (
+          <PracticeTest
+            selectedModel={selectedModel}
+            selectedExamType={selectedExamType!}
+            onBack={() => setCurrentView('home')}
+          />
+        );
+      case 'essay-review':
+        return (
+          <EssayReview
+            selectedModel={selectedModel}
+            onBack={() => setCurrentView('home')}
+          />
+        );
+      default:
+        return (
+          <div className="main-content">
+            <div className="welcome-section">
+              <div className="welcome-visual">
+                <div className="floating-brain">🧠</div>
+              </div>
+              <div className="welcome-text">
+                <h1>Welcome back!</h1>
+                <p>Ready to continue your exam preparation journey? Choose your next study session below.</p>
+              </div>
+            </div>
 
-      {currentStep === 'model-setup' && (
-        <ModelSetup onSetupComplete={handleModelSetupComplete} />
-      )}
+            <div className="quick-actions">
+              <div
+                className="action-card study-card"
+                onClick={() => setCurrentView('study-material')}
+              >
+                <div className="card-visual">📚</div>
+                <div className="card-content">
+                  <h3>Study Material</h3>
+                  <p>Generate flashcards and key topics for focused learning</p>
+                </div>
+              </div>
 
-      {currentStep === 'ready' && renderMainApp()}
+              <div
+                className="action-card practice-card"
+                onClick={() => setCurrentView('practice-test')}
+              >
+                <div className="card-visual">✍️</div>
+                <div className="card-content">
+                  <h3>Practice Test</h3>
+                  <p>Take practice questions with instant feedback and explanations</p>
+                </div>
+              </div>
+
+              <div
+                className="action-card essay-card"
+                onClick={() => setCurrentView('essay-review')}
+              >
+                <div className="card-visual">📝</div>
+                <div className="card-content">
+                  <h3>Essay Review</h3>
+                  <p>Get detailed feedback on your essays with ENEM competency scoring</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+    }
+  };
+
+  if (currentStep === 'onboarding') {
+    return <Onboarding
+      currentPage={onboardingPage}
+      onNext={handleOnboardingNext}
+      onComplete={handleOnboardingComplete}
+    />;
+  }
+
+  if (currentStep === 'exam-selection') {
+    return <ExamSelection onExamSelected={handleExamSelected} />;
+  }
+
+  if (currentStep === 'model-setup') {
+    return <ModelSetup onComplete={handleModelSetupComplete} />;
+  }
+
+  return (
+    <div className="main-app-container">
+      <div className="app-sidebar">
+        <div className="sidebar-header">
+          <div className="app-logo">
+            <div className="logo-icon">🧠</div>
+            <div className="logo-text">NeroEdu</div>
+          </div>
+        </div>
+
+        <nav className="sidebar-menu">
+          <div
+            className={`menu-item ${currentView === 'home' ? 'active' : ''}`}
+            onClick={() => setCurrentView('home')}
+          >
+            <span className="menu-icon">🏠</span>
+            <span>Home</span>
+          </div>
+          <div
+            className={`menu-item ${currentView === 'study-material' ? 'active' : ''}`}
+            onClick={() => setCurrentView('study-material')}
+          >
+            <span className="menu-icon">📚</span>
+            <span>Study Material</span>
+          </div>
+          <div
+            className={`menu-item ${currentView === 'practice-test' ? 'active' : ''}`}
+            onClick={() => setCurrentView('practice-test')}
+          >
+            <span className="menu-icon">✍️</span>
+            <span>Practice Test</span>
+          </div>
+          <div
+            className={`menu-item ${currentView === 'essay-review' ? 'active' : ''}`}
+            onClick={() => setCurrentView('essay-review')}
+          >
+            <span className="menu-icon">📝</span>
+            <span>Essay Review</span>
+          </div>
+        </nav>
+      </div>
+
+      {renderMainContent()}
     </div>
   );
-}
+};
+
+export default App;
 

@@ -22,15 +22,34 @@ export const ModelSetup: React.FC<ModelSetupProps> = ({ onSetupComplete }) => {
 
   const checkOllamaStatus = async () => {
     try {
+      console.log('Checking Ollama status...');
+
+      // First test basic connection
+      const connectionTest = await apiService.testConnection();
+      console.log('Connection test result:', connectionTest);
+
+      if (!connectionTest) {
+        console.error('Basic connection test failed');
+        setOllamaStatus('error');
+        return;
+      }
+
       const response: OllamaStatusResponse = await apiService.checkOllamaStatus();
+      console.log('Ollama status response:', response);
+
       if (response.status === 'Ollama is running') {
         setOllamaStatus('running');
         loadAvailableModels();
       } else {
+        console.log('Ollama not running, status:', response.status);
         setOllamaStatus('not-running');
       }
     } catch (error) {
       console.error('Failed to check Ollama status:', error);
+      console.error('Error details:', {
+        message: error.message,
+        stack: error.stack
+      });
       setOllamaStatus('error');
     }
   };
@@ -114,9 +133,12 @@ export const ModelSetup: React.FC<ModelSetupProps> = ({ onSetupComplete }) => {
           <div className="status-card error">
             <div className="status-icon">⚠️</div>
             <h3>Connection Error</h3>
-            <p>Unable to connect to the AI service.</p>
+            <p>Unable to connect to the AI service at http://127.0.0.1:8000</p>
+            <p style={{ fontSize: '12px', opacity: 0.8, marginTop: '8px' }}>
+              Make sure the FastAPI server is running on port 8000
+            </p>
             <button className="secondary-button" onClick={checkOllamaStatus}>
-              Retry
+              Retry Connection
             </button>
           </div>
         );

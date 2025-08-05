@@ -1,113 +1,64 @@
-import {
-  OllamaStatusResponse,
-  ListModelsResponse,
-  CheckModelResponse,
-  DeleteModelResponse,
-  FlashcardRequest,
-  FlashcardResponse,
-  KeyTopicsRequest,
-  KeyTopicsResponse,
-  SimuladoRequest,
-  SimuladoResponse,
-  QuestionResponse,
-  EssayRequest,
-  EssayResponse,
-  EssayEvaluation,
-} from '../types';
+import { FlashcardRequest, FlashcardResponse, KeyTopicsRequest, KeyTopicsResponse, SimuladoRequest, QuestionResponse, EssayRequest, EssayResponse } from '../types';
 
-const BASE_URL = 'http://127.0.0.1:8000';
+const API_BASE_URL = 'http://127.0.0.1:8000';
 
 class ApiService {
-  private async fetchJson<T>(url: string, options?: RequestInit): Promise<T> {
+  private async fetchJson<T>(endpoint: string, options?: RequestInit): Promise<T> {
+    const url = `${API_BASE_URL}${endpoint}`;
+    console.log(`Making API request to: ${url}`);
+
     try {
-      const response = await fetch(`${BASE_URL}${url}`, {
+      const response = await fetch(url, {
         headers: {
           'Content-Type': 'application/json',
-          ...options?.headers,
         },
         ...options,
       });
 
+      console.log(`Response status: ${response.status}`);
+
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`HTTP error: ${response.status}`, errorText);
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      return await response.json();
+      const data = await response.json();
+      console.log(`Response data:`, data);
+      return data;
     } catch (error) {
-      console.error(`API call failed for ${url}:`, error);
+      console.error('API request failed:', error);
       throw error;
     }
   }
 
-  async checkOllamaStatus(): Promise<OllamaStatusResponse> {
-    return this.fetchJson<OllamaStatusResponse>('/status-ollama');
+  async checkOllamaStatus(): Promise<any> {
+    return this.fetchJson('/status-ollama');
   }
 
-  async listModels(): Promise<ListModelsResponse> {
-    return this.fetchJson<ListModelsResponse>('/list-models');
+  async listModels(): Promise<any> {
+    return this.fetchJson('/list-models');
   }
 
-  async checkModel(modelName: string): Promise<CheckModelResponse> {
-    return this.fetchJson<CheckModelResponse>(`/check-model/${modelName}`, {
-      method: 'POST',
-    });
-  }
-
-  async deleteModel(modelName: string): Promise<DeleteModelResponse> {
-    return this.fetchJson<DeleteModelResponse>(`/delete-model/${modelName}`, {
+  async deleteModel(modelName: string): Promise<any> {
+    return this.fetchJson(`/delete-model/${modelName}`, {
       method: 'DELETE',
     });
   }
 
-  async pullModel(
-    modelName: string,
-    onProgress: (data: string) => void,
-    onComplete: () => void,
-    onError: (error: Error) => void
-  ): Promise<void> {
-    try {
-      const response = await fetch(`${BASE_URL}/pull-model/${modelName}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+  async pullModel(modelName: string): Promise<ReadableStream<Uint8Array>> {
+    const response = await fetch(`${API_BASE_URL}/pull-model/${modelName}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const reader = response.body?.getReader();
-      if (!reader) {
-        throw new Error('No response body');
-      }
-
-      const decoder = new TextDecoder();
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        const chunk = decoder.decode(value);
-        const lines = chunk.split('\n');
-
-        for (const line of lines) {
-          if (line.trim()) {
-            try {
-              const data = JSON.parse(line);
-              onProgress(data);
-            } catch (e) {
-              // If not JSON, treat as plain text
-              onProgress(line);
-            }
-          }
-        }
-      }
-
-      onComplete();
-    } catch (error) {
-      onError(error as Error);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    return response.body!;
   }
 
   async generateFlashcard(request: FlashcardRequest): Promise<FlashcardResponse> {
@@ -116,14 +67,12 @@ class ApiService {
       body: JSON.stringify(request),
     });
 
-    // Parse the JSON from the response string
-    const jsonMatch = response.match(/```json\n(.*?)\n```/s);
+    // Parse JSON from markdown code block if needed
+    const jsonMatch = response.match(/```json\n([\s\S]*?)\n```/);
     if (jsonMatch) {
       return JSON.parse(jsonMatch[1]);
-    } else {
-      // Fallback: try to parse the entire response as JSON
-      return JSON.parse(response);
     }
+    return JSON.parse(response);
   }
 
   async generateKeyTopics(request: KeyTopicsRequest): Promise<KeyTopicsResponse> {
@@ -132,46 +81,53 @@ class ApiService {
       body: JSON.stringify(request),
     });
 
-    // Parse the JSON from the response string
-    const jsonMatch = response.match(/```json\n(.*?)\n```/s);
+    // Parse JSON from markdown code block if needed
+    const jsonMatch = response.match(/```json\n([\s\S]*?)\n```/);
     if (jsonMatch) {
       return JSON.parse(jsonMatch[1]);
-    } else {
-      // Fallback: try to parse the entire response as JSON
-      return JSON.parse(response);
     }
+    return JSON.parse(response);
   }
 
   async generateQuestion(request: SimuladoRequest): Promise<QuestionResponse> {
-    const response = await this.fetchJson<SimuladoResponse>('/call-simulado-questao', {
+    const response = await this.fetchJson<{ response: string; temperature: number; seed: number }>('/call-simulado-questao', {
       method: 'POST',
       body: JSON.stringify(request),
     });
 
-    // Parse the JSON from the response string
-    const jsonMatch = response.response.match(/```json\n(.*?)\n```/s);
+    // Parse JSON from markdown code block if needed
+    const jsonMatch = response.response.match(/```json\n([\s\S]*?)\n```/);
     if (jsonMatch) {
       return JSON.parse(jsonMatch[1]);
-    } else {
-      // Fallback: try to parse the entire response as JSON
-      return JSON.parse(response.response);
     }
+    return JSON.parse(response.response);
   }
 
-  async evaluateEssay(request: EssayRequest): Promise<EssayEvaluation> {
-    const response = await this.fetchJson<EssayResponse>('/call-model-competencia', {
+  async evaluateEssay(request: EssayRequest): Promise<EssayResponse> {
+    const response = await this.fetchJson<{ response: string; model: string; competencia: number }>('/call-model-competencia', {
       method: 'POST',
       body: JSON.stringify(request),
     });
 
-    // Parse the JSON from the response string
-    const jsonMatch = response.response.match(/```json\n(.*?)\n```/s);
+    // Parse JSON from markdown code block if needed
+    const jsonMatch = response.response.match(/```json\n([\s\S]*?)\n```/);
     if (jsonMatch) {
-      return JSON.parse(jsonMatch[1]);
-    } else {
-      // Fallback: try to parse the entire response as JSON
-      return JSON.parse(response.response);
+      const parsed = JSON.parse(jsonMatch[1]);
+      return {
+        competencia: response.competencia,
+        result: parsed
+      };
     }
+
+    const parsed = JSON.parse(response.response);
+    return {
+      competencia: response.competencia,
+      result: parsed
+    };
+  }
+
+  async testConnection(): Promise<any> {
+    return this.fetchJson('/status-ollama');
   }
 }
 

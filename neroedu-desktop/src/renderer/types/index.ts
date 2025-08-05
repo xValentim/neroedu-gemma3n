@@ -46,10 +46,13 @@ export interface AppState {
 }
 
 // Study Material Types
+export type ExamType = 'enem' | 'icfes' | 'exani' | 'sat' | 'cuet' | 'exames_nacionais';
+
 export interface FlashcardRequest {
   tema: string;
-  flashcards_existentes: string[];
+  flashcards_existentes?: string[];
   model_name: string;
+  exam_type: ExamType;
 }
 
 export interface FlashcardResponse {
@@ -60,6 +63,7 @@ export interface FlashcardResponse {
 export interface KeyTopicsRequest {
   tema: string;
   model_name: string;
+  exam_type: ExamType;
 }
 
 export interface KeyTopicsResponse {
@@ -69,19 +73,20 @@ export interface KeyTopicsResponse {
 
 export interface StudyMaterialState {
   currentView: 'selection' | 'flashcards' | 'key-topics';
-  topic: string;
-  selectedModel: string;
-  isLoading: boolean;
   flashcards: FlashcardResponse[];
+  currentFlashcardIndex: number;
   keyTopics: KeyTopicsResponse | null;
-  error: string | null;
+  isLoadingFlashcard: boolean;
+  isLoadingKeyTopics: boolean;
+  selectedExamType: ExamType | null;
 }
 
 // Practice Test Types
 export interface SimuladoRequest {
   tema: string;
   model_name: string;
-  lite_rag: boolean;
+  lite_rag?: boolean;
+  exam_type: ExamType;
 }
 
 export interface QuestionResponse {
@@ -91,7 +96,7 @@ export interface QuestionResponse {
   C: string;
   D: string;
   E: string;
-  correct_answer: 'A' | 'B' | 'C' | 'D' | 'E';
+  correct_answer: string;
   explanation: string;
 }
 
@@ -102,14 +107,13 @@ export interface SimuladoResponse {
 }
 
 export interface PracticeTestState {
-  currentView: 'selection' | 'questions';
-  topic: string;
-  selectedModel: string;
-  useRAG: boolean;
-  isLoading: boolean;
+  currentView: 'selection' | 'questions' | 'results';
   questions: QuestionResponse[];
   currentQuestionIndex: number;
-  error: string | null;
+  selectedAnswers: string[];
+  isLoading: boolean;
+  score: number;
+  selectedExamType: ExamType | null;
 }
 
 // Essay Review Types
@@ -119,32 +123,23 @@ export interface EssayRequest {
   competencia: number;
 }
 
-export interface EssayEvaluation {
+export interface CompetenciaResult {
   nota: number;
   feedback: string;
   justificativa: string;
 }
 
 export interface EssayResponse {
-  response: string;
-  model: string;
   competencia: number;
-}
-
-export interface CompetenciaResult {
-  competencia: number;
-  evaluation: EssayEvaluation;
-  isLoading: boolean;
-  error: string | null;
+  result: CompetenciaResult;
 }
 
 export interface EssayReviewState {
   currentView: 'input' | 'results';
   essay: string;
-  selectedModel: string;
-  competencias: CompetenciaResult[];
-  isEvaluating: boolean;
-  error: string | null;
+  results: EssayResponse[];
+  isLoading: boolean;
+  totalScore: number;
 }
 
 // Onboarding Page Data
