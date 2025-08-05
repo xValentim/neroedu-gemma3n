@@ -178,9 +178,9 @@ async def call_simulado(input_simulado: InputSimulado):
     tema = input_simulado.tema
     model_name = input_simulado.model_name
     template = [
-        ('system', """Você irá gerar questões para compor um simulado do ENEM."""),
-        ('system', "Não crie questões unicamente objetivas, como 'O que é?', 'Quem foi?', contextualize breventemente o tema e crie questões que exijam raciocínio."),
-        ('system', """Siga a estrutura:
+        ('system', """You will generate questions to compose an ENEM practice test."""),
+        ('system', "Don't create purely objective questions like 'What is?', 'Who was?', briefly contextualize the theme and create questions that require reasoning."),
+        ('system', """Follow the structure:
             [
                 {{
                 "question": "string",
@@ -205,7 +205,7 @@ async def call_simulado(input_simulado: InputSimulado):
                 ...
             ]
         """),
-        ('system', "Gere 5 questões sobre o tema: {tema}"),
+        ('system', "Generate 5 questions about the theme: {tema}"),
     ]
 
     prompt = ChatPromptTemplate.from_messages(template)
@@ -230,9 +230,9 @@ async def call_simulado(input_simulado: InputSimulado):
     lite_rag = input_simulado.lite_rag
     
     template = [
-        ('system', """Você irá gerar questões para compor um simulado do ENEM."""),
-        ('system', "Não crie questões unicamente objetivas, como 'O que é?', 'Quem foi?', crie questões que exijam raciocínio."),
-        ('system', """Siga a estrutura:
+        ('system', """You will generate questions to compose an ENEM practice test."""),
+        ('system', "Don't create purely objective questions like 'What is?', 'Who was?', create questions that require reasoning."),
+        ('system', """Follow the structure:
             {{
                 "question": "string",
                 "A": "string",
@@ -244,13 +244,13 @@ async def call_simulado(input_simulado: InputSimulado):
                 "explanation": "string"
                 }}
         """),
-        ('system', """Gere a questão sobre o tema: {tema}\n"""),
+        ('system', """Generate the question about the theme: {tema}\n"""),
     ]
     
     if lite_rag:
         retrieved_content = retrieve_enem.query(tema, k=1)[0].content
         print(f"Retrieved content: {retrieved_content}")
-        template.append(('system', f"""Use o seguinte conteúdo para embasar a questão (se o conteúdo não for relevante, ignore):\n""" + retrieved_content))
+        template.append(('system', f"""Use the following content to support the question (if the content is not relevant, ignore it):\n""" + retrieved_content))
 
     prompt = ChatPromptTemplate.from_messages(template)
 
@@ -277,30 +277,30 @@ async def call_flashcard(input_flashcard: InputFlashcard):
 
     if len(flashcards_existentes) == 0:
         template = [
-            ('system', """Você irá gerar um flashcard educacional para estudo."""),
-            ('system', """Crie o flashcard no formato pergunta-resposta."""),
-            ('system', """Siga EXATAMENTE esta estrutura JSON:
+            ('system', """You will generate an educational flashcard for studying."""),
+            ('system', """Create the flashcard in question-answer format."""),
+            ('system', """Follow EXACTLY this JSON structure:
                 {{
-                    "question": "Pergunta sobre o conceito...",
-                    "answer": "Resposta clara e didática..."
+                    "question": "Question about the concept...",
+                    "answer": "Clear and didactic answer..."
                 }}
             """),
-            ('system', "Gere um flashcard sobre o tema: {tema}"),
-            ('system', "A pergunta deve testar conhecimento essencial e a resposta deve ser completa."),
+            ('system', "Generate a flashcard about the theme: {tema}"),
+            ('system', "The question should test essential knowledge and the answer should be complete."),
         ]
     else:
         template = [
-            ('system', """Você irá gerar um flashcard educacional para estudo."""),
-            ('system', """Crie o flashcard no formato pergunta-resposta."""),
-            ('system', """Siga EXATAMENTE esta estrutura JSON:
+            ('system', """You will generate an educational flashcard for studying."""),
+            ('system', """Create the flashcard in question-answer format."""),
+            ('system', """Follow EXACTLY this JSON structure:
                 {{
-                    "question": "Pergunta sobre o conceito...",
-                    "answer": "Resposta clara e didática..."
+                    "question": "Question about the concept...",
+                    "answer": "Clear and didactic answer..."
                 }}
             """),
-            ('system', "Gere um flashcard sobre o tema: {tema}"),
-            ('system', "Considere que já existe um (ou mais) flashcard(s) com essa(s) pergunta(s): {flashcards_existentes}. Não repita perguntas já existentes."),
-            ('system', "A pergunta deve testar conhecimento essencial e a resposta deve ser completa."),
+            ('system', "Generate a flashcard about the theme: {tema}"),
+            ('system', "Consider that there is already one (or more) flashcard(s) with this/these question(s): {flashcards_existentes}. Do not repeat existing questions."),
+            ('system', "The question should test essential knowledge and the answer should be complete."),
         ]
 
     prompt = ChatPromptTemplate.from_messages(template)
@@ -326,20 +326,20 @@ async def call_key_topics(input_data_key_topics: InputDataKeyTopics):
     model_name = input_data_key_topics.model_name
     
     template = [
-        ('system', """Você irá gerar tópicos-chave sobre um tema educacional."""),
-        ('system', """Crie uma explicação geral do tema e liste 3 pontos-chave mais importantes."""),
-        ('system', """Siga EXATAMENTE esta estrutura JSON:
+        ('system', """You will generate key topics about an educational theme."""),
+        ('system', """Create a general explanation of the theme and list the 3 most important key points."""),
+        ('system', """Follow EXACTLY this JSON structure:
             {{
-                "explanation": "Uma explicação abrangente e didática do tema...",
+                "explanation": "A comprehensive and didactic explanation of the theme...",
                 "key_topics": [
-                    "Primeiro ponto-chave mais importante...",
-                    "Segundo ponto-chave mais importante...",
-                    "Terceiro ponto-chave mais importante..."
+                    "First most important key point...",
+                    "Second most important key point...",
+                    "Third most important key point..."
                 ]
             }}
         """),
-        ('system', "Analise o tema: {tema}"),
-        ('system', "A explicação geral deve ser completa mas acessível, e os 3 tópicos-chave devem cobrir os aspectos mais fundamentais."),
+        ('system', "Analyze the theme: {tema}"),
+        ('system', "The general explanation should be complete but accessible, and the 3 key topics should cover the most fundamental aspects."),
     ]
 
     prompt = ChatPromptTemplate.from_messages(template)
