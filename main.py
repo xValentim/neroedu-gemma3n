@@ -453,14 +453,14 @@ async def call_essay(input_data: InputDataEssay):
     exam_type = input_data.exam_type.strip().lower()
     
     llm = ChatOllama(model=model_name, temperature=0.0)
-    if exam_type not in ['enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais']:
-        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais'.")
+    if exam_type not in ['enem', 'sat','exames_nacionais', 'gaokao', 'ielts']:
+        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'sat', 'exames_nacionais', 'gaokao', 'ielts'.")
     
     system_prompt = exams_types[exam_type]
     promt = ChatPromptTemplate.from_messages(
         [
             ("system", system_prompt),
-            ("human", "Tema: {essay}")
+            ("human", "Redação do usuário: {essay}")
         ]
     )
     chain  = promt | llm | StrOutputParser()
