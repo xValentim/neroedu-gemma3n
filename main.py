@@ -20,12 +20,12 @@ import random
 class InputDataEssayEnem(BaseModel):
     essay: str = example_essay
     model_name: str = "gemma3n:e2b"
+    competencia: int = 1
     
     
 class InputSimulado(BaseModel):
     tema: str
     model_name: str = "gemma3n:e2b"
-    competencia: int = 1
     lite_rag: None | bool = False
 
 class InputFlashcard(BaseModel):
