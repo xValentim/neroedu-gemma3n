@@ -7,6 +7,11 @@ class InputDataEssayEnem(BaseModel):
     model_name: str = "gemma3n:e2b"
     competencia: int = 1
     
+class InputDataEssay(BaseModel):
+    essay: str = example_essay
+    model_name: str = "gemma3n:e2b"
+    exam_type: None | str = "enem"  # it can be 'enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais'
+    
 class InputSimulado(BaseModel):
     tema: str = "world war ii"
     model_name: str = "gemma3n:e2b"

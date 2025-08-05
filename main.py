@@ -5,7 +5,7 @@ from fastapi.responses import StreamingResponse
 from typing import List, Optional
 import requests
 import uvicorn
-from src.utils import get_models_info, delete_model, example_essay, prompt_competencia_1, prompt_competencia_2, prompt_competencia_3, prompt_competencia_4, prompt_competencia_5
+from src.utils import get_models_info, delete_model, example_essay, prompt_competencia_1, prompt_competencia_2, prompt_competencia_3, prompt_competencia_4, prompt_competencia_5, exams_types
 from src.retriever import Retriever
 from contextlib import asynccontextmanager 
 
@@ -13,7 +13,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_ollama.llms import OllamaLLM
 from langchain_ollama.chat_models import ChatOllama
-from src.schemas import InputDataEssayEnem, InputSimulado, InputFlashcard, InputDataKeyTopics, OutputDataEssayEnem
+from src.schemas import InputDataEssayEnem, InputSimulado, InputFlashcard, InputDataKeyTopics, OutputDataEssayEnem, InputDataEssay
 
 from pydantic import BaseModel
 import random
@@ -445,5 +445,27 @@ async def call_key_topics(input_data_key_topics: InputDataKeyTopics):
     response = await chain_key_topics.ainvoke({"tema": tema})
     return response
 
+
+@app.post("/call-essay")
+async def call_essay(input_data: InputDataEssay):
+    essay = input_data.essay
+    model_name = input_data.model_name
+    exam_type = input_data.exam_type.strip().lower()
+    
+    llm = ChatOllama(model=model_name, temperature=0.0)
+    if exam_type not in ['enem', 'sat','exames_nacionais', 'gaokao', 'ielts']:
+        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'sat', 'exames_nacionais', 'gaokao', 'ielts'.")
+    
+    system_prompt = exams_types[exam_type]
+    promt = ChatPromptTemplate.from_messages(
+        [
+            ("system", system_prompt),
+            ("human", "Redação do usuário: {essay}")
+        ]
+    )
+    chain  = promt | llm | StrOutputParser()
+    response = await chain.ainvoke({"essay": essay})
+    
+    return {"response": response, "model": model_name, "exam_type": exam_type}
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)
