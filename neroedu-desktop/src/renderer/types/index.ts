@@ -50,6 +50,8 @@ export interface FlashcardRequest {
   tema: string;
   flashcards_existentes: string[];
   model_name: string;
+  exam_type: string;
+  lite_rag?: boolean;
 }
 
 export interface FlashcardResponse {
@@ -60,6 +62,8 @@ export interface FlashcardResponse {
 export interface KeyTopicsRequest {
   tema: string;
   model_name: string;
+  exam_type: string;
+  lite_rag?: boolean;
 }
 
 export interface KeyTopicsResponse {
@@ -81,7 +85,8 @@ export interface StudyMaterialState {
 export interface SimuladoRequest {
   tema: string;
   model_name: string;
-  lite_rag: boolean;
+  exam_type: string;
+  lite_rag?: boolean;
 }
 
 export interface QuestionResponse {

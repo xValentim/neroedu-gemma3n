@@ -150,6 +150,13 @@ const createWindow = async () => {
     await installExtensions();
   }
 
+  // Configure session to allow localhost requests
+  const session = require('electron').session;
+  session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
+    details.requestHeaders['Origin'] = 'http://127.0.0.1:8000';
+    callback({ requestHeaders: details.requestHeaders });
+  });
+
   const RESOURCES_PATH = app.isPackaged
     ? path.join(process.resourcesPath, 'assets')
     : path.join(__dirname, '../../assets');
@@ -171,6 +178,10 @@ const createWindow = async () => {
       preload: app.isPackaged
         ? path.join(__dirname, 'preload.js')
         : path.join(__dirname, '../../.erb/dll/preload.js'),
+      nodeIntegration: false,
+      contextIsolation: true,
+      webSecurity: false, // Allow localhost requests
+      allowRunningInsecureContent: true, // Allow HTTP requests
     },
   });
 

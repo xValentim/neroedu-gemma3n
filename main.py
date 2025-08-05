@@ -5,7 +5,7 @@ from fastapi.responses import StreamingResponse
 from typing import List, Optional
 import requests
 import uvicorn
-from src.utils import get_models_info, delete_model, example_essay, prompt_competencia_1, prompt_competencia_2, prompt_competencia_3, prompt_competencia_4, prompt_competencia_5
+from src.utils import get_models_info, delete_model, example_essay, prompt_competencia_1, prompt_competencia_2, prompt_competencia_3, prompt_competencia_4, prompt_competencia_5, exams_types
 from src.retriever import Retriever
 from contextlib import asynccontextmanager 
 
@@ -13,34 +13,10 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_ollama.llms import OllamaLLM
 from langchain_ollama.chat_models import ChatOllama
+from src.schemas import InputDataEssayEnem, InputSimulado, InputFlashcard, InputDataKeyTopics, OutputDataEssayEnem, InputDataEssay
 
 from pydantic import BaseModel
 import random
-
-class InputDataEssayEnem(BaseModel):
-    essay: str = example_essay
-    model_name: str = "gemma3n:e2b"
-    competencia: int = 1
-    
-    
-class InputSimulado(BaseModel):
-    tema: str
-    model_name: str = "gemma3n:e2b"
-    lite_rag: None | bool = False
-
-class InputFlashcard(BaseModel):
-    tema: str
-    flashcards_existentes: Optional[List[str]] = []
-    model_name: str = "gemma3n:e2b"
-
-class InputDataKeyTopics(BaseModel):
-    tema: str
-    model_name: str = "gemma3n:e2b"
-
-class OutputDataEssayEnem(BaseModel):
-    response: str
-    model: str
-    competencia: int
 
 
 # Cron job/Background task
@@ -172,13 +148,28 @@ async def call_model_competencia(input_data: InputDataEssayEnem):
 
     return OutputDataEssayEnem(**output)
 
-
 @app.post("/call-simulado")
 async def call_simulado(input_simulado: InputSimulado):
     tema = input_simulado.tema
     model_name = input_simulado.model_name
+    lite_rag = input_simulado.lite_rag
+    exam_type = input_simulado.exam_type.strip().lower()
+    
+    if exam_type not in ['enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais']:
+        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais'.")
+    
+    language = {
+        "enem": "portuguese",
+        "icfes": "spanish",
+        "exani": "spanish",
+        "sat": "english",
+        "cuet": "english",
+        "exames_nacionais": "portuguese"
+    }
+    
     template = [
-        ('system', """You will generate questions to compose an ENEM practice test."""),
+        ('system', f"""You will generate questions to compose an {exam_type} practice test."""),
+        ('system', f"""The language of the exam is {language[exam_type]}."""),
         ('system', "Don't create purely objective questions like 'What is?', 'Who was?', briefly contextualize the theme and create questions that require reasoning."),
         ('system', """Follow the structure:
             [
@@ -207,6 +198,20 @@ async def call_simulado(input_simulado: InputSimulado):
         """),
         ('system', "Generate 5 questions about the theme: {tema}"),
     ]
+    
+    if lite_rag:
+        chain_translate = (
+            ChatPromptTemplate.from_messages([
+                ('system', "Traduza para o português (se possível, escreva 1 frase que descreva o tema): {tema}"),
+            ])
+            | ChatOllama(model="gemma3n:e2b", temperature=0.6, seed=random.randint(0, 1000))
+            | StrOutputParser()
+        )
+        tema_translated = await chain_translate.ainvoke({"tema": tema})
+        print(f"Translated theme: {tema_translated}")
+        retrieved_content = random.choice(retrieve_enem.query(tema_translated, k=4)).content
+        print(f"Retrieved content: {retrieved_content}")
+        template.append(('system', f"""Use the following content to support the questions (if the content is not relevant, ignore it):\n""" + retrieved_content))
 
     prompt = ChatPromptTemplate.from_messages(template)
 
@@ -222,15 +227,28 @@ async def call_simulado(input_simulado: InputSimulado):
     response = await chain_simulado.ainvoke({"tema": tema})
     return response
 
-
 @app.post("/call-simulado-questao")
 async def call_simulado(input_simulado: InputSimulado):
     tema = input_simulado.tema
     model_name = input_simulado.model_name
     lite_rag = input_simulado.lite_rag
+    exam_type = input_simulado.exam_type.strip().lower()
+
+    if exam_type not in ['enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais']:
+        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais'.")
+    
+    language = {
+        "enem": "portuguese-Brasil",
+        "icfes": "spanish",
+        "exani": "spanish",
+        "sat": "english",
+        "cuet": "english",
+        "exames_nacionais": "portuguese-Portugal"
+    }
     
     template = [
-        ('system', """You will generate questions to compose an ENEM practice test."""),
+        ('system', f"""You will generate questions to compose an {exam_type} practice test."""),
+        ('system', f"""The language of the exam is {language[exam_type]}."""),
         ('system', "Don't create purely objective questions like 'What is?', 'Who was?', create questions that require reasoning."),
         ('system', """Follow the structure:
             {{
@@ -244,11 +262,20 @@ async def call_simulado(input_simulado: InputSimulado):
                 "explanation": "string"
                 }}
         """),
-        ('system', """Generate the question about the theme: {tema}\n"""),
+        ('system', """Generate only one question about the theme: {tema}\n"""),
     ]
     
     if lite_rag:
-        retrieved_content = retrieve_enem.query(tema, k=1)[0].content
+        chain_translate = (
+            ChatPromptTemplate.from_messages([
+                ('system', "Traduza para o português (se possível, escreva 1 frase que descreva o tema): {tema}"),
+            ])
+            | ChatOllama(model="gemma3n:e2b", temperature=0.6, seed=random.randint(0, 1000))
+            | StrOutputParser()
+        )
+        tema_translated = await chain_translate.ainvoke({"tema": tema})
+        print(f"Translated theme: {tema_translated}")
+        retrieved_content = random.choice(retrieve_enem.query(tema_translated, k=4)).content
         print(f"Retrieved content: {retrieved_content}")
         template.append(('system', f"""Use the following content to support the question (if the content is not relevant, ignore it):\n""" + retrieved_content))
 
@@ -268,16 +295,31 @@ async def call_simulado(input_simulado: InputSimulado):
     response = await chain_simulado.ainvoke({"tema": tema})
     return {"response": response, "temperature": temperature, "seed": seed}
 
-
 @app.post("/call-flashcard")
 async def call_flashcard(input_flashcard: InputFlashcard):
     tema = input_flashcard.tema
     model_name = input_flashcard.model_name
     flashcards_existentes = input_flashcard.flashcards_existentes
+    exam_type = input_flashcard.exam_type
+    lite_rag = input_flashcard.lite_rag
+    
+    if exam_type not in ['enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais']:
+        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais'.")
+    
+    language = {
+        "enem": "portuguese-Brasil",
+        "icfes": "spanish",
+        "exani": "spanish",
+        "sat": "english",
+        "cuet": "english",
+        "exames_nacionais": "portuguese-Portugal"
+    }
 
     if len(flashcards_existentes) == 0:
         template = [
             ('system', """You will generate an educational flashcard for studying."""),
+            ('system', f"""The language of the exam is {language[exam_type]}."""),
+            ('system', f"""Consider that the flashcard should be relevant for the {exam_type} exam."""),
             ('system', """Create the flashcard in question-answer format."""),
             ('system', """Follow EXACTLY this JSON structure:
                 {{
@@ -291,6 +333,8 @@ async def call_flashcard(input_flashcard: InputFlashcard):
     else:
         template = [
             ('system', """You will generate an educational flashcard for studying."""),
+            ('system', f"""The language of the exam is {language[exam_type]}."""),
+            ('system', f"""Consider that the flashcard should be relevant for the {exam_type} exam."""),
             ('system', """Create the flashcard in question-answer format."""),
             ('system', """Follow EXACTLY this JSON structure:
                 {{
@@ -302,6 +346,20 @@ async def call_flashcard(input_flashcard: InputFlashcard):
             ('system', "Consider that there is already one (or more) flashcard(s) with this/these question(s): {flashcards_existentes}. Do not repeat existing questions."),
             ('system', "The question should test essential knowledge and the answer should be complete."),
         ]
+
+    if lite_rag:
+        chain_translate = (
+            ChatPromptTemplate.from_messages([
+                ('system', "Traduza para o português (se possível, escreva 1 frase que descreva o tema): {tema}"),
+            ])
+            | ChatOllama(model="gemma3n:e2b", temperature=0.6, seed=random.randint(0, 1000))
+            | StrOutputParser()
+        )
+        tema_translated = await chain_translate.ainvoke({"tema": tema})
+        print(f"Translated theme: {tema_translated}")
+        retrieved_content = random.choice(retrieve_enem.query(tema_translated, k=4)).content
+        print(f"Retrieved content: {retrieved_content}")
+        template.insert(6, ('system', f"""Use the following content to support the question (if the content is not relevant, ignore it):\n""" + retrieved_content))
 
     prompt = ChatPromptTemplate.from_messages(template)
 
@@ -319,14 +377,29 @@ async def call_flashcard(input_flashcard: InputFlashcard):
     response = await chain_flashcard.ainvoke({"tema": tema, "flashcards_existentes": flashcards_existentes})
     return response
 
-
 @app.post("/call-key-topics")
 async def call_key_topics(input_data_key_topics: InputDataKeyTopics):
     tema = input_data_key_topics.tema
     model_name = input_data_key_topics.model_name
+    exam_type = input_data_key_topics.exam_type
+    lite_rag = input_data_key_topics.lite_rag
     
+    if exam_type not in ['enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais']:
+        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais'.")
+    
+    language = {
+        "enem": "portuguese-Brasil",
+        "icfes": "spanish",
+        "exani": "spanish",
+        "sat": "english",
+        "cuet": "english",
+        "exames_nacionais": "portuguese-Portugal"
+    }
+
     template = [
         ('system', """You will generate key topics about an educational theme."""),
+        ('system', f"""The language of the exam is {language[exam_type]}."""),
+        ('system', f"""Consider that the key topics should be relevant for the {exam_type} exam."""),
         ('system', """Create a general explanation of the theme and list the 3 most important key points."""),
         ('system', """Follow EXACTLY this JSON structure:
             {{
@@ -341,6 +414,20 @@ async def call_key_topics(input_data_key_topics: InputDataKeyTopics):
         ('system', "Analyze the theme: {tema}"),
         ('system', "The general explanation should be complete but accessible, and the 3 key topics should cover the most fundamental aspects."),
     ]
+
+    if lite_rag:
+        chain_translate = (
+            ChatPromptTemplate.from_messages([
+                ('system', "Traduza para o português (se possível, escreva 1 frase que descreva o tema): {tema}"),
+            ])
+            | ChatOllama(model="gemma3n:e2b", temperature=0.6, seed=random.randint(0, 1000))
+            | StrOutputParser()
+        )
+        tema_translated = await chain_translate.ainvoke({"tema": tema})
+        print(f"Translated theme: {tema_translated}")
+        retrieved_content = random.choice(retrieve_enem.query(tema_translated, k=4)).content
+        print(f"Retrieved content: {retrieved_content}")
+        template.insert(6, ('system', f"""Use the following content to support the explanation (if the content is not relevant, ignore it):\n""" + retrieved_content))
 
     prompt = ChatPromptTemplate.from_messages(template)
 
@@ -359,6 +446,26 @@ async def call_key_topics(input_data_key_topics: InputDataKeyTopics):
     return response
 
 
-
+@app.post("/call-essay")
+async def call_essay(input_data: InputDataEssay):
+    essay = input_data.essay
+    model_name = input_data.model_name
+    exam_type = input_data.exam_type.strip().lower()
+    
+    llm = ChatOllama(model=model_name, temperature=0.0)
+    if exam_type not in ['enem', 'sat','exames_nacionais', 'gaokao', 'ielts']:
+        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'sat', 'exames_nacionais', 'gaokao', 'ielts'.")
+    
+    system_prompt = exams_types[exam_type]
+    promt = ChatPromptTemplate.from_messages(
+        [
+            ("system", system_prompt),
+            ("human", "Redação do usuário: {essay}")
+        ]
+    )
+    chain  = promt | llm | StrOutputParser()
+    response = await chain.ainvoke({"essay": essay})
+    
+    return {"response": response, "model": model_name, "exam_type": exam_type}
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)

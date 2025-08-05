@@ -1,339 +1,221 @@
 import React, { useState } from 'react';
-import { ModelInfo, QuestionResponse } from '../types';
 import { apiService } from '../services/api';
+import { QuestionResponse } from '../types';
 
 interface PracticeTestProps {
-  availableModels: ModelInfo[];
+  examType: string;
+  modelName: string;
   onBack: () => void;
 }
 
-export const PracticeTest: React.FC<PracticeTestProps> = ({ availableModels, onBack }) => {
-  const [currentView, setCurrentView] = useState<'selection' | 'questions'>('selection');
+export const PracticeTest: React.FC<PracticeTestProps> = ({ examType, modelName, onBack }) => {
+  const [currentView, setCurrentView] = useState<'selection' | 'questions' | 'results'>('selection');
   const [topic, setTopic] = useState('');
-  const [selectedModel, setSelectedModel] = useState('');
-  const [useRAG, setUseRAG] = useState(true);
-  const [isLoadingQuestion, setIsLoadingQuestion] = useState(false);
   const [questions, setQuestions] = useState<QuestionResponse[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedAnswers, setSelectedAnswers] = useState<{ [key: number]: string }>({});
-  const [showResults, setShowResults] = useState(false);
+  const [selectedAnswers, setSelectedAnswers] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
+  const [score, setScore] = useState<number>(0);
+  const [showResults, setShowResults] = useState(false);
   const maxQuestions = 5;
 
   const handleGenerateQuestion = async () => {
-    if (!topic.trim() || !selectedModel) {
-      setError('Please enter a topic and select a model');
+    if (!topic.trim()) {
+      setError('Please enter a study topic');
       return;
     }
 
-    setIsLoadingQuestion(true);
+    setIsLoading(true);
     setError(null);
 
     try {
       const response = await apiService.generateQuestion({
-        tema: topic,
-        model_name: selectedModel,
-        lite_rag: useRAG
+        tema: topic.trim(),
+        model_name: modelName,
+        exam_type: examType,
+        lite_rag: true
       });
 
       setQuestions([response]);
+      setSelectedAnswers([]);
       setCurrentQuestionIndex(0);
       setCurrentView('questions');
-      setShowResults(false);
-      setSelectedAnswers({});
-    } catch (error) {
-      console.error('Error generating question:', error);
-      setError('Failed to generate question. Please try again.');
+    } catch (err) {
+      setError('Error generating question. Please try again.');
+      console.error('Error generating question:', err);
     } finally {
-      setIsLoadingQuestion(false);
-    }
-  };
-
-  const generateNewQuestion = async () => {
-    if (questions.length >= maxQuestions) {
-      return;
-    }
-
-    setIsLoadingQuestion(true);
-    setError(null);
-
-    try {
-      const response = await apiService.generateQuestion({
-        tema: topic,
-        model_name: selectedModel,
-        lite_rag: useRAG
-      });
-
-      setQuestions(prev => [...prev, response]);
-    } catch (error) {
-      console.error('Error generating new question:', error);
-      setError('Failed to generate new question. Please try again.');
-    } finally {
-      setIsLoadingQuestion(false);
-    }
-  };
-
-  const nextQuestion = () => {
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else if (questions.length < maxQuestions && !isLoadingQuestion) {
-      generateNewQuestion();
-      setCurrentQuestionIndex(questions.length);
-    }
-  };
-
-  const previousQuestion = () => {
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(currentQuestionIndex - 1);
+      setIsLoading(false);
     }
   };
 
   const handleAnswerSelect = (answer: string) => {
-    setSelectedAnswers(prev => ({
-      ...prev,
-      [currentQuestionIndex]: answer
-    }));
+    const newAnswers = [...selectedAnswers];
+    newAnswers[currentQuestionIndex] = answer;
+    setSelectedAnswers(newAnswers);
   };
 
-  const finishTest = () => {
-    setShowResults(true);
+  const handleNextQuestion = async () => {
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else if (questions.length < maxQuestions) {
+      // Generate new question
+      setIsLoading(true);
+      try {
+        const response = await apiService.generateQuestion({
+          tema: topic.trim(),
+          model_name: modelName,
+          exam_type: examType,
+          lite_rag: true
+        });
+
+        setQuestions(prev => [...prev, response]);
+        setCurrentQuestionIndex(questions.length);
+        setSelectedAnswers(prev => [...prev, '']);
+      } catch (err) {
+        setError('Error generating new question. Please try again.');
+        console.error('Error generating question:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    } else {
+      // Calculate results
+      calculateResults();
+    }
   };
 
-  const calculateScore = () => {
+  const calculateResults = () => {
     let correct = 0;
     questions.forEach((question, index) => {
       if (selectedAnswers[index] === question.correct_answer) {
         correct++;
       }
     });
-    return { correct, total: questions.length };
+    const finalScore = Math.round((correct / questions.length) * 100);
+    setScore(finalScore);
+    setShowResults(true);
+    setCurrentView('results');
+  };
+
+  const handleFinish = () => {
+    calculateResults();
+  };
+
+  const resetTest = () => {
+    setQuestions([]);
+    setSelectedAnswers([]);
+    setCurrentQuestionIndex(0);
+    setScore(0);
+    setShowResults(false);
+    setCurrentView('selection');
   };
 
   const renderSelection = () => (
-    <div className="study-material-container">
-      <div className="header-section">
-        <button className="back-button" onClick={onBack}>
-          ← Back
-        </button>
-        <h2>Practice Test</h2>
-        <p>Generate realistic exam questions with AI assistance</p>
-      </div>
+    <div className="practice-test-selection">
+      <button className="back-button" onClick={onBack}>
+        ← Back to Home
+      </button>
 
-      <div className="input-section">
-        <div className="input-group">
-          <label htmlFor="topic">Topic</label>
+      <div className="selection-content">
+        <h1>Practice Test Generator</h1>
+        <p>Generate practice questions with instant feedback and explanations</p>
+
+        <div className="input-section">
+          <label htmlFor="topic">Study Topic:</label>
           <input
-            id="topic"
             type="text"
+            id="topic"
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
-            placeholder="Enter study topic (e.g., World War II, Photosynthesis, Algebra)"
+            placeholder="Enter a topic to practice (e.g., World War II, Calculus, Photosynthesis)"
             className="topic-input"
+            disabled={isLoading}
           />
         </div>
 
-        <div className="input-group">
-          <label htmlFor="model">AI Model</label>
-          <select
-            id="model"
-            value={selectedModel}
-            onChange={(e) => setSelectedModel(e.target.value)}
-            className="model-select"
+        <div className="action-buttons">
+          <button
+            className="generate-button"
+            onClick={handleGenerateQuestion}
+            disabled={isLoading || !topic.trim()}
           >
-            <option value="">Select a model</option>
-            {availableModels.map((model) => (
-              <option key={model.model} value={model.model}>
-                {model.model}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="input-group">
-          <label className="checkbox-label">
-            <input
-              type="checkbox"
-              checked={useRAG}
-              onChange={(e) => setUseRAG(e.target.checked)}
-              className="checkbox-input"
-            />
-            <span className="checkbox-text">
-              Use Enhanced Context (RAG)
-              <small>Provides more accurate and detailed questions</small>
-            </span>
-          </label>
+            {isLoading ? 'Generating...' : 'Start Practice Test'}
+          </button>
         </div>
 
         {error && <div className="error-message">{error}</div>}
-
-        <button
-          className="generate-button primary-button"
-          onClick={handleGenerateQuestion}
-          disabled={isLoadingQuestion || !topic.trim() || !selectedModel}
-        >
-          {isLoadingQuestion ? 'Generating Question...' : 'Start Practice Test'}
-        </button>
       </div>
     </div>
   );
 
   const renderQuestions = () => {
-    if (showResults) {
-      const score = calculateScore();
-      return (
-        <div className="study-material-container">
-          <div className="header-section">
-            <button className="back-button" onClick={() => setCurrentView('selection')}>
-              ← New Test
-            </button>
-            <h2>Test Results</h2>
-            <p>Your performance summary</p>
-          </div>
-
-          <div className="results-section">
-            <div className="score-card">
-              <h3>Final Score</h3>
-              <div className="score-display">
-                {score.correct}/{score.total}
-              </div>
-              <div className="score-percentage">
-                {Math.round((score.correct / score.total) * 100)}%
-              </div>
-            </div>
-
-            <div className="questions-review">
-              {questions.map((question, index) => {
-                const userAnswer = selectedAnswers[index];
-                const isCorrect = userAnswer === question.correct_answer;
-
-                return (
-                  <div key={index} className={`question-result ${isCorrect ? 'correct' : 'incorrect'}`}>
-                    <div className="question-number">Question {index + 1}</div>
-                    <div className="question-text">{question.question}</div>
-
-                    <div className="answer-review">
-                      <div className="user-answer">
-                        Your answer: <span className={isCorrect ? 'correct' : 'incorrect'}>
-                          {userAnswer || 'Not answered'}
-                        </span>
-                      </div>
-                      {!isCorrect && (
-                        <div className="correct-answer">
-                          Correct answer: <span className="correct">{question.correct_answer}</span>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="explanation">
-                      <strong>Explanation:</strong> {question.explanation}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            <button
-              className="primary-button"
-              onClick={() => setCurrentView('selection')}
-            >
-              Take Another Test
-            </button>
-          </div>
-        </div>
-      );
-    }
-
-    if (isLoadingQuestion && currentQuestionIndex >= questions.length) {
-      return (
-        <div className="study-material-container">
-          <div className="header-section">
-            <button className="back-button" onClick={() => setCurrentView('selection')}>
-              ← Back
-            </button>
-            <h2>Practice Test</h2>
-            <p>Question {currentQuestionIndex + 1} of {maxQuestions}</p>
-          </div>
-
-          <div className="inline-loading">
-            <div className="inline-loading-spinner"></div>
-            <span>Generating question...</span>
-          </div>
-        </div>
-      );
-    }
-
     const currentQuestion = questions[currentQuestionIndex];
     if (!currentQuestion) return null;
 
     const selectedAnswer = selectedAnswers[currentQuestionIndex];
 
     return (
-      <div className="study-material-container">
-        <div className="header-section">
-          <button className="back-button" onClick={() => setCurrentView('selection')}>
-            ← Back
-          </button>
+      <div className="practice-test-questions">
+        <button className="back-button" onClick={() => setCurrentView('selection')}>
+          ← Back to Selection
+        </button>
+
+        <div className="question-header">
           <h2>Practice Test</h2>
-          <p>Question {currentQuestionIndex + 1} of {Math.min(questions.length + (isLoadingQuestion ? 1 : 0), maxQuestions)}</p>
+          <p>Question {currentQuestionIndex + 1} of {Math.min(questions.length + (isLoading ? 1 : 0), maxQuestions)}</p>
         </div>
 
-        <div className="question-container">
-          <div className="question-card">
-            <div className="question-header">
-              <span className="question-number">Question {currentQuestionIndex + 1}</span>
-            </div>
+        <div className="question-card">
+          <div className="question-text">
+            {currentQuestion.question}
+          </div>
 
-            <div className="question-text">
-              {currentQuestion.question}
-            </div>
-
-            <div className="answers-grid">
-              {(['A', 'B', 'C', 'D', 'E'] as const).map((option) => (
-                <button
-                  key={option}
-                  className={`answer-option ${selectedAnswer === option ? 'selected' : ''}`}
-                  onClick={() => handleAnswerSelect(option)}
-                >
-                  <span className="option-letter">{option}</span>
-                  <span className="option-text">{currentQuestion[option]}</span>
-                </button>
-              ))}
-            </div>
-
-            <div className="question-navigation">
+          <div className="answers-grid">
+            {(['A', 'B', 'C', 'D', 'E'] as const).map((option) => (
               <button
-                className="nav-button secondary-button"
-                onClick={previousQuestion}
-                disabled={currentQuestionIndex === 0}
+                key={option}
+                className={`answer-option ${selectedAnswer === option ? 'selected' : ''}`}
+                onClick={() => handleAnswerSelect(option)}
               >
-                Previous
+                <span className="option-letter">{option}</span>
+                <span className="option-text">{currentQuestion[option]}</span>
               </button>
+            ))}
+          </div>
 
-              {currentQuestionIndex < questions.length - 1 ? (
-                <button
-                  className="nav-button primary-button"
-                  onClick={nextQuestion}
-                >
-                  Next Question
-                </button>
-              ) : questions.length < maxQuestions ? (
-                <button
-                  className="nav-button primary-button"
-                  onClick={nextQuestion}
-                  disabled={isLoadingQuestion}
-                >
-                  {isLoadingQuestion ? 'Generating...' : 'Next Question'}
-                </button>
-              ) : (
-                <button
-                  className="nav-button primary-button"
-                  onClick={finishTest}
-                >
-                  Finish Test
-                </button>
-              )}
-            </div>
+          <div className="question-navigation">
+            <button
+              className="nav-button secondary-button"
+              onClick={() => setCurrentQuestionIndex(currentQuestionIndex - 1)}
+              disabled={currentQuestionIndex === 0}
+            >
+              Previous
+            </button>
+
+            {currentQuestionIndex < questions.length - 1 ? (
+              <button
+                className="nav-button primary-button"
+                onClick={handleNextQuestion}
+                disabled={isLoading}
+              >
+                {isLoading ? 'Generating...' : 'Next Question'}
+              </button>
+            ) : questions.length < maxQuestions ? (
+              <button
+                className="nav-button primary-button"
+                onClick={handleNextQuestion}
+                disabled={isLoading}
+              >
+                {isLoading ? 'Generating...' : 'Next Question'}
+              </button>
+            ) : (
+              <button
+                className="nav-button primary-button"
+                onClick={handleFinish}
+              >
+                Finish Test
+              </button>
+            )}
           </div>
         </div>
 
@@ -342,5 +224,72 @@ export const PracticeTest: React.FC<PracticeTestProps> = ({ availableModels, onB
     );
   };
 
-  return currentView === 'selection' ? renderSelection() : renderQuestions();
+  const renderResults = () => (
+    <div className="practice-test-results">
+      <button className="back-button" onClick={resetTest}>
+        ← New Test
+      </button>
+
+      <div className="results-content">
+        <h2>Test Results</h2>
+        <p>Your performance summary</p>
+
+        <div className="score-card">
+          <h3>Final Score</h3>
+          <div className="score-display">
+            {score}/{questions.length}
+          </div>
+          <div className="score-percentage">
+            {score}%
+          </div>
+        </div>
+
+        <div className="questions-review">
+          {questions.map((question, index) => {
+            const userAnswer = selectedAnswers[index];
+            const isCorrect = userAnswer === question.correct_answer;
+
+            return (
+              <div key={index} className={`question-result ${isCorrect ? 'correct' : 'incorrect'}`}>
+                <div className="question-number">Question {index + 1}</div>
+                <div className="question-text">{question.question}</div>
+
+                <div className="answer-review">
+                  <div className="user-answer">
+                    Your answer: <span className={isCorrect ? 'correct' : 'incorrect'}>
+                      {userAnswer || 'Not answered'}
+                    </span>
+                  </div>
+                  {!isCorrect && (
+                    <div className="correct-answer">
+                      Correct answer: <span className="correct">{question.correct_answer}</span>
+                    </div>
+                  )}
+                </div>
+
+                <div className="explanation">
+                  <strong>Explanation:</strong> {question.explanation}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <button
+          className="primary-button"
+          onClick={resetTest}
+        >
+          Take Another Test
+        </button>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="practice-test-container">
+      {currentView === 'selection' && renderSelection()}
+      {currentView === 'questions' && renderQuestions()}
+      {currentView === 'results' && renderResults()}
+    </div>
+  );
 };
