@@ -225,3 +225,20 @@ prompt_competencia_5 = """
     }}
     ```
 """
+
+
+
+exams_types = {
+    "enem" : """prompt_enem
+    """,
+    "icfes" : """prompt_icfes
+    """,
+    "exani" : """prompt_exani,
+    """,
+    "sat" : """prompt_sat
+    """,
+    "cuet" : """prompt_cuet
+    """,
+    "exames_nacionais" : """prompt_exames_nacionais
+    """
+}
