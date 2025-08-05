@@ -22,3 +22,6 @@ fastapi
 boto3
 scikit-learn
 nltk
+pytube
+youtube-transcript-api
+yt-dlp
