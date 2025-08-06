@@ -1,6 +1,7 @@
 {
   "name": "neroedu-desktop",
   "description": "NeroEdu - AI-powered exam preparation desktop app",
+   "includeSubNodeModules": "true",
   "keywords": [
     "electron",
     "boilerplate",
@@ -12,7 +13,7 @@
     "hot",
     "reload"
   ],
-  "homepage": "https://github.com/electron-react-boilerplate/electron-react-boilerplate#readme",
+  "homepage": "./",
   "bugs": {
     "url": "https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues"
   },
@@ -37,7 +38,6 @@
   "scripts": {
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
     "build:dll": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true NODE_OPTIONS=\"-r ts-node/register --no-warnings\" webpack --config ./.erb/configs/webpack.config.renderer.dev.dll.ts",
-    "build:main": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true NODE_OPTIONS=\"-r ts-node/register --no-warnings\" webpack --config ./.erb/configs/webpack.config.main.prod.ts",
     "build:renderer": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true NODE_OPTIONS=\"-r ts-node/register --no-warnings\" webpack --config ./.erb/configs/webpack.config.renderer.prod.ts",
     "postinstall": "ts-node .erb/scripts/check-native-dep.js && electron-builder install-app-deps && npm run build:dll",
     "lint": "cross-env NODE_ENV=development eslint . --ext .js,.jsx,.ts,.tsx",
@@ -49,7 +49,9 @@
     "start:main": "concurrently -k -P \"cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack --watch --config ./.erb/configs/webpack.config.main.dev.ts\" \"electronmon . -- {@}\" --",
     "start:preload": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true NODE_OPTIONS=\"-r ts-node/register --no-warnings\" webpack --config ./.erb/configs/webpack.config.preload.dev.ts",
     "start:renderer": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true NODE_OPTIONS=\"-r ts-node/register --no-warnings\" webpack serve --config ./.erb/configs/webpack.config.renderer.dev.ts",
-    "test": "jest"
+    "test": "jest",
+    "build:main": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true NODE_OPTIONS=\"-r ts-node/register --no-warnings\" webpack --config ./.erb/configs/webpack.config.main.prod.ts",
+    "dist": "npm run build:main && electron-builder -w"
   },
   "browserslist": [
     "extends browserslist-config-erb"
@@ -93,7 +95,6 @@
       "url": "http://localhost/"
     },
     "testPathIgnorePatterns": [
-      "release/app/dist",
       ".erb/dll"
     ],
     "transform": {
@@ -178,15 +179,16 @@
     "productName": "NeroEdu",
     "appId": "com.neroedu.desktop",
     "asar": true,
-    "afterSign": ".erb/scripts/notarize.js",
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
-      "dist",
-      "node_modules",
+      "dist/**/*",
+      "node_modules/**/*",
+      "main.js",
+      "preload.js",
       "package.json"
     ],
     "mac": {
-      "notarize": false,
+
       "target": {
         "target": "default",
         "arch": [
@@ -227,10 +229,12 @@
     },
     "directories": {
       "app": "release/app",
-      "buildResources": "assets",
+      "buildResources": "release/build",
       "output": "release/build"
     },
     "extraResources": [
+      {"from": "build_back/bin", "to": "bin", "filter": ["**/*"]},
+      {"from": "vectorstores", "to": "vectorstores", "filter": ["**/*"]},
       "./assets/**"
     ],
     "publish": {
@@ -238,6 +242,14 @@
       "owner": "electron-react-boilerplate",
       "repo": "electron-react-boilerplate"
     }
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowElevation": true,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "runAfterFinish": true
   },
   "collective": {
     "url": "https://opencollective.com/electron-react-boilerplate-594"
