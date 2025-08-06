@@ -38,11 +38,6 @@ Access to high-quality exam preparation remains highly unequal worldwide. Studen
 - Critical for students in areas with poor connectivity
 - Enables learning in remote or underserved regions
 
-🎭 **Multimodal Understanding**
-- Processes text, audio, and images seamlessly
-- Enhanced video understanding for educational content
-- Voice-driven interactions for accessibility
-
 🗣️ **Multilingual Capabilities**
 - Strong performance across multiple languages
 - Breaks down communication barriers in global education
@@ -58,67 +53,6 @@ Access to high-quality exam preparation remains highly unequal worldwide. Studen
 | 🇮🇳 India | CUET | 87 videos |
 | 🇵🇹 Portugal | Exames Nacionais | 43 videos |
 | 🇲🇽 Mexico | Exani-II | 118 videos |
-
-**Educational Database: 2,030+ curated videos**
-
-## ✨ Revolutionary AI Features
-
-### 📝 Intelligent Essay Evaluation
-- **5-Competency Analysis**: Comprehensive evaluation based on official criteria
-- **Detailed Feedback**: Personalized improvement suggestions with scoring
-- **AI-Powered Insights**: Grammar, argumentation, cohesion, and content analysis
-- **On-Device Processing**: Private, instant feedback without data sharing
-
-### 🧠 Adaptive Practice Generation
-- **Dynamic Questions**: AI creates contextually relevant practice problems
-- **Difficulty Adaptation**: Adjusts to student's performance level
-- **RAG-Enhanced**: Uses curated educational content for realistic scenarios
-- **Offline Capability**: Generates unlimited practice materials without internet
-
-### 🎯 Personalized Study Materials
-- **Smart Flashcards**: AI-generated cards with duplicate avoidance
-- **Key Concepts**: Automatically extracts essential topics for focused learning
-
-## 🏗️ Technical Architecture
-
-### Multi-Platform Ecosystem
-- **🔧 Backend API**: FastAPI with LangChain + Ollama integration
-- **📱 Mobile iOS**: SwiftUI with on-device Gemma 3n processing
-- **💻 Desktop**: Electron-based cross-platform application
-- **📊 Analytics**: Privacy-preserving learning insights
-
-### Core AI Stack
-- **🤖 Gemma 3n**: On-device multimodal AI processing
-- **🦙 Ollama**: Local LLM runtime for serving Gemma 3n models efficiently
-- **🔗 LangChain**: Advanced framework to connect with LLM's providers
-- **📚 RAG System**: TF-IDF vectorstores for content retrieval
-
-## 🛠️ Getting Started
-
-### Prerequisites
-- Python 3.8+
-- Node.js 16+ (for desktop app)
-- Xcode (for iOS development)
-- Ollama with Gemma 3n models
-
-### Quick Setup
-```bash
-# Clone the repository
-git clone <repository-url>
-cd neroedu-gemma3n
-
-# Backend setup
-pip install -r requirements.txt
-python main.py
-
-# iOS development (coming soon)
-cd mobile-ios && pod install
-
-# Desktop application (coming soon)
-cd desktop && npm install && npm start
-```
-
-*Detailed installation and configuration instructions coming soon.*
 
 ## 🎬 Educational Content Database
 
@@ -149,6 +83,112 @@ Our curated educational database spans multiple languages and exam systems:
 - Mathematical thinking, writing skills
 - Mexican history and administration
 
+**Educational Database: 2,030+ curated videos**
+
+## ✨ Revolutionary AI Features
+
+### 📝 Intelligent Essay Evaluation
+- **5-Competency Analysis**: Comprehensive evaluation based on official criteria
+- **Detailed Feedback**: Personalized improvement suggestions with scoring
+- **AI-Powered Insights**: Grammar, argumentation, cohesion, and content analysis
+- **On-Device Processing**: Private, instant feedback without data sharing
+- **Competency-Based Evaluation (ENEM)**: Evaluates texts using Brazil's official 5-competency rubric (norm usage, theme comprehension, argumentation, cohesion, and intervention). This analysis is structured and returned in JSON for programmatic interpretation and feedback visualization.
+
+
+### 🧠 Adaptive Practice Generation
+- **Dynamic Questions**: AI creates contextually relevant practice problems
+- **Difficulty Adaptation**: Adjusts to student's performance level
+- **RAG-Enhanced**: Uses curated educational content for realistic scenarios
+- **Offline Capability**: Generates unlimited practice materials without internet
+
+### 🎯 Personalized Study Materials
+- **Smart Flashcards**: AI-generated cards with duplicate avoidance
+- **Key Concepts**: Automatically extracts essential topics for focused learning
+
+## 🤖 AI Agents Architecture
+
+NeroEdu is powered by three specialized agents, each with unique pipelines:
+
+### 1. ✍️ Essay Grader
+- Evaluates essays using official exam rubrics (ENEM, SAT, etc.)
+- Uses temperature=0 for deterministic grading
+- Returns structured JSON with grade, feedback, and justification
+
+### 2. 📚 Simulated Test Generator
+- Generates 5-question sets or individual questions from any theme
+- Uses seed and temperature tuning for controlled variability
+- Enriched via RAG with relevant educational content
+
+### 3. 🔖 Flashcard & Key Concepts Agent
+- Creates non-redundant flashcards personalized to student's progress
+- Includes a key topic extractor that summarizes essential points by exam type
+
+## 🏗️ Technical Architecture
+
+### Multi-Platform Ecosystem
+- **🔧 Backend API**: FastAPI with LangChain + Ollama integration
+- **📱 Mobile iOS**: SwiftUI with on-device Gemma 3n processing
+- **💻 Desktop**: Electron-based cross-platform application
+- **📊 Analytics**: Privacy-preserving learning insights
+  
+### Core AI Stack
+- **🤖 Gemma 3n**: On-device multimodal AI processing
+- **🦙 Ollama**: Local LLM runtime for serving Gemma 3n models efficiently
+- **🔗 LangChain**: Advanced framework to connect with LLM's providers
+- **📚 RAG System**: TF-IDF vectorstores for content retrieval
+  
+### 🔄 Backend Orchestration
+
+The FastAPI backend orchestrates all AI agents and connects to the Ollama server running Gemma 3n locally. Each endpoint (essay, flashcard, mock exam) triggers specific retrieval + generation flows, ensuring that:
+
+- Contextual content is fetched via TF-IDF
+- Multilingual input is handled via translation (if needed)
+- Gemma 3n receives structured, augmented prompts
+  
+<img src="./assets/arch-gemma-hacka.png" alt="Architecture Diagram" width="800"/>
+<p align="center"><i>Architecture Diagram for NeroEdu</i></p>
+
+
+### 🔎 Lite RAG with TF-IDF for Offline Efficiency
+
+To ensure fast and lightweight retrieval on low-end devices, NeroEdu uses a TF-IDF-based vector store instead of dense embeddings. This decision enables:
+
+- Minimal memory and compute usage
+- Fast document similarity search via cosine similarity
+- Effective contextual grounding for language models without internet
+
+Each exam (ENEM, SAT, etc.) has its own dedicated TF-IDF vector store, enabling specialized context retrieval for every use case.
+
+The retrieved passages are dynamically injected into prompts during question generation, essay evaluation, or flashcard creation — enabling the system to provide accurate, grounded responses even offline.
+
+
+## 🛠️ Getting Started
+
+### Prerequisites
+- Python 3.8+
+- Node.js 16+ (for desktop app)
+- Xcode (for iOS development)
+- Ollama with Gemma 3n models
+
+### Quick Setup
+```bash
+# Clone the repository
+git clone <repository-url>
+cd neroedu-gemma3n
+
+# Backend setup
+pip install -r requirements.txt
+python main.py
+
+# iOS development (coming soon)
+cd mobile-ios && pod install
+
+# Desktop application (coming soon)
+cd desktop && npm install && npm start
+```
+
+*Detailed installation and configuration instructions coming soon.*
+
 ## 🏆 Kaggle Gemma 3n Challenge
 
 This project represents our submission to the **Kaggle Gemma 3n Challenge** in the **"Revolutionize Education"** category. We're leveraging Gemma 3n's unique capabilities to create meaningful, positive change in global education access.
@@ -158,6 +198,8 @@ This project represents our submission to the **Kaggle Gemma 3n Challenge** in t
 - **Technical Innovation**: Demonstrates Gemma 3n's potential for social good  
 - **Scalable Solution**: Architecture designed for global deployment
 - **Privacy-Centric**: Aligns with modern data protection requirements
+  
+---
 
 ## 📄 License
 
