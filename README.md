@@ -43,7 +43,7 @@ Access to high-quality exam preparation remains highly unequal worldwide. Studen
 - Breaks down communication barriers in global education
 - Supports local language nuances for each exam system
 
-## 🎬 Educational Content Database
+## 🎬 Educational Content Database: 1000+ curated videos
 
 Our curated educational database spans multiple languages and exam systems:
 
@@ -71,8 +71,6 @@ Our curated educational database spans multiple languages and exam systems:
 ### 🇲🇽 Exani-II (Mexico)
 - Mathematical thinking, writing skills
 - Mexican history and administration
-
-**Educational Database: 1000+ curated videos**
 
 ## ✨ Revolutionary AI Features
 
