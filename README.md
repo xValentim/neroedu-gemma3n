@@ -4,126 +4,66 @@
 [![Category](https://img.shields.io/badge/Category-Revolutionize%20Education-green.svg)](https://www.kaggle.com/competitions/google-gemma-3n-hackathon)
 [![Gemma 3n](https://img.shields.io/badge/Powered%20by-Gemma%203n-orange.svg)](https://ai.google.dev/gemma/docs/gemma-3n)
 
-**NeroEdu democratizes global education with autonomous AI agents powered by Gemma 3n, providing personalized essay evaluation, study materials, and practice exams across multiple countries - all running privately on-device.**
+**NeroEdu tackles the global education gap by delivering autonomous AI agents — powered by Gemma 3n — that provide high-quality exam preparation (essay grading, study materials, and practice tests) directly on students’ devices, overcoming barriers like internet unavailability, lack of qualified educators, and unequal access to personalized feedback.**
 
-## 🌟 The Mission: Revolutionizing Education Through AI
 
-Access to high-quality exam preparation remains highly unequal worldwide. Students from privileged backgrounds have tutors, personalized feedback, and comprehensive resources, while millions in underserved communities lack structured preparation, especially in remote areas with limited connectivity.
+## 🌟 The Mission: Mitigating Connectivity and Learning Barriers Through AI
 
-**NeroEdu bridges this gap using Gemma 3n's groundbreaking on-device AI capabilities**, offering the same level of personalized, intelligent support traditionally available only to elite students — but accessible to everyone, anywhere, even offline.
+Despite the global expansion of education technologies, millions of students still face structural barriers to learning. In regions with limited internet access, inadequate infrastructure, and shortage of qualified educators, preparing for standardized exams remains a major challenge.
 
-### 🎯 Built for Impact
-- **🌍 Global Reach**: Support for 6 major standardized exams across different countries
-- **📱 On-Device Privacy**: Powered by Gemma 3n for secure, offline-first learning
-- **🏠 Accessibility**: Works without internet connection in remote areas
-- **💡 Personalized**: AI agents adapt to each student's learning needs
-- **🆓 Democratic**: Free access to premium-quality educational support
+**NeroEdu was created to mitigate these barriers using autonomous, on-device AI agents powered by Gemma 3n.** By running entirely offline, our platform delivers personalized learning experiences — including essay evaluation, simulated exams, and study materials — directly on low-resource devices, without requiring internet access or cloud infrastructure.
+
+### Built for Impact
+
+* **Global Coverage**: Supports six of the most impactful standardized exams across different countries
+* **Connectivity-Free Operation**: Works fully offline, even in remote or underserved areas
+* **Learning Personalization**: AI adapts to each student's level and progress
+* **Data Sovereignty**: All processing happens locally — no user data is sent to the cloud
+* **Scalable and Inclusive**: Freely available, with a lightweight architecture designed for accessibility at scale
+
 
 ## 🚀 Powered by Gemma 3n: The Future of On-Device Education
 
-### Why Gemma 3n Changes Everything for Education:
+NeroEdu leverages **Gemma 3n**, a compact and efficient open-source LLM developed by Google, to enable real-time, on-device AI processing. All interactions happen locally, ensuring complete **data privacy** — no internet or cloud access is required.
 
-🔒 **Privacy-First Learning**
-- All AI processing happens locally on the device
-- Student data never leaves their phone/computer
-- Perfect for sensitive educational content and personal feedback
+Thanks to its **Matryoshka architecture**, Gemma 3n can adapt to a wide range of devices, running smoothly even on smartphones or low-end laptops. This makes it ideal for **offline learning** in regions with poor connectivity.
 
-📱 **Mobile-Optimized Performance**
-- Runs efficiently on phones, tablets, and laptops
-- Memory footprint optimized for resource-constrained devices
-- Real-time AI responses without cloud dependency
-
-🌐 **Offline-Ready Education**
-- Functions reliably without internet connection
-- Critical for students in areas with poor connectivity
-- Enables learning in remote or underserved regions
-
-🗣️ **Multilingual Capabilities**
-- Strong performance across multiple languages
-- Breaks down communication barriers in global education
-- Supports local language nuances for each exam system
-
-## 🎬 Educational Content Database: 1000+ curated videos
-
-Our curated educational database spans multiple languages and exam systems:
-
-### 🇧🇷 ENEM (Brazil) 
-- Portuguese, Mathematics, Natural Sciences, Human Sciences
-- Essay writing techniques and evaluation criteria
-- Comprehensive coverage of all ENEM competencies
-
-### 🇺🇸 SAT (USA) 
-- Math, Reading & Writing, Digital SAT preparation
-- Test-taking strategies and time management
-
-### 🇨🇴 ICFES (Colombia)
-- Mathematics, Social Sciences, Natural Sciences
-- Critical reading and analytical thinking
-
-### 🇮🇳 CUET (India)
-- General Aptitude, English preparation
-- Subject-specific content for university entrance
-
-### 🇵🇹 Exames Nacionais (Portugal)
-- Portuguese grammar and literature
-- Mathematics and sciences preparation
-
-### 🇲🇽 Exani-II (Mexico)
-- Mathematical thinking, writing skills
-- Mexican history and administration
-
-## ✨ Revolutionary AI Features
-
-### 📝 Intelligent Essay Evaluation
-- **5-Competency Analysis**: Comprehensive evaluation based on official criteria
-- **Detailed Feedback**: Personalized improvement suggestions with scoring
-- **AI-Powered Insights**: Grammar, argumentation, cohesion, and content analysis
-- **On-Device Processing**: Private, instant feedback without data sharing
-- **Competency-Based Evaluation (ENEM)**: Evaluates texts using Brazil's official 5-competency rubric (norm usage, theme comprehension, argumentation, cohesion, and intervention). This analysis is structured and returned in JSON for programmatic interpretation and feedback visualization.
+With **multilingual capabilities**, the model supports educational content in multiple languages, adapting to the specific context and structure of each national exam. Gemma 3n transforms AI-powered education into something scalable, inclusive, and truly accessible anywhere.
 
 
-### 🧠 Adaptive Practice Generation
-- **Dynamic Questions**: AI creates contextually relevant practice problems
-- **Difficulty Adaptation**: Adjusts to student's performance level
-- **RAG-Enhanced**: Uses curated educational content for realistic scenarios
-- **Offline Capability**: Generates unlimited practice materials without internet
+## 🎬 Educational Content Database (1000+ curated videos)
 
-### 🎯 Personalized Study Materials
-- **Smart Flashcards**: AI-generated cards with duplicate avoidance
-- **Key Concepts**: Automatically extracts essential topics for focused learning
+NeroEdu integrates a curated database of over **1,000 educational videos**, transcribed and indexed locally to provide contextual support for learning tasks such as essay evaluation, flashcard generation, and mock exams. This content enhances the relevance and accuracy of AI responses, even in fully offline environments. The videos cover subjects like math, language, sciences, and writing strategies, tailored to the structure and requirements of each supported exam.
+
+### Currently supported exams:
+
+* **ENEM** (Brazil)
+* **SAT** (United States)
+* **ICFES** (Colombia)
+* **CUET** (India)
+* **Exames Nacionais** (Portugal)
+* **EXANI-II** (Mexico)
+* **Gaokao** (China)
+* **IELTS** (International)
+
+By leveraging real-world content, NeroEdu delivers a grounded, practical, and adaptive learning experience across diverse educational systems — all without requiring internet connectivity.
 
 ## 🤖 AI Agents Architecture
 
-NeroEdu is powered by three specialized agents, each with unique pipelines:
+NeroEdu includes three primary AI agents:
 
-### 1. ✍️ Essay Grader
-- Evaluates essays using official exam rubrics (ENEM, SAT, etc.)
-- Uses temperature=0 for deterministic grading
-- Returns structured JSON with grade, feedback, and justification
+- **Essay Grader**: Evaluates essays based on official rubrics of each exam. For the ENEM exam, it scores texts according to the five competencies defined by INEP. The agent operates with temperature=0 to ensure deterministic outputs and returns structured JSON with scores and justification. 
 
-### 2. 📚 Simulated Test Generator
-- Generates 5-question sets or individual questions from any theme
-- Uses seed and temperature tuning for controlled variability
-- Enriched via RAG with relevant educational content
+![Essay Evaluation Flow](./imgs/essay.png)
 
-### 3. 🔖 Flashcard & Key Concepts Agent
-- Creates non-redundant flashcards personalized to student's progress
-- Includes a key topic extractor that summarizes essential points by exam type
+- **Flashcard Generator and Key Topic Extractor**: Produces personalized and non-redundant flashcards based on the student's study history. When the lightweight RAG mode is enabled, relevant excerpts from the video transcripts are used to enrich content. Key topics are extracted and structured for focused review.
 
-## 🏗️ Technical Architecture
+![Flashcard Generation Flow](./imgs/flashcards.png)
 
-### Multi-Platform Ecosystem
-- **🔧 Backend API**: FastAPI with LangChain + Ollama integration
-- **📱 Mobile iOS**: SwiftUI with on-device Gemma 3n processing
-- **💻 Desktop**: Electron-based cross-platform application
-- **📊 Analytics**: Privacy-preserving learning insights
-  
-### Core AI Stack
-- **🤖 Gemma 3n**: On-device multimodal AI processing
-- **🦙 Ollama**: Local LLM runtime for serving Gemma 3n models efficiently
-- **🔗 LangChain**: Advanced framework to connect with LLM's providers
-- **📚 RAG System**: TF-IDF vectorstores for content retrieval
-  
+- **Mock Exam Generator**: Generates multiple-choice questions from a given topic, aligned with the structure and language of each specific exam. It incorporates automatic translation for non-Portuguese exams and applies sampling techniques (temperature + random seed) to ensure diversity. Each question includes alternatives, the correct answer, and an explanation in JSON format.
+
+![Mock Exam Generation Flow](./imgs/test.png)
+
 ### 🔄 Backend Orchestration
 
 The FastAPI backend orchestrates all AI agents and connects to the Ollama server running Gemma 3n locally. Each endpoint (essay, flashcard, mock exam) triggers specific retrieval + generation flows, ensuring that:
@@ -134,6 +74,11 @@ The FastAPI backend orchestrates all AI agents and connects to the Ollama server
   
 <img src="./assets/arch-gemma-hacka.png" alt="Architecture Diagram" width="800"/>
 <p align="center"><i>Architecture Diagram for NeroEdu</i></p>
+
+In more detail, we can investigate how compile all the components together in one single architecture. For that, we use a FastAPI backend that orchestrates all the AI agents and connects to the Ollama server running Gemma 3n locally. Each endpoint (essay, flashcard, mock exam) triggers specific retrieval + generation flows, ensuring that:
+
+<img src="./imgs/backend.png" alt="Architecture Diagram" width="800"/>
+<p align="center"><i>Architecture Diagram for Backend</i></p>
 
 
 ### 🔎 Lite RAG with TF-IDF for Offline Efficiency
