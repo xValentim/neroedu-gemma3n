@@ -43,47 +43,34 @@ Access to high-quality exam preparation remains highly unequal worldwide. Studen
 - Breaks down communication barriers in global education
 - Supports local language nuances for each exam system
 
-## 🌍 Global Exam Coverage
-
-| Country | Exam | Educational Content |
-|---------|------|-------------------|
-| 🇧🇷 Brazil | ENEM | 1,100+ videos |
-| 🇺🇸 USA | SAT | 391 videos |
-| 🇨🇴 Colombia | ICFES | 291 videos |
-| 🇮🇳 India | CUET | 87 videos |
-| 🇵🇹 Portugal | Exames Nacionais | 43 videos |
-| 🇲🇽 Mexico | Exani-II | 118 videos |
-
-## 🎬 Educational Content Database
+## 🎬 Educational Content Database: 1000+ curated videos
 
 Our curated educational database spans multiple languages and exam systems:
 
-### 🇧🇷 ENEM (Brazil) - 1,100+ Videos
+### 🇧🇷 ENEM (Brazil) 
 - Portuguese, Mathematics, Natural Sciences, Human Sciences
 - Essay writing techniques and evaluation criteria
 - Comprehensive coverage of all ENEM competencies
 
-### 🇺🇸 SAT (USA) - 391 Videos  
+### 🇺🇸 SAT (USA) 
 - Math, Reading & Writing, Digital SAT preparation
 - Test-taking strategies and time management
 
-### 🇨🇴 ICFES (Colombia) - 291 Videos
+### 🇨🇴 ICFES (Colombia)
 - Mathematics, Social Sciences, Natural Sciences
 - Critical reading and analytical thinking
 
-### 🇮🇳 CUET (India) - 87 Videos
+### 🇮🇳 CUET (India)
 - General Aptitude, English preparation
 - Subject-specific content for university entrance
 
-### 🇵🇹 Exames Nacionais (Portugal) - 43 Videos
+### 🇵🇹 Exames Nacionais (Portugal)
 - Portuguese grammar and literature
 - Mathematics and sciences preparation
 
-### 🇲🇽 Exani-II (Mexico) - 118 Videos
+### 🇲🇽 Exani-II (Mexico)
 - Mathematical thinking, writing skills
 - Mexican history and administration
-
-**Educational Database: 2,030+ curated videos**
 
 ## ✨ Revolutionary AI Features
 
@@ -180,14 +167,14 @@ cd neroedu-gemma3n
 pip install -r requirements.txt
 python main.py
 
-# iOS development (coming soon)
-cd mobile-ios && pod install
-
-# Desktop application (coming soon)
-cd desktop && npm install && npm start
+# Desktop application
+cd neroedu-desktop 
+npm install 
+npm run build:dll
+npm start
 ```
 
-*Detailed installation and configuration instructions coming soon.*
+*Detailed installation and configuration instructions*
 
 ## 🏆 Kaggle Gemma 3n Challenge
 
