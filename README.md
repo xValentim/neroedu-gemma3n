@@ -174,7 +174,7 @@ npm run build:dll
 npm start
 ```
 
-*Detailed installation and configuration instructions coming soon.*
+*Detailed installation and configuration instructions*
 
 ## 🏆 Kaggle Gemma 3n Challenge
 
