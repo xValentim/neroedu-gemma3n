@@ -29,7 +29,7 @@ function backendExecutablePath(): string {
   if(!app.isPackaged) {
     return path.resolve(
       __dirname,
-      "../../build/bin/main"
+      "../../build_back/bin/main"
     );
   }
   return path.join(process.resourcesPath, "bin", "main.exe");
