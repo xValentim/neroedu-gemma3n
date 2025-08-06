@@ -110,7 +110,7 @@ The retrieved passages are dynamically injected into prompts during question gen
 ## 🛠️ Getting Started
 
 ### Prerequisites
-- Python 3.8+
+- Python 3.10+
 - Node.js 16+ (for desktop app)
 - Xcode (for iOS development)
 - Ollama with Gemma 3n models
