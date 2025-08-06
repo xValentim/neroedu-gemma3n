@@ -44,7 +44,7 @@ const App: React.FC = () => {
       case 'practice-test':
         return <PracticeTest examType={selectedExamType} modelName={selectedModel} onBack={() => setCurrentView('home')} />;
       case 'essay-review':
-        return <EssayReview modelName={selectedModel} onBack={() => setCurrentView('home')} />;
+        return <EssayReview examType={selectedExamType} modelName={selectedModel} onBack={() => setCurrentView('home')} />;
       default:
         return (
           <>

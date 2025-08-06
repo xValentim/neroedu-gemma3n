@@ -13,6 +13,10 @@ import {
   EssayRequest,
   EssayResponse,
   EssayEvaluation,
+  GeneralEssayRequest,
+  GeneralEssayResponse,
+  Essay,
+  InputEssay,
 } from '../types';
 
 const BASE_URL = 'http://127.0.0.1:8000';
@@ -183,6 +187,44 @@ class ApiService {
       // Fallback: try to parse the entire response as JSON
       return JSON.parse(response.response);
     }
+  }
+
+  async evaluateGeneralEssay(request: GeneralEssayRequest): Promise<GeneralEssayResponse> {
+    const response = await this.fetchJson<GeneralEssayResponse>('/call-essay', {
+      method: 'POST',
+      body: JSON.stringify(request),
+    });
+
+    return response;
+  }
+
+  // CRUD Essay Methods
+  async getEssays(): Promise<Essay[]> {
+    return this.fetchJson<Essay[]>('/essays/');
+  }
+
+  async getEssay(essayId: number): Promise<Essay> {
+    return this.fetchJson<Essay>(`/essays/${essayId}`);
+  }
+
+  async createEssay(essay: InputEssay): Promise<Essay> {
+    return this.fetchJson<Essay>('/essays/', {
+      method: 'POST',
+      body: JSON.stringify(essay),
+    });
+  }
+
+  async updateEssay(essayId: number, essay: Essay): Promise<Essay> {
+    return this.fetchJson<Essay>(`/essays/${essayId}`, {
+      method: 'PUT',
+      body: JSON.stringify(essay),
+    });
+  }
+
+  async deleteEssay(essayId: number): Promise<{ message: string }> {
+    return this.fetchJson<{ message: string }>(`/essays/${essayId}`, {
+      method: 'DELETE',
+    });
   }
 
   async testConnection(): Promise<boolean> {
