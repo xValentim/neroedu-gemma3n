@@ -1601,7 +1601,7 @@ body::before {
   transform: none;
 }
 
-/* Flashcards Styles */
+/* Flashcards Styles - Versão Corrigida */
 .flashcard-header {
   display: flex;
   justify-content: space-between;
@@ -1626,27 +1626,28 @@ body::before {
 .flashcard-container {
   display: flex;
   justify-content: center;
+  align-items: center; /* Adicionado para centralização vertical */
   margin-bottom: 40px;
   perspective: 1000px;
   height: 400px;
   width: 100%;
   position: relative;
+  /* Removido o position relative que pode causar problemas */
 }
 
 .flashcard {
   width: 100%;
   max-width: 600px;
   height: 400px;
-  position: absolute;
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
+  /* Alterado o posicionamento para usar flexbox do container pai */
+  position: relative; /* Mudado de absolute para relative */
   transform-style: preserve-3d;
   transition: transform 0.6s ease-in-out;
+  /* Removido transform translateX pois não é mais necessário */
 }
 
 .flashcard.flipped {
-  transform: translateX(-50%) rotateY(180deg);
+  transform: rotateY(180deg); /* Simplificado - apenas o flip */
 }
 
 .flashcard-front,
@@ -1654,6 +1655,8 @@ body::before {
   position: absolute;
   width: 100%;
   height: 100%;
+  top: 0;
+  left: 0;
   backface-visibility: hidden;
   background: linear-gradient(135deg,
     rgba(255, 255, 255, 0.15) 0%,
@@ -1668,8 +1671,9 @@ body::before {
   box-shadow:
     0 16px 32px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  position: relative;
   overflow: hidden;
+  /* Adicionado para garantir o box-sizing */
+  box-sizing: border-box;
 }
 
 .flashcard-front::before,
@@ -1697,6 +1701,8 @@ body::before {
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 20px;
+  /* Garantir que não há margin/padding que cause deslocamento */
+  flex-shrink: 0;
 }
 
 .card-content {
@@ -1707,6 +1713,10 @@ body::before {
   justify-content: center;
   text-align: center;
   gap: 16px;
+  /* Garantir altura mínima para evitar colapso */
+  min-height: 200px;
+  /* Evitar overflow que pode causar deslocamento */
+  overflow-y: auto;
 }
 
 .card-content h3 {
@@ -1714,6 +1724,7 @@ body::before {
   font-weight: 600;
   color: white;
   margin: 0;
+  line-height: 1.3;
 }
 
 .card-content p {
@@ -1734,6 +1745,8 @@ body::before {
   cursor: pointer;
   transition: all 0.3s ease;
   align-self: center;
+  /* Garantir que o botão não se mova */
+  flex-shrink: 0;
 }
 
 .flip-button:hover {
@@ -1805,10 +1818,7 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
+  box-sizing: border-box;
 }
 
 .loading-content {
@@ -2957,4 +2967,85 @@ body::before {
   font-size: 14px;
   line-height: 1.4;
   margin: 0;
+}
+
+/* Lite RAG Checkbox Styles */
+.rag-option-section {
+  margin: 20px 0;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.rag-option-section:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #b794f6;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.checkbox-label input[type="checkbox"]:checked {
+  background: #b794f6;
+  border-color: #b794f6;
+  box-shadow: 0 0 0 2px rgba(183, 148, 246, 0.3);
+}
+
+.checkbox-label input[type="checkbox"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(183, 148, 246, 0.3);
+}
+
+.checkbox-text {
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.checkbox-label:hover .checkbox-text {
+  color: white;
+}
+
+.checkbox-label:hover input[type="checkbox"] {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Mobile responsive styles for checkbox */
+@media (max-width: 768px) {
+  .rag-option-section {
+    margin: 16px 0;
+    padding: 12px;
+  }
+
+  .checkbox-label {
+    font-size: 13px;
+    gap: 10px;
+  }
+
+  .checkbox-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+  }
 }
