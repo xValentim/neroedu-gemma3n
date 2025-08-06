@@ -13,7 +13,94 @@ import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
+import { spawn, ChildProcessWithoutNullStreams, exec } from "child_process";
+import net from "net";
 import { resolveHtmlPath } from './util';
+import { create } from 'domain';
+
+const API_PORT = 8000
+let backendProc: ChildProcessWithoutNullStreams | null = null;
+
+
+/**
+ * returns the path to the backend executable
+ */
+function backendExecutablePath(): string {
+  if(!app.isPackaged) {
+    return path.resolve(
+      __dirname,
+      "../../build_back/bin/main"
+    );
+  }
+  return path.join(process.resourcesPath, "bin", "main.exe");
+}
+
+/**
+ * Start the backend process
+ */
+function waitForPort(
+  port: number,
+  host = "127.0.0.1",
+  timeoutMs = 20000,
+): Promise<void> {
+  const startTime = Date.now();
+  return new Promise((resolve, reject) => {
+    const tryConnect = () => {
+      const socket = net.createConnection({port, host});
+
+      socket.on("connect", () => {
+        socket.end();
+        resolve();
+      });
+
+      socket.once("error", (err) => {
+        socket.destroy();
+        if(Date.now() - startTime > timeoutMs) {
+          reject(new Error(`Timeout waiting for port ${port}`));
+        } else {
+          setTimeout(tryConnect, 100);
+        }
+      });
+    };
+    tryConnect();
+  });
+}
+
+async function ensureBackend(): Promise<void> {
+  try {
+    await waitForPort(API_PORT, "127.0.0.1", 500);
+    return;
+  } catch (e) {
+    const execPath = backendExecutablePath();
+
+    exec(`"${execPath}"`, (error) => {
+      if (error) {
+        log.error("Failed to start backend process:", error);
+        app.quit();
+      } else {
+        log.info("Backend process started successfully");
+      }
+    });
+
+    try {
+      await waitForPort(API_PORT);
+    } catch(err) {
+      app.quit();
+    }
+  }
+}
+
+function stopBackend(): void {
+  if(backendProc && !backendProc.killed) {
+    try {
+      backendProc.kill();
+    } catch(e) {
+      log.error("Failed to kill backend process:", e);
+    }
+    }
+  }
+
+
 
 class AppUpdater {
   constructor() {
@@ -137,18 +224,20 @@ app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even
   // after all windows have been closed
   if (process.platform !== 'darwin') {
+    stopBackend();
     app.quit();
   }
 });
 
 app
   .whenReady()
-  .then(() => {
+  .then(async () => {
+    await ensureBackend();
     createWindow();
-    app.on('activate', () => {
-      // On macOS it's common to re-create a window in the app when the
-      // dock icon is clicked and there are no other windows open.
+    app.on("activate", () => {
       if (mainWindow === null) createWindow();
     });
   })
-  .catch(console.log);
+  .catch((err) => {
+    app.quit();
+  });

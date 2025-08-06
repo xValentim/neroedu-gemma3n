@@ -6,6 +6,7 @@ logs
 pids
 *.pid
 *.seed
+*.exe
 
 # Coverage directory used by tools like istanbul
 coverage
