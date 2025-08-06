@@ -1,7 +1,7 @@
 {
   "name": "neroedu-desktop",
   "description": "NeroEdu - AI-powered exam preparation desktop app",
-   "includeSubNodeModules": "true",
+  "includeSubNodeModules": "true",
   "keywords": [
     "electron",
     "boilerplate",
@@ -187,7 +187,6 @@
       "package.json"
     ],
     "mac": {
-
       "target": {
         "target": "default",
         "arch": [
@@ -232,23 +231,40 @@
       "output": "release/build"
     },
     "extraResources": [
-      {"from": "build_back/bin", "to": "bin", "filter": ["**/*"]},
-      {"from": "vectorstores", "to": "vectorstores", "filter": ["**/*"]},
+      {
+        "from": "build_back/bin",
+        "to": "bin",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "vectorstore",
+        "to": "vectorstore",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "storage",
+        "to": "storage",
+        "filter": [
+          "**/*"
+        ]
+      },
       "./assets/**"
     ],
     "publish": {
       "provider": "github",
       "owner": "electron-react-boilerplate",
       "repo": "electron-react-boilerplate"
+    },
+    "nsis": {
+      "oneClick": false,                     
+      "allowToChangeInstallationDirectory": true,
+      "include": "build_back/installer.nsh",
+      "warningsAsErrors": false
     }
-  },
-  "nsis": {
-    "oneClick": false,
-    "allowElevation": true,
-    "perMachine": false,
-    "allowToChangeInstallationDirectory": true,
-    "createDesktopShortcut": true,
-    "runAfterFinish": true
   },
   "collective": {
     "url": "https://opencollective.com/electron-react-boilerplate-594"
@@ -272,5 +288,6 @@
       ".erb/dll/**"
     ],
     "logLevel": "quiet"
-  }
+  },
+  "packageManager": "yarn@3.5.1+sha512.8cd0e31bd60779ef4ca92b855fb3462c7ec35ce8b345752b7349a68239776417f46d41d79c8047242d9c93b48a1516f64c7444ebe747d9a02bf26868e6fa1f2b"
 }

@@ -136,6 +136,35 @@ export interface EssayResponse {
   competencia: number;
 }
 
+// New Essay Types for non-ENEM exams
+export interface GeneralEssayRequest {
+  essay: string;
+  model_name: string;
+  exam_type: string;
+}
+
+export interface GeneralEssayResponse {
+  response: string;
+  model: string;
+  exam_type: string;
+}
+
+// CRUD Essay Types
+export interface Essay {
+  essay_id: number;
+  essay: string;
+  model_name: string;
+  exam_type: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface InputEssay {
+  essay: string;
+  model_name: string;
+  exam_type: string;
+}
+
 export interface CompetenciaResult {
   competencia: number;
   evaluation: EssayEvaluation;
