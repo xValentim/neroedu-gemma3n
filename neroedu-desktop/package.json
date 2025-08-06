@@ -262,6 +262,7 @@
     "nsis": {
       "oneClick": false,                     
       "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
       "include": "build_back/installer.nsh",
       "warningsAsErrors": false
     }
