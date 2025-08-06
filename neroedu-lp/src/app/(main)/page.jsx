@@ -1,17 +1,15 @@
 import { Hero } from '@/components/Hero'
-import { Newsletter } from '@/components/Newsletter'
-import { Schedule } from '@/components/Schedule'
-import { Speakers } from '@/components/Speakers'
-import { Sponsors } from '@/components/Sponsors'
+import { Features } from '@/components/Features'
+import { Download } from '@/components/Download'
+import { Technology } from '@/components/Technology'
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Speakers />
-      <Schedule />
-      <Sponsors />
-      <Newsletter />
+      <Features />
+      <Technology />
+      <Download />
     </>
   )
 }

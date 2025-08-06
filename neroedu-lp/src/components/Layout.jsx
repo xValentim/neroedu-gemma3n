@@ -6,7 +6,6 @@ export function Layout({ children, showFooter = true }) {
     <>
       <Header />
       <main className="flex-auto">{children}</main>
-      {showFooter && <Footer />}
     </>
   )
 }

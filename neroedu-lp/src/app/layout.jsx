@@ -18,11 +18,11 @@ const dmSans = DM_Sans({
 
 export const metadata = {
   title: {
-    template: '%s - DeceptiConf',
-    default: 'DeceptiConf - A community-driven design conference',
+    template: '%s - NeroEdu',
+    default: 'NeroEdu - Artificial Intelligence for Education',
   },
   description:
-    'At DeceptiConf you’ll learn about the latest dark patterns being developed to trick even the smartest visitors, and you’ll learn how to deploy them without ever being detected.',
+    'NeroEdu is an innovative educational platform that uses locally-run Gemma models to provide personalized feedback on essays, practice tests, and study materials. With RAG (Retrieval-Augmented Generation) technology, NeroEdu democratizes access to quality education, offering intelligent educational support for students of different national and international exams.',
 }
 
 export default function RootLayout({ children }) {

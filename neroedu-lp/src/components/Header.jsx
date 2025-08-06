@@ -8,20 +8,23 @@ export function Header() {
     <header className="relative z-50 flex-none lg:pt-11">
       <Container className="flex flex-wrap items-center justify-center sm:justify-between lg:flex-nowrap">
         <div className="mt-10 lg:mt-0 lg:grow lg:basis-0">
-          <Logo className="h-12 w-auto text-slate-900" />
-        </div>
-        <div className="order-first -mx-4 flex flex-auto basis-full overflow-x-auto border-b border-blue-600/10 py-4 font-mono text-sm whitespace-nowrap text-blue-600 sm:-mx-6 lg:order-0 lg:mx-0 lg:basis-auto lg:border-0 lg:py-0">
-          <div className="mx-auto flex items-center gap-4 px-4">
-            <p>
-              <time dateTime="2022-04-04">04</time>-
-              <time dateTime="2022-04-06">06 of April, 2022</time>
-            </p>
-            <DiamondIcon className="h-1.5 w-1.5 overflow-visible fill-current stroke-current" />
-            <p>Los Angeles, CA</p>
-          </div>
+          <Logo className="h-12 w-auto text-blue-600" />
         </div>
         <div className="hidden sm:mt-10 sm:flex lg:mt-0 lg:grow lg:basis-0 lg:justify-end">
-          <Button href="#">Get your tickets</Button>
+          <nav className="flex items-center gap-8">
+            <a href="#features" className="text-blue-900 hover:text-blue-600 transition-colors">
+              Features
+            </a>
+            <a href="#technology" className="text-blue-900 hover:text-blue-600 transition-colors">
+              Technology
+            </a>
+            <a href="#download" className="text-blue-900 hover:text-blue-600 transition-colors">
+              Download
+            </a>
+            <Button href="#download" className="ml-4">
+              Get Started
+            </Button>
+          </nav>
         </div>
       </Container>
     </header>
