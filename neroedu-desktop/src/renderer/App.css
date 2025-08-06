@@ -3375,6 +3375,34 @@ body::before {
   text-align: center;
 }
 
+.ollama-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.ollama-icon {
+  width: 60px;
+  height: 24px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.header-with-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-ollama-icon {
+  width: 48px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
 .ollama-help p {
   color: rgba(255, 255, 255, 0.7);
   font-size: 13px;
@@ -3412,6 +3440,22 @@ body::before {
 @media (max-width: 768px) {
   .ollama-help {
     margin: 12px 0;
+  }
+
+  .ollama-icon {
+    width: 50px;
+    height: 20px;
+  }
+
+  .header-with-logo {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .header-ollama-icon {
+    width: 40px;
+    height: 16px;
   }
 
   .download-link {

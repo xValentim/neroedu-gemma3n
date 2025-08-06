@@ -162,6 +162,9 @@ export const ModelSetup: React.FC<ModelSetupProps> = ({ onComplete }) => {
             Make sure the FastAPI server is running on port 8000
           </p>
           <div className="ollama-help">
+            <div className="ollama-logo">
+              <img src="assets/ollama.png" alt="Ollama" className="ollama-icon" />
+            </div>
             <p>Need help setting up Ollama?</p>
             <a
               href="https://ollama.com/download"
@@ -188,6 +191,9 @@ export const ModelSetup: React.FC<ModelSetupProps> = ({ onComplete }) => {
           <h3>Ollama Not Running</h3>
           <p>Please start Ollama to use the AI features</p>
           <div className="ollama-help">
+            <div className="ollama-logo">
+              <img src="assets/ollama.png" alt="Ollama" className="ollama-icon" />
+            </div>
             <p>Don't have Ollama installed?</p>
             <a
               href="https://ollama.com/download"
@@ -210,8 +216,13 @@ export const ModelSetup: React.FC<ModelSetupProps> = ({ onComplete }) => {
     <div className="model-setup-container">
       <div className="setup-content">
         <div className="setup-header">
-          <h1>AI Model Setup</h1>
-          <p>Select and download an AI model for personalized learning</p>
+          <div className="header-with-logo">
+            <img src="assets/ollama.png" alt="Ollama" className="header-ollama-icon" />
+            <div>
+              <h1>AI Model Setup</h1>
+              <p>Select and download an AI model for personalized learning</p>
+            </div>
+          </div>
         </div>
 
         <div className="model-cards-grid">
