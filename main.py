@@ -1,10 +1,13 @@
 # main.py
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from typing import List, Optional
 import requests
 import uvicorn
+import json
+import os
+
 from src.utils import get_models_info, delete_model, example_essay, prompt_competencia_1, prompt_competencia_2, prompt_competencia_3, prompt_competencia_4, prompt_competencia_5, exams_types
 from src.retriever import Retriever
 from contextlib import asynccontextmanager 
@@ -13,7 +16,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_ollama.llms import OllamaLLM
 from langchain_ollama.chat_models import ChatOllama
-from src.schemas import InputDataEssayEnem, InputSimulado, InputFlashcard, InputDataKeyTopics, OutputDataEssayEnem, InputDataEssay
+from src.schemas import InputDataEssayEnem, InputSimulado, InputFlashcard, InputDataKeyTopics, OutputDataEssayEnem, InputDataEssay, Essay, InputEssay
 
 from pydantic import BaseModel
 import random
@@ -46,9 +49,22 @@ async def lifespan(app: FastAPI):
     yield
     print("Shutdown Server...")
 
+# Helpers para manipular o JSON
+def load_data(database_file="./storage/database.json"):
+    if not os.path.exists(database_file):
+        with open(database_file, "w") as f:
+            json.dump([], f)
+    with open(database_file, "r") as f:
+        return json.load(f)
+
+def save_data(data, database_file="./storage/database.json"):
+    with open(database_file, "w") as f:
+        json.dump(data, f, indent=4)
+
 app = FastAPI(lifespan=lifespan)
 
 BASE_URL = "http://localhost:11434"
+BASEDIR_STORAGE = "./storage"
 
 app.add_middleware(
     CORSMiddleware,
@@ -233,6 +249,7 @@ async def call_simulado(input_simulado: InputSimulado):
     model_name = input_simulado.model_name
     lite_rag = input_simulado.lite_rag
     exam_type = input_simulado.exam_type.strip().lower()
+    questions = input_simulado.questions
 
     if exam_type not in ['enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais']:
         raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais'.")
@@ -262,6 +279,7 @@ async def call_simulado(input_simulado: InputSimulado):
                 "explanation": "string"
                 }}
         """),
+        ('system', "Do not repeat existing questions. Consider that there is already one (or more) question(s) with this/these content: {questions}."),
         ('system', """Generate only one question about the theme: {tema}\n"""),
     ]
     
@@ -292,7 +310,7 @@ async def call_simulado(input_simulado: InputSimulado):
         | StrOutputParser()
     )
 
-    response = await chain_simulado.ainvoke({"tema": tema})
+    response = await chain_simulado.ainvoke({"tema": tema, "questions": "\n--\n".join(questions)})
     return {"response": response, "temperature": temperature, "seed": seed}
 
 @app.post("/call-flashcard")
@@ -302,6 +320,8 @@ async def call_flashcard(input_flashcard: InputFlashcard):
     flashcards_existentes = input_flashcard.flashcards_existentes
     exam_type = input_flashcard.exam_type
     lite_rag = input_flashcard.lite_rag
+    
+    print(input_flashcard.flashcards_existentes)
     
     if exam_type not in ['enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais']:
         raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais'.")
@@ -343,7 +363,7 @@ async def call_flashcard(input_flashcard: InputFlashcard):
                 }}
             """),
             ('system', "Generate a flashcard about the theme: {tema}"),
-            ('system', "Consider that there is already one (or more) flashcard(s) with this/these question(s): {flashcards_existentes}. Do not repeat existing questions."),
+            ('system', "Do not repeat existing questions. Consider that there is already one (or more) flashcard(s) with this/these question(s): {flashcards_existentes}."),
             ('system', "The question should test essential knowledge and the answer should be complete."),
         ]
 
@@ -374,7 +394,7 @@ async def call_flashcard(input_flashcard: InputFlashcard):
         | StrOutputParser()
     )
 
-    response = await chain_flashcard.ainvoke({"tema": tema, "flashcards_existentes": flashcards_existentes})
+    response = await chain_flashcard.ainvoke({"tema": tema, "flashcards_existentes": "\n--\n".join(flashcards_existentes)})
     return response
 
 @app.post("/call-key-topics")
@@ -467,5 +487,62 @@ async def call_essay(input_data: InputDataEssay):
     response = await chain.ainvoke({"essay": essay})
     
     return {"response": response, "model": model_name, "exam_type": exam_type}
+
+# CRUD 
+
+# Criar item
+@app.post("/essays/", response_model=Essay)
+def create_item(item: InputEssay):
+    data = load_data()
+    item_output = item.dict()
+    item_output['essay_id'] = None
+    item = Essay(**item_output)
+    if not item.essay_id:
+        max_id = max((existing_item["essay_id"] for existing_item in data if existing_item["essay_id"] is not None), default=0)
+        item.essay_id = max_id + 1
+    else:
+        for existing_item in data:
+            if existing_item["essay_id"] == item.essay_id:
+                raise HTTPException(status_code=400, detail="Item with this ID already exists.")
+    data.append(item.dict())
+    save_data(data)
+    return item
+
+# Listar todos
+@app.get("/essays/", response_model=List[Essay])
+def read_items():
+    return load_data()
+
+# Obter item por ID
+@app.get("/essays/{item_id}", response_model=Essay)
+def read_item(item_id: int):
+    data = load_data()
+    for item in data:
+        if item["essay_id"] == item_id:
+            return item
+    raise HTTPException(status_code=404, detail="Item not found")
+
+# Atualizar item
+@app.put("/essays/{item_id}", response_model=Essay)
+def update_item(item_id: int, updated_item: Essay):
+    data = load_data()
+    for idx, item in enumerate(data):
+        if item["essay_id"] == item_id:
+            data[idx] = updated_item.dict()
+            save_data(data)
+            return updated_item
+    raise HTTPException(status_code=404, detail="Item not found")
+
+# Deletar item
+@app.delete("/essays/{item_id}")
+def delete_item(item_id: int):
+    data = load_data()
+    for idx, item in enumerate(data):
+        if item["essay_id"] == item_id:
+            del data[idx]
+            save_data(data)
+            return {"message": "Item deleted"}
+    raise HTTPException(status_code=404, detail="Item not found")
+
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)
