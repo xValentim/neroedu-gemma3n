@@ -6,21 +6,37 @@ interface ModelSetupProps {
   onComplete: (model: string) => void;
 }
 
+interface ModelCard {
+  id: string;
+  name: string;
+  description: string;
+  size: string;
+  icon: string;
+}
+
 export const ModelSetup: React.FC<ModelSetupProps> = ({ onComplete }) => {
   const [ollamaStatus, setOllamaStatus] = useState<'checking' | 'running' | 'not-running' | 'error'>('checking');
-  const [selectedModel, setSelectedModel] = useState('gemma3n:e2b');
-  const [isDownloading, setIsDownloading] = useState(false);
+  const [selectedModel, setSelectedModel] = useState<string>('');
+  const [isDownloading, setIsDownloading] = useState<string | null>(null);
   const [downloadProgress, setDownloadProgress] = useState('');
   const [availableModels, setAvailableModels] = useState<ModelInfo[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  const modelOptions = [
-    { value: 'gemma3n:e2b', label: 'Gemma3n E2B (2B parameters)' },
-    { value: 'gemma3n:e4b', label: 'Gemma3n E4B (4B parameters)' },
-    { value: 'gemma3n:1b', label: 'Gemma3n 1B (1B parameters)' },
-    { value: 'gemma3n:4b', label: 'Gemma3n 4B (4B parameters)' },
-    { value: 'gemma3n:12b', label: 'Gemma3n 12B (12B parameters)' },
-    { value: 'gemma3n:27b', label: 'Gemma3n 27B (27B parameters)' }
+  const modelCards: ModelCard[] = [
+    {
+      id: 'gemma3n:e2b',
+      name: 'Gemma3n E2B',
+      description: '2B parameters - Fast and efficient for quick responses',
+      size: '~1.2GB',
+      icon: '⚡'
+    },
+    {
+      id: 'gemma3n:e4b',
+      name: 'Gemma3n E4B',
+      description: '4B parameters - Balanced performance and quality',
+      size: '~2.4GB',
+      icon: '🎯'
+    }
   ];
 
   useEffect(() => {
@@ -30,7 +46,6 @@ export const ModelSetup: React.FC<ModelSetupProps> = ({ onComplete }) => {
   const checkOllamaStatus = async () => {
     try {
       console.log('Checking Ollama status...');
-      // First test basic connection
       const connectionTest = await apiService.testConnection();
       console.log('Connection test result:', connectionTest);
       if (!connectionTest) {
@@ -49,10 +64,6 @@ export const ModelSetup: React.FC<ModelSetupProps> = ({ onComplete }) => {
       }
     } catch (error: any) {
       console.error('Failed to check Ollama status:', error);
-      console.error('Error details:', {
-        message: error.message,
-        stack: error.stack
-      });
       setOllamaStatus('error');
     }
   };
@@ -61,84 +72,73 @@ export const ModelSetup: React.FC<ModelSetupProps> = ({ onComplete }) => {
     try {
       const response = await apiService.listModels();
       setAvailableModels(response.models);
+
+      // Auto-select first available model
+      const firstAvailable = response.models.find(model =>
+        modelCards.some(card => card.id === model.model)
+      );
+      if (firstAvailable) {
+        setSelectedModel(firstAvailable.model);
+      }
     } catch (error) {
       console.error('Failed to load models:', error);
     }
   };
 
-  const handleDownloadModel = async () => {
-    setIsDownloading(true);
+  const isModelAvailable = (modelId: string) => {
+    return availableModels.some(model => model.model === modelId);
+  };
+
+  const handleDownloadModel = async (modelId: string) => {
+    setIsDownloading(modelId);
     setError(null);
     setDownloadProgress('');
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/pull-model/' + selectedModel);
-      const reader = response.body?.getReader();
-
-      if (!reader) {
-        throw new Error('Failed to get response reader');
-      }
-
-      const decoder = new TextDecoder();
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        const chunk = decoder.decode(value);
-        const lines = chunk.split('\n');
-
-        for (const line of lines) {
-          if (line.trim()) {
-            try {
-              const data = JSON.parse(line);
-              if (data.status) {
-                setDownloadProgress(data.status);
-              }
-            } catch (e) {
-              // Ignore parsing errors for non-JSON lines
-            }
+      await apiService.pullModel(
+        modelId,
+        (data: any) => {
+          if (typeof data === 'string') {
+            setDownloadProgress(data);
+          } else if (data && data.status) {
+            setDownloadProgress(data.status);
           }
+        },
+        () => {
+          setIsDownloading(null);
+          loadAvailableModels();
+        },
+        (error) => {
+          console.error('Download failed:', error);
+          setError('Failed to download model. Please try again.');
+          setIsDownloading(null);
         }
-      }
-
-      // Reload available models after download
-      await loadAvailableModels();
-      setIsDownloading(false);
+      );
     } catch (error: any) {
       console.error('Download failed:', error);
       setError('Failed to download model. Please try again.');
-      setIsDownloading(false);
+      setIsDownloading(null);
     }
   };
 
-  const handleListModels = async () => {
+  const handleDeleteModel = async (modelId: string) => {
     try {
-      console.log('Loading available models...');
+      await apiService.deleteModel(modelId);
       await loadAvailableModels();
-      console.log('Available models loaded:', availableModels);
-    } catch (error) {
-      console.error('Failed to list models:', error);
-      setError('Failed to load models. Please try again.');
-    }
-  };
-
-  const handleDeleteModel = async () => {
-    if (!selectedModel) return;
-
-    try {
-      await apiService.deleteModel(selectedModel);
-      await loadAvailableModels();
+      if (selectedModel === modelId) {
+        setSelectedModel('');
+      }
     } catch (error) {
       console.error('Failed to delete model:', error);
+      setError('Failed to delete model. Please try again.');
     }
   };
 
   const handleGetStarted = () => {
-    onComplete(selectedModel);
+    if (selectedModel) {
+      onComplete(selectedModel);
+    }
   };
-
-  const isModelAvailable = availableModels.some(model => model.model === selectedModel);
 
   if (ollamaStatus === 'checking') {
     return (
@@ -161,6 +161,17 @@ export const ModelSetup: React.FC<ModelSetupProps> = ({ onComplete }) => {
           <p style={{ fontSize: '12px', opacity: 0.8, marginTop: '8px' }}>
             Make sure the FastAPI server is running on port 8000
           </p>
+          <div className="ollama-help">
+            <p>Need help setting up Ollama?</p>
+            <a
+              href="https://ollama.com/download"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="download-link"
+            >
+              📥 Download Ollama
+            </a>
+          </div>
           <button className="secondary-button" onClick={checkOllamaStatus}>
             Retry Connection
           </button>
@@ -176,6 +187,17 @@ export const ModelSetup: React.FC<ModelSetupProps> = ({ onComplete }) => {
           <div className="status-icon">⚠️</div>
           <h3>Ollama Not Running</h3>
           <p>Please start Ollama to use the AI features</p>
+          <div className="ollama-help">
+            <p>Don't have Ollama installed?</p>
+            <a
+              href="https://ollama.com/download"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="download-link"
+            >
+              📥 Download Ollama
+            </a>
+          </div>
           <button className="secondary-button" onClick={checkOllamaStatus}>
             Retry Connection
           </button>
@@ -187,50 +209,82 @@ export const ModelSetup: React.FC<ModelSetupProps> = ({ onComplete }) => {
   return (
     <div className="model-setup-container">
       <div className="setup-content">
-        <h1>AI Model Setup</h1>
-        <p>Select and download an AI model for personalized learning</p>
-
-        <div className="model-selection">
-          <label htmlFor="model-select">Choose Model:</label>
-          <select
-            id="model-select"
-            value={selectedModel}
-            onChange={(e) => setSelectedModel(e.target.value)}
-            disabled={isDownloading}
-            className="model-select"
-          >
-            {modelOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+        <div className="setup-header">
+          <h1>AI Model Setup</h1>
+          <p>Select and download an AI model for personalized learning</p>
         </div>
 
-        <div className="model-actions">
-          <button
-            className="primary-button"
-            onClick={handleDownloadModel}
-            disabled={isDownloading}
-          >
-            {isDownloading ? 'Downloading...' : 'Download Model'}
-          </button>
+        <div className="model-cards-grid">
+          {modelCards.map((model) => {
+            const isAvailable = isModelAvailable(model.id);
+            const isModelDownloading = isDownloading === model.id;
+            const isSelected = selectedModel === model.id;
 
-          <button
-            className="secondary-button"
-            onClick={handleListModels}
-            disabled={isDownloading}
-          >
-            List Models
-          </button>
+            return (
+              <div
+                key={model.id}
+                className={`model-card ${isAvailable ? 'available' : 'unavailable'} ${isSelected ? 'selected' : ''}`}
+                onClick={() => isAvailable && setSelectedModel(model.id)}
+              >
+                <div className="model-card-header">
+                  <div className="model-icon">{model.icon}</div>
+                  <div className="model-info">
+                    <h3>{model.name}</h3>
+                    <p className="model-size">{model.size}</p>
+                  </div>
+                  <div className="model-status">
+                    {isAvailable ? (
+                      <span className="status-badge available">✓ Available</span>
+                    ) : (
+                      <span className="status-badge unavailable">Not Downloaded</span>
+                    )}
+                  </div>
+                </div>
 
-          <button
-            className="secondary-button"
-            onClick={handleDeleteModel}
-            disabled={isDownloading || !isModelAvailable}
-          >
-            Delete Model
-          </button>
+                <div className="model-description">
+                  <p>{model.description}</p>
+                </div>
+
+                <div className="model-actions">
+                  {isAvailable ? (
+                    <>
+                                             <button
+                         className="select-button"
+                         onClick={(e) => {
+                           e.stopPropagation();
+                           setSelectedModel(model.id);
+                         }}
+                         disabled={isSelected}
+                       >
+                         {isSelected ? 'Selected' : 'Select'}
+                       </button>
+                       <button
+                         className="delete-button"
+                         onClick={(e) => {
+                           e.stopPropagation();
+                           handleDeleteModel(model.id);
+                         }}
+                         disabled={isModelDownloading}
+                       >
+                         🗑️ Delete
+                       </button>
+                    </>
+                  ) : (
+                                         <button
+                       className="download-button"
+                       onClick={(e) => {
+                         e.stopPropagation();
+                         handleDownloadModel(model.id);
+                       }}
+                       disabled={isModelDownloading}
+                     >
+                       {isModelDownloading ? '⏳ Downloading...' : '⬇️ Download'}
+                     </button>
+                  )}
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         {isDownloading && (
@@ -239,27 +293,13 @@ export const ModelSetup: React.FC<ModelSetupProps> = ({ onComplete }) => {
           </div>
         )}
 
-        {availableModels.length > 0 && (
-          <div className="available-models">
-            <h3>Available Models:</h3>
-            <div className="models-list">
-              {availableModels.map((model) => (
-                <div key={model.model} className="model-item">
-                  <span className="model-name">{model.model}</span>
-                  <span className="model-size">{model.size}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {isModelAvailable && (
+        {selectedModel && (
           <div className="get-started-section">
             <button
               className="get-started-btn"
               onClick={handleGetStarted}
             >
-              Get Started
+              Get Started with {modelCards.find(m => m.id === selectedModel)?.name}
             </button>
           </div>
         )}
