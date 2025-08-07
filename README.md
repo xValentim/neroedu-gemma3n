@@ -4,6 +4,8 @@
 [![Category](https://img.shields.io/badge/Category-Revolutionize%20Education-green.svg)](https://www.kaggle.com/competitions/google-gemma-3n-hackathon)
 [![Gemma 3n](https://img.shields.io/badge/Powered%20by-Gemma%203n-orange.svg)](https://ai.google.dev/gemma/docs/gemma-3n)
 
+[Full Technical Report](https://storage.googleapis.com/kaggle-forum-message-attachments/3264727/25243/NeroEdu-TechReport.pdf)
+
 **NeroEdu tackles the global education gap by delivering autonomous AI agents — powered by Gemma 3n — that provide high-quality exam preparation (essay grading, study materials, and practice tests) directly on students’ devices, overcoming barriers like internet unavailability, lack of qualified educators, and unequal access to personalized feedback.**
 
 
