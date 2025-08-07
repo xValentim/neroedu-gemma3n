@@ -66,6 +66,19 @@ NeroEdu includes three primary AI agents:
 
 ![Mock Exam Generation Flow](./imgs/test.png)
 
+
+## ⚙️ Technical Stack
+
+| Layer         | Technology                              |
+|---------------|------------------------------------------|
+| Backend       | FastAPI, LangChain, Ollama               |
+| LLM Runtime   | Gemma 3n (local, via Ollama)             |
+| Vector Store  | TF-IDF + cosine similarity               |
+| Frontend      | Electron (cross-platform desktop)        |
+| Packaging     | NSIS (custom installer, precompiled API) |
+
+The backend is precompiled and bundled with the Electron app through a custom NSIS installer, enabling a single-step installation for non-technical users.
+
 ### 🔄 Backend Orchestration
 
 The FastAPI backend orchestrates all AI agents and connects to the Ollama server running Gemma 3n locally. Each endpoint (essay, flashcard, mock exam) triggers specific retrieval + generation flows, ensuring that:
@@ -99,7 +112,7 @@ The retrieved passages are dynamically injected into prompts during question gen
 ## 🛠️ Getting Started
 
 ### Prerequisites
-- Python 3.8+
+- Python 3.10+
 - Node.js 16+ (for desktop app)
 - Xcode (for iOS development)
 - Ollama with Gemma 3n models
