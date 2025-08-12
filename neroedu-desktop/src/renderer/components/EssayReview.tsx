@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { apiService } from '../services/api';
 import { EssayResponse, CompetenciaResult, GeneralEssayResponse, Essay } from '../types';
+import { EssayAnalysisRenderer } from './EssayAnalysisRenderer';
 import ollamaImage from '../../assets/ollama.png';
 
 interface EssayReviewProps {
@@ -155,9 +156,39 @@ export const EssayReview: React.FC<EssayReviewProps> = ({ examType, modelName, o
     return '';
   };
 
-  // Helper function to extract grade from general feedback
+    // Helper function to extract grade from general feedback
   const extractGradeFromGeneralFeedback = (feedback: string): number => {
-    // Try to find numeric scores in the feedback
+    if (!feedback || typeof feedback !== 'string') {
+      console.warn('Invalid feedback provided to extractGradeFromGeneralFeedback:', feedback);
+      return 75; // Default grade
+    }
+
+    console.log('🔢 Extracting grade from feedback:', feedback.substring(0, 200) + '...');
+
+    // Method 1: Try to extract from JSON structure first
+    try {
+      const jsonMatch = feedback.match(/```json\s*\n(.*?)\n```/s) || feedback.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        const jsonStr = jsonMatch[1] || jsonMatch[0];
+        const parsed = JSON.parse(jsonStr);
+
+        // Calculate average from reading, analysis, writing scores
+        if (parsed.reading !== undefined || parsed.analysis !== undefined || parsed.writing !== undefined) {
+          const scores = [parsed.reading, parsed.analysis, parsed.writing].filter(s => s !== undefined);
+          if (scores.length > 0) {
+            const averageScore = scores.reduce((sum, score) => sum + score, 0) / scores.length;
+            // Convert from 4-point scale to 100-point scale
+            const grade = Math.round((averageScore / 4) * 100);
+            console.log('✅ Extracted grade from JSON:', grade, 'from scores:', scores);
+            return grade;
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('Failed to parse JSON for grade extraction:', e);
+    }
+
+    // Method 2: Try to find numeric scores in the text
     const scorePatterns = [
       /score[:\s]+(\d+)/i,
       /grade[:\s]+(\d+)/i,
@@ -172,12 +203,13 @@ export const EssayReview: React.FC<EssayReviewProps> = ({ examType, modelName, o
       if (match) {
         const score = parseInt(match[1]);
         if (score >= 0 && score <= 100) {
+          console.log('✅ Extracted grade from text pattern:', score);
           return score;
         }
       }
     }
 
-    // If no explicit score found, analyze sentiment/quality keywords
+    // Method 3: Analyze sentiment/quality keywords
     const positiveWords = ['excellent', 'good', 'strong', 'clear', 'well', 'effective'];
     const negativeWords = ['poor', 'weak', 'unclear', 'needs improvement', 'lacking'];
 
@@ -185,13 +217,17 @@ export const EssayReview: React.FC<EssayReviewProps> = ({ examType, modelName, o
     const positiveCount = positiveWords.filter(word => lowerFeedback.includes(word)).length;
     const negativeCount = negativeWords.filter(word => lowerFeedback.includes(word)).length;
 
+    let sentimentGrade;
     if (positiveCount > negativeCount) {
-      return 85; // Good essay
+      sentimentGrade = 85; // Good essay
     } else if (negativeCount > positiveCount) {
-      return 65; // Needs improvement
+      sentimentGrade = 65; // Needs improvement
     } else {
-      return 75; // Average essay
+      sentimentGrade = 75; // Average essay
     }
+
+    console.log('✅ Calculated grade from sentiment analysis:', sentimentGrade, '(positive:', positiveCount, 'negative:', negativeCount, ')');
+    return sentimentGrade;
   };
 
   // Function to automatically save essay after evaluation
@@ -447,9 +483,7 @@ export const EssayReview: React.FC<EssayReviewProps> = ({ examType, modelName, o
           <div className="general-essay-result">
             <div className="essay-feedback">
               <h3>Essay Analysis</h3>
-              <div className="feedback-content">
-                <pre>{generalResult?.response}</pre>
-              </div>
+              <EssayAnalysisRenderer response={generalResult?.response || ''} />
             </div>
           </div>
         )}

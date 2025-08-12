@@ -274,20 +274,9 @@ export const StudyMaterial: React.FC<StudyMaterialProps> = ({ examType, modelNam
               </button>
             </div>
 
-            <div className="flashcard-back">
+                        <div className="flashcard-back">
               <div className="card-label">Answer</div>
               <div className="card-content">
-                {/* Debug info - remove this later */}
-                <div style={{
-                  fontSize: '10px',
-                  color: 'rgba(255,255,255,0.5)',
-                  marginBottom: '10px',
-                  textAlign: 'left',
-                  fontFamily: 'monospace'
-                }}>
-                  DEBUG: Length={currentCard.answer?.length || 0} |
-                  First 50: "{currentCard.answer?.substring(0, 50) || 'N/A'}..."
-                </div>
                 <MarkdownRenderer content={currentCard.answer} />
               </div>
               <button
