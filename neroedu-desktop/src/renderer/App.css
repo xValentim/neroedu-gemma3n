@@ -4014,13 +4014,29 @@ body::before {
 .card-content .markdown-content {
   color: inherit;
   font-size: inherit;
+  width: 100%;
+  max-width: 100%;
+  text-align: left;
+  line-height: 1.6;
 }
 
 /* Ensure proper spacing in flashcards */
 .flashcard .card-content .markdown-line {
   margin-bottom: 0.75em;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .flashcard .card-content .markdown-line:last-child {
   margin-bottom: 0;
+}
+
+/* Fix flashcard content alignment */
+.flashcard .card-content {
+  align-items: flex-start;
+  text-align: left;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 300px;
 }

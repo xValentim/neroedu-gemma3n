@@ -22,30 +22,40 @@ import {
 const BASE_URL = 'http://127.0.0.1:8000';
 
 class ApiService {
-  // Robust JSON extraction utility
+    // Robust JSON extraction utility
   private extractJsonFromResponse<T>(response: string): T {
+    console.log('🔧 Starting JSON extraction from response length:', response.length);
+
     // Method 1: Try to find JSON within ```json``` code blocks
     const jsonCodeBlockMatch = response.match(/```json\s*\n(.*?)\n```/s);
     if (jsonCodeBlockMatch) {
+      console.log('✅ Found JSON in ```json``` code block');
       try {
-        return JSON.parse(jsonCodeBlockMatch[1]);
+        const parsed = JSON.parse(jsonCodeBlockMatch[1]);
+        console.log('✅ Successfully parsed from JSON code block');
+        return parsed;
       } catch (e) {
-        console.warn('Failed to parse JSON from code block:', e);
+        console.warn('❌ Failed to parse JSON from code block:', e);
       }
     }
 
     // Method 2: Try to find JSON within ``` code blocks (without json specification)
     const codeBlockMatch = response.match(/```\s*\n(.*?)\n```/s);
     if (codeBlockMatch) {
+      console.log('✅ Found JSON in generic ``` code block');
       try {
-        return JSON.parse(codeBlockMatch[1]);
+        const parsed = JSON.parse(codeBlockMatch[1]);
+        console.log('✅ Successfully parsed from generic code block');
+        return parsed;
       } catch (e) {
-        console.warn('Failed to parse JSON from generic code block:', e);
+        console.warn('❌ Failed to parse JSON from generic code block:', e);
       }
     }
 
     // Method 3: Try to find JSON object within curly braces (improved version)
     const jsonStartIndex = response.indexOf('{');
+    console.log('🔍 Looking for JSON object, start index:', jsonStartIndex);
+
     if (jsonStartIndex !== -1) {
       // Find the matching closing brace by counting braces
       let braceCount = 0;
@@ -77,10 +87,16 @@ class ApiService {
             braceCount--;
             if (braceCount === 0) {
               const jsonStr = response.substring(jsonStartIndex, i + 1);
+              console.log('✅ Extracted JSON object, length:', jsonStr.length);
+              console.log('📝 First 200 chars of extracted JSON:', jsonStr.substring(0, 200));
+
               try {
-                return JSON.parse(jsonStr);
+                const parsed = JSON.parse(jsonStr);
+                console.log('✅ Successfully parsed extracted JSON object');
+                return parsed;
               } catch (e) {
-                console.warn('Failed to parse extracted JSON object:', e);
+                console.warn('❌ Failed to parse extracted JSON object:', e);
+                console.warn('❌ Problematic JSON string:', jsonStr);
                 break;
               }
             }
@@ -92,18 +108,24 @@ class ApiService {
     // Method 4: Try to find JSON array within square brackets
     const jsonArrayMatch = response.match(/\[[\s\S]*\]/);
     if (jsonArrayMatch) {
+      console.log('✅ Found JSON array');
       try {
-        return JSON.parse(jsonArrayMatch[0]);
+        const parsed = JSON.parse(jsonArrayMatch[0]);
+        console.log('✅ Successfully parsed JSON array');
+        return parsed;
       } catch (e) {
-        console.warn('Failed to parse JSON array:', e);
+        console.warn('❌ Failed to parse JSON array:', e);
       }
     }
 
     // Method 5: Try to parse the entire response as JSON (fallback)
+    console.log('🔄 Trying to parse entire response as JSON');
     try {
-      return JSON.parse(response);
+      const parsed = JSON.parse(response);
+      console.log('✅ Successfully parsed entire response as JSON');
+      return parsed;
     } catch (e) {
-      console.error('Failed to extract JSON from response:', response);
+      console.error('❌ Failed to extract JSON from response:', response.substring(0, 200));
       throw new Error(`Unable to extract valid JSON from response: ${response.substring(0, 100)}...`);
     }
   }
@@ -218,7 +240,20 @@ class ApiService {
       body: JSON.stringify(request),
     });
 
-    return this.extractJsonFromResponse(response);
+    console.log('🔍 RAW FLASHCARD RESPONSE:', response);
+
+    const extracted = this.extractJsonFromResponse(response);
+    console.log('🎯 EXTRACTED FLASHCARD JSON:', extracted);
+
+    // Log the specific content we're getting
+    if (extracted && typeof extracted === 'object' && 'answer' in extracted) {
+      const typedExtracted = extracted as FlashcardResponse;
+      console.log('📝 ANSWER CONTENT:', typedExtracted.answer);
+      console.log('📝 ANSWER LENGTH:', typedExtracted.answer?.length);
+      console.log('📝 FIRST 100 CHARS:', typedExtracted.answer?.substring(0, 100));
+    }
+
+    return extracted as FlashcardResponse;
   }
 
   async generateKeyTopics(request: KeyTopicsRequest): Promise<KeyTopicsResponse> {
