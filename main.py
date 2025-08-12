@@ -120,7 +120,7 @@ async def lifespan(app: FastAPI):
 
 # Helpers para manipular o JSON
 def load_data():
-    database_file = os.path.join(STORAGE_DIR, "release/build/resources/database.json")
+    database_file = os.path.join(STORAGE_DIR, "release/build/resources/storage/database.json")
     if not os.path.exists(database_file):
         with open(database_file, "w") as f:
             json.dump([], f)
@@ -128,7 +128,7 @@ def load_data():
         return json.load(f)
 
 def save_data(data):
-    database_file = os.path.join(STORAGE_DIR, "release/build/resources/database.json")
+    database_file = os.path.join(STORAGE_DIR, "release/build/resources/storage/database.json")
     with open(database_file, "w") as f:
         json.dump(data, f, indent=4)
 
