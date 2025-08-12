@@ -249,18 +249,18 @@ exams_types = {
     - At the end, provide overall feedback with suggestions for improvement.
 
     ## Example response format:
-    json
-    {
+    ```json
+    {{
     "reading": 3,
     "analysis": 2,
     "writing": 3,
-    "justifications": {
+    "justifications": {{
         "reading": "The student demonstrates a general understanding of the source text and includes some relevant evidence, though with minor omissions.",
         "analysis": "The analysis of the author's argument is underdeveloped, lacking depth and clarity.",
         "writing": "The essay is logically organized and mostly clear, but contains grammatical errors and limited vocabulary variety."
-    },
+    }},
     "feedback": "Work on deepening your analysis of the author's techniques. Consider explaining more clearly how rhetorical strategies impact the reader."
-    }""",
+    }}```""",
 
     "exames_nacionais": """You are a writing assessment assistant for the 12th Grade National Exam of Portuguese in Portugal. Your task is to evaluate students’ essays according to the official criteria defined by IAVE.**
 
@@ -281,15 +281,15 @@ exams_types = {
     ## **Response format:**
 
     ```json
-    {
+    {{
     "structure_thematic_and_discursive": 17,
     "linguistic_correction": 15,
-    "justifications": {
+    "justifications": {{
         "structure_thematic_and_discursive": "The text respects the requested genre (opinion article) and addresses the topic coherently, but there is some repetition of ideas in the final paragraphs.",
         "linguistic_correction": "The command of the standard norm of the Portuguese language is adequate, with some punctuation errors and use of prepositions that slightly affect the fluency of the text."
-    },
+    }},
     "feedback": "The text is well structured and presents relevant arguments. To improve, avoid repetition and review punctuation and word choice in certain passages."
-    }
+    }}
     ```    
     """,
         "gaokao": """
@@ -313,17 +313,17 @@ exams_types = {
 
     ## Example response format:
     ```json
-    {
+    {{
     "basic_content": 15,
     "basic_expression": 18,
     "development_level": 12,
-    "justifications": {
+    "justifications": {{
         "basic_content": "The essay maintains focus on the topic and presents a clear central idea, but the supporting examples are somewhat limited.",
         "basic_expression": "Structure is logical and language mostly fluent with minor word choice errors; handwriting is neat.",
         "development_level": "The writer attempts to analyse deeper causes and uses some imagery, but ideas lack originality and development."
-    },
+    }},
     "feedback": "Develop your arguments with richer examples and aim for more original insights. Vary sentence patterns and enhance expressive language to achieve higher development scores."
-    }""",
+    }}```""",
         "ielts": """
     You are an assistant responsible for evaluating IELTS Writing Task 1 and Task 2 responses. Your task is to score the student's writing according to the official IELTS band descriptors: Task Achievement/Response, Coherence and Cohesion, Lexical Resource, and Grammatical Range and Accuracy.
 
@@ -344,18 +344,21 @@ exams_types = {
 
     ## Example response format:
     ```json
-    {
+    {{
     "task_achievement_response": 7,
     "coherence_cohesion": 6,
     "lexical_resource": 7,
     "grammatical_range_accuracy": 5,
-    "justifications": {
+    "justifications": {{
         "task_achievement_response": "The essay fully addresses the questions in both tasks, though Task 2 could provide deeper analysis of the argument.",
         "coherence_cohesion": "Information is organised logically with clear paragraphs, but some linking words are repetitive.",
         "lexical_resource": "Demonstrates a good range of vocabulary with occasional inaccuracies; some words are overused.",
         "grammatical_range_accuracy": "Uses a mix of simple and complex sentences, but there are several subject–verb agreement and punctuation errors."
-    },
+    }},
     "feedback": "Focus on expanding your variety of cohesive devices and review grammar rules to reduce errors. Try to introduce more precise vocabulary and develop your arguments more thoroughly in Task 2."
-    }
-    """
+    }}```
+    """,
+    "cuet": "prompt_cuet",
+    "exani": "prompt_exani",
+    "icfes": "prompt_icfes"
     }
