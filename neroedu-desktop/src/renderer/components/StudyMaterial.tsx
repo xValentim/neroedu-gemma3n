@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { apiService } from '../services/api';
 import { FlashcardResponse, KeyTopicsResponse } from '../types';
+import { MarkdownRenderer } from '../utils/markdownRenderer';
+import ollamaImage from '../../assets/ollama.png';
 
 interface StudyMaterialProps {
   examType: string;
@@ -132,8 +134,15 @@ export const StudyMaterial: React.FC<StudyMaterialProps> = ({ examType, modelNam
       </button>
 
       <div className="selection-content">
-        <h1>Study Material Generator</h1>
-        <p>Generate flashcards and key topics for effective studying</p>
+        <div className="study-header-content">
+          <div className="ollama-branding-header">
+            <img src={ollamaImage} alt="Ollama" className="ollama-logo-header" />
+          </div>
+          <div>
+            <h1>Study Material Generator</h1>
+            <p>Generate flashcards and key topics for effective studying</p>
+          </div>
+        </div>
 
         <div className="input-section">
           <label htmlFor="topic">Study Topic:</label>
@@ -255,7 +264,7 @@ export const StudyMaterial: React.FC<StudyMaterialProps> = ({ examType, modelNam
                         <div className="flashcard-front">
               <div className="card-label">Question</div>
               <div className="card-content">
-                {currentCard.question}
+                <MarkdownRenderer content={currentCard.question} />
               </div>
               <button
                 className="flip-button"
@@ -268,7 +277,7 @@ export const StudyMaterial: React.FC<StudyMaterialProps> = ({ examType, modelNam
             <div className="flashcard-back">
               <div className="card-label">Answer</div>
               <div className="card-content">
-                {currentCard.answer}
+                <MarkdownRenderer content={currentCard.answer} />
               </div>
               <button
                 className="flip-button"
@@ -325,7 +334,7 @@ export const StudyMaterial: React.FC<StudyMaterialProps> = ({ examType, modelNam
           <div className="explanation-section">
             <h3>📚 General Explanation</h3>
             <div className="explanation-text">
-              {keyTopics.explanation}
+              <MarkdownRenderer content={keyTopics.explanation} />
             </div>
           </div>
 
@@ -335,7 +344,9 @@ export const StudyMaterial: React.FC<StudyMaterialProps> = ({ examType, modelNam
               {keyTopics.key_topics.map((topicItem, index) => (
                 <div key={index} className="topic-item">
                   <span className="topic-number">{index + 1}</span>
-                  <div className="topic-text">{topicItem}</div>
+                  <div className="topic-text">
+                    <MarkdownRenderer content={topicItem} />
+                  </div>
                 </div>
               ))}
             </div>

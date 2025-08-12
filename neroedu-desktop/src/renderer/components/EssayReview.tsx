@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { apiService } from '../services/api';
 import { EssayResponse, CompetenciaResult, GeneralEssayResponse, Essay } from '../types';
+import ollamaImage from '../../assets/ollama.png';
 
 interface EssayReviewProps {
   examType: string;
@@ -92,6 +93,11 @@ export const EssayReview: React.FC<EssayReviewProps> = ({ examType, modelName, o
         setResults(evaluationResults);
         setTotalScore(Math.round(totalPoints / 5)); // Average score
         setGeneralResult(null);
+
+        // Auto-save essay with feedback for ENEM
+        const calculatedGrade = calculateGradeFromEnem(evaluationResults);
+        const extractedFeedback = extractFeedback(evaluationResults, null);
+        await autoSaveEssayWithFeedback(calculatedGrade, extractedFeedback);
       } else {
         // Use general essay evaluation for other exam types
         const response = await apiService.evaluateGeneralEssay({
@@ -103,6 +109,12 @@ export const EssayReview: React.FC<EssayReviewProps> = ({ examType, modelName, o
         setGeneralResult(response);
         setResults([]);
         setTotalScore(0);
+
+        // Auto-save essay with feedback for other exam types
+        // For non-ENEM exams, we'll extract a score from the feedback if possible
+        const extractedFeedback = extractFeedback([], response);
+        const calculatedGrade = extractGradeFromGeneralFeedback(extractedFeedback);
+        await autoSaveEssayWithFeedback(calculatedGrade, extractedFeedback);
       }
 
       setCurrentView('results');
@@ -120,6 +132,82 @@ export const EssayReview: React.FC<EssayReviewProps> = ({ examType, modelName, o
     setGeneralResult(null);
     setTotalScore(0);
     setCurrentView('list');
+  };
+
+  // Helper function to calculate grade from ENEM competency results
+  const calculateGradeFromEnem = (results: CompetenciaResult[]): number => {
+    if (results.length === 0) return 0;
+    const totalPoints = results.reduce((sum, result) => sum + result.evaluation.nota, 0);
+    return Math.round(totalPoints / results.length); // Average score
+  };
+
+  // Helper function to extract feedback from evaluation results
+  const extractFeedback = (results: CompetenciaResult[], generalResult: GeneralEssayResponse | null): string => {
+    if (examType === 'enem' && results.length > 0) {
+      // For ENEM, combine all competency feedback
+      return results.map((result, index) =>
+        `Competência ${result.competencia}: ${result.evaluation.feedback}\n\nJustificativa: ${result.evaluation.justificativa}`
+      ).join('\n\n---\n\n');
+    } else if (generalResult) {
+      // For other exam types, use general feedback
+      return generalResult.response;
+    }
+    return '';
+  };
+
+  // Helper function to extract grade from general feedback
+  const extractGradeFromGeneralFeedback = (feedback: string): number => {
+    // Try to find numeric scores in the feedback
+    const scorePatterns = [
+      /score[:\s]+(\d+)/i,
+      /grade[:\s]+(\d+)/i,
+      /rating[:\s]+(\d+)/i,
+      /(\d+)\/100/i,
+      /(\d+)%/i,
+      /(\d+)\s*out\s*of\s*100/i
+    ];
+
+    for (const pattern of scorePatterns) {
+      const match = feedback.match(pattern);
+      if (match) {
+        const score = parseInt(match[1]);
+        if (score >= 0 && score <= 100) {
+          return score;
+        }
+      }
+    }
+
+    // If no explicit score found, analyze sentiment/quality keywords
+    const positiveWords = ['excellent', 'good', 'strong', 'clear', 'well', 'effective'];
+    const negativeWords = ['poor', 'weak', 'unclear', 'needs improvement', 'lacking'];
+
+    const lowerFeedback = feedback.toLowerCase();
+    const positiveCount = positiveWords.filter(word => lowerFeedback.includes(word)).length;
+    const negativeCount = negativeWords.filter(word => lowerFeedback.includes(word)).length;
+
+    if (positiveCount > negativeCount) {
+      return 85; // Good essay
+    } else if (negativeCount > positiveCount) {
+      return 65; // Needs improvement
+    } else {
+      return 75; // Average essay
+    }
+  };
+
+  // Function to automatically save essay after evaluation
+  const autoSaveEssayWithFeedback = async (grade: number, feedback: string) => {
+    try {
+      await apiService.createEssay({
+        essay: essay.trim(),
+        grade,
+        exam_type: examType,
+        feedback
+      });
+      await loadEssays(); // Reload the list to show the new essay
+    } catch (err) {
+      console.error('Error auto-saving essay:', err);
+      // Don't show error to user for auto-save failure, as it's not critical
+    }
   };
 
   const handleNewEssay = () => {
@@ -145,8 +233,9 @@ export const EssayReview: React.FC<EssayReviewProps> = ({ examType, modelName, o
     try {
       await apiService.createEssay({
         essay: essay.trim(),
-        model_name: modelName,
-        exam_type: examType
+        grade: 0, // No grade for manually saved essays
+        exam_type: examType,
+        feedback: '' // No feedback for manually saved essays
       });
       await loadEssays(); // Reload the list
       setCurrentView('list');
@@ -163,8 +252,15 @@ export const EssayReview: React.FC<EssayReviewProps> = ({ examType, modelName, o
       </button>
 
       <div className="list-content">
-        <h1>Essay Review</h1>
-        <p>Manage and evaluate your essays</p>
+        <div className="essay-header-content">
+          <div className="ollama-branding-header">
+            <img src={ollamaImage} alt="Ollama" className="ollama-logo-header" />
+          </div>
+          <div>
+            <h1>Essay Review</h1>
+            <p>Manage and evaluate your essays</p>
+          </div>
+        </div>
 
         {isLoadingEssays ? (
           <div className="loading-essays">
@@ -190,6 +286,17 @@ export const EssayReview: React.FC<EssayReviewProps> = ({ examType, modelName, o
                 <div className="essay-card-header">
                   <h3>Essay #{essayItem.essay_id}</h3>
                   <div className="essay-card-actions">
+                    {essayItem.feedback && (
+                      <button
+                        className="feedback-button small"
+                        onClick={() => {
+                          alert(essayItem.feedback);
+                        }}
+                        title="View Feedback"
+                      >
+                        📝
+                      </button>
+                    )}
                     <button
                       className="evaluate-button small"
                       onClick={() => {
@@ -212,7 +319,12 @@ export const EssayReview: React.FC<EssayReviewProps> = ({ examType, modelName, o
                 </div>
                 <div className="essay-meta">
                   <span className="exam-type">{examTypes.find(t => t.value === essayItem.exam_type)?.label}</span>
-                  <span className="model-name">{essayItem.model_name}</span>
+                  {essayItem.grade > 0 && (
+                    <span className="essay-grade">Grade: {essayItem.grade}</span>
+                  )}
+                  {essayItem.feedback && (
+                    <span className="has-feedback">📝 Has Feedback</span>
+                  )}
                 </div>
               </div>
             ))}
@@ -230,9 +342,16 @@ export const EssayReview: React.FC<EssayReviewProps> = ({ examType, modelName, o
         ← Back to Home
       </button>
 
-      <div className="input-content">
-        <h1>Essay Review</h1>
-        <p>Get detailed feedback on your essay based on {examTypes.find(t => t.value === examType)?.label} standards</p>
+              <div className="input-content">
+          <div className="essay-header-content">
+            <div className="ollama-branding-header">
+              <img src={ollamaImage} alt="Ollama" className="ollama-logo-header" />
+            </div>
+            <div>
+              <h1>Essay Review</h1>
+              <p>Get detailed feedback on your essay based on {examTypes.find(t => t.value === examType)?.label} standards</p>
+            </div>
+          </div>
 
         <div className="essay-input-section">
           <label htmlFor="essay">Your Essay:</label>
@@ -262,13 +381,6 @@ export const EssayReview: React.FC<EssayReviewProps> = ({ examType, modelName, o
         )}
 
         <div className="action-buttons">
-          <button
-            className="save-button"
-            onClick={handleSaveEssay}
-            disabled={isLoading || !essay.trim()}
-          >
-            💾 Save Essay
-          </button>
           <button
             className="evaluate-button"
             onClick={handleEvaluateEssay}

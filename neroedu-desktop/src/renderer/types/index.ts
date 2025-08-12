@@ -153,16 +153,18 @@ export interface GeneralEssayResponse {
 export interface Essay {
   essay_id: number;
   essay: string;
-  model_name: string;
+  grade: number;
   exam_type: string;
+  feedback: string;
   created_at?: string;
   updated_at?: string;
 }
 
 export interface InputEssay {
   essay: string;
-  model_name: string;
+  grade: number;
   exam_type: string;
+  feedback: string;
 }
 
 export interface CompetenciaResult {

@@ -22,6 +22,92 @@ import {
 const BASE_URL = 'http://127.0.0.1:8000';
 
 class ApiService {
+  // Robust JSON extraction utility
+  private extractJsonFromResponse<T>(response: string): T {
+    // Method 1: Try to find JSON within ```json``` code blocks
+    const jsonCodeBlockMatch = response.match(/```json\s*\n(.*?)\n```/s);
+    if (jsonCodeBlockMatch) {
+      try {
+        return JSON.parse(jsonCodeBlockMatch[1]);
+      } catch (e) {
+        console.warn('Failed to parse JSON from code block:', e);
+      }
+    }
+
+    // Method 2: Try to find JSON within ``` code blocks (without json specification)
+    const codeBlockMatch = response.match(/```\s*\n(.*?)\n```/s);
+    if (codeBlockMatch) {
+      try {
+        return JSON.parse(codeBlockMatch[1]);
+      } catch (e) {
+        console.warn('Failed to parse JSON from generic code block:', e);
+      }
+    }
+
+    // Method 3: Try to find JSON object within curly braces (improved version)
+    const jsonStartIndex = response.indexOf('{');
+    if (jsonStartIndex !== -1) {
+      // Find the matching closing brace by counting braces
+      let braceCount = 0;
+      let inString = false;
+      let escaped = false;
+
+      for (let i = jsonStartIndex; i < response.length; i++) {
+        const char = response[i];
+
+        if (escaped) {
+          escaped = false;
+          continue;
+        }
+
+        if (char === '\\') {
+          escaped = true;
+          continue;
+        }
+
+        if (char === '"' && !escaped) {
+          inString = !inString;
+          continue;
+        }
+
+        if (!inString) {
+          if (char === '{') {
+            braceCount++;
+          } else if (char === '}') {
+            braceCount--;
+            if (braceCount === 0) {
+              const jsonStr = response.substring(jsonStartIndex, i + 1);
+              try {
+                return JSON.parse(jsonStr);
+              } catch (e) {
+                console.warn('Failed to parse extracted JSON object:', e);
+                break;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Method 4: Try to find JSON array within square brackets
+    const jsonArrayMatch = response.match(/\[[\s\S]*\]/);
+    if (jsonArrayMatch) {
+      try {
+        return JSON.parse(jsonArrayMatch[0]);
+      } catch (e) {
+        console.warn('Failed to parse JSON array:', e);
+      }
+    }
+
+    // Method 5: Try to parse the entire response as JSON (fallback)
+    try {
+      return JSON.parse(response);
+    } catch (e) {
+      console.error('Failed to extract JSON from response:', response);
+      throw new Error(`Unable to extract valid JSON from response: ${response.substring(0, 100)}...`);
+    }
+  }
+
   private async fetchJson<T>(url: string, options?: RequestInit): Promise<T> {
     try {
       console.log(`Making API request to: ${BASE_URL}${url}`);
@@ -81,6 +167,7 @@ class ApiService {
     onError: (error: Error) => void
   ): Promise<void> {
     try {
+      console.log(`Pulling model: ${modelName}`);
       const response = await fetch(`${BASE_URL}/pull-model/${modelName}`, {
         method: 'POST',
         headers: {
@@ -131,14 +218,7 @@ class ApiService {
       body: JSON.stringify(request),
     });
 
-    // Parse the JSON from the response string
-    const jsonMatch = response.match(/```json\n(.*?)\n```/s);
-    if (jsonMatch) {
-      return JSON.parse(jsonMatch[1]);
-    } else {
-      // Fallback: try to parse the entire response as JSON
-      return JSON.parse(response);
-    }
+    return this.extractJsonFromResponse(response);
   }
 
   async generateKeyTopics(request: KeyTopicsRequest): Promise<KeyTopicsResponse> {
@@ -147,14 +227,7 @@ class ApiService {
       body: JSON.stringify(request),
     });
 
-    // Parse the JSON from the response string
-    const jsonMatch = response.match(/```json\n(.*?)\n```/s);
-    if (jsonMatch) {
-      return JSON.parse(jsonMatch[1]);
-    } else {
-      // Fallback: try to parse the entire response as JSON
-      return JSON.parse(response);
-    }
+    return this.extractJsonFromResponse(response);
   }
 
   async generateQuestion(request: SimuladoRequest): Promise<QuestionResponse> {
@@ -163,14 +236,7 @@ class ApiService {
       body: JSON.stringify(request),
     });
 
-    // Parse the JSON from the response string
-    const jsonMatch = response.response.match(/```json\n(.*?)\n```/s);
-    if (jsonMatch) {
-      return JSON.parse(jsonMatch[1]);
-    } else {
-      // Fallback: try to parse the entire response as JSON
-      return JSON.parse(response.response);
-    }
+    return this.extractJsonFromResponse(response.response);
   }
 
   async evaluateEssay(request: EssayRequest): Promise<EssayEvaluation> {
@@ -179,17 +245,11 @@ class ApiService {
       body: JSON.stringify(request),
     });
 
-    // Parse the JSON from the response string
-    const jsonMatch = response.response.match(/```json\n(.*?)\n```/s);
-    if (jsonMatch) {
-      return JSON.parse(jsonMatch[1]);
-    } else {
-      // Fallback: try to parse the entire response as JSON
-      return JSON.parse(response.response);
-    }
+    return this.extractJsonFromResponse(response.response);
   }
 
   async evaluateGeneralEssay(request: GeneralEssayRequest): Promise<GeneralEssayResponse> {
+    console.log('Evaluating general essay:', request);
     const response = await this.fetchJson<GeneralEssayResponse>('/call-essay', {
       method: 'POST',
       body: JSON.stringify(request),
@@ -214,7 +274,7 @@ class ApiService {
     });
   }
 
-  async updateEssay(essayId: number, essay: Essay): Promise<Essay> {
+  async updateEssay(essayId: number, essay: Partial<Essay>): Promise<Essay> {
     return this.fetchJson<Essay>(`/essays/${essayId}`, {
       method: 'PUT',
       body: JSON.stringify(essay),

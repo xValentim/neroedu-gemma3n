@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { apiService } from '../services/api';
-import { QuestionResponse } from '../types';
+import { SimuladoResponse, QuestionResponse } from '../types';
+import ollamaImage from '../../assets/ollama.png';
 
 interface PracticeTestProps {
   examType: string;
@@ -118,8 +119,15 @@ export const PracticeTest: React.FC<PracticeTestProps> = ({ examType, modelName,
       </button>
 
       <div className="selection-content">
-        <h1>Practice Test Generator</h1>
-        <p>Generate practice questions with instant feedback and explanations</p>
+        <div className="practice-header-content">
+          <div className="ollama-branding-header">
+            <img src={ollamaImage} alt="Ollama" className="ollama-logo-header" />
+          </div>
+          <div>
+            <h1>Practice Test Generator</h1>
+            <p>Generate practice questions with instant feedback and explanations</p>
+          </div>
+        </div>
 
         <div className="input-section">
           <label htmlFor="topic">Study Topic:</label>

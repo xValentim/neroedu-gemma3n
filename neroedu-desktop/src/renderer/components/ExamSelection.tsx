@@ -40,7 +40,19 @@ const examTypes = [
     name: 'Exames Nacionais',
     description: 'National Exams (Portugal)',
     icon: '🇵🇹'
-  }
+  },
+  {
+    id: 'gaokao',
+    name: 'GAOKAO',
+    description: 'National College Entrance Examination (China)',
+    icon: '🇨🇳'
+  },
+  {
+    id: 'ielts',
+    name: 'IELTS',
+    description: 'International English Language Testing System',
+    icon: '🇬🇧'
+  },
 ];
 
 const ExamSelection: React.FC<ExamSelectionProps> = ({ onExamSelected }) => {
