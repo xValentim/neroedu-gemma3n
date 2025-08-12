@@ -7,6 +7,7 @@ import requests
 import uvicorn
 import json
 import os
+import sys
 
 from src.utils import get_models_info, delete_model, example_essay, prompt_competencia_1, prompt_competencia_2, prompt_competencia_3, prompt_competencia_4, prompt_competencia_5, exams_types
 from src.retriever import Retriever
@@ -21,43 +22,113 @@ from src.schemas import InputDataEssayEnem, InputSimulado, InputFlashcard, Input
 from pydantic import BaseModel
 import random
 
+# =========================
+# 📁 Diretórios seguros
+# =========================
+if getattr(sys, 'frozen', False):
+    base_dir = os.path.dirname(sys.executable)
+else:
+    base_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Cron job/Background task
+# 🧠 Se o executável estiver dentro de uma pasta "bin", subir um nível
+if os.path.basename(base_dir).lower() == "bin":
+    BASE_DIR = os.path.dirname(base_dir)
+else:
+    BASE_DIR = base_dir
+
+print("[INIT] BASE_DIR:", BASE_DIR)
+
+STORAGE_DIR = os.path.join(BASE_DIR, "storage")
+VECTORSTORE_DIR = os.path.join(BASE_DIR, "vectorstore")
+DATABASE_PATH = os.path.join(STORAGE_DIR, "database.json")
+
+# =========================
+# 📦 Funções auxiliares
+# =========================
+def load_data():
+    print("[LOAD] Carregando:", DATABASE_PATH)
+    if not os.path.exists(DATABASE_PATH):
+        print("[LOAD] Criando novo database.json")
+        with open(DATABASE_PATH, "w") as f:
+            json.dump([], f)
+    with open(DATABASE_PATH, "r") as f:
+        return json.load(f)
+
+def save_data(data):
+    with open(DATABASE_PATH, "w") as f:
+        json.dump(data, f, indent=4)
+
+# =========================
+# 🔁 Inicialização do app
+# =========================
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("Init Vectorstores...")
+    print("[LIFESPAN] Inicializando vectorstores...")
 
-    global retrieve_enem
-    retrieve_enem = Retriever(path_csv="./vectorstore/data_playlists_enem.csv", 
-                          path_model='./vectorstore/tfidf_model_enem.pkl')
+    global retrieve_enem, retrieve_cuet, retrieve_exames, retrieve_exani, retrieve_icfes, retrieve_sat
 
-    retrieve_cuet = Retriever(path_csv="./vectorstore/cuet_edital.csv", 
-                            path_model='./vectorstore/tfidf_model_cuet_edital.pkl')
+    def build_retriever(csv, model):
+        return Retriever(
+            path_csv=os.path.join(VECTORSTORE_DIR, csv),
+            path_model=os.path.join(VECTORSTORE_DIR, model)
+        )
 
-    retrieve_exames = Retriever(path_csv="./vectorstore/exames_nacionais_edital.csv", 
-                                path_model='./vectorstore/tfidf_model_exames_nacionais_edital.pkl')
+    retrieve_enem = build_retriever("data_playlists_enem.csv", "tfidf_model_enem.pkl")
+    # retrieve_cuet = build_retriever("cuet_edital.csv", "tfidf_model_cuet_edital.pkl")
+    # retrieve_exames = build_retriever("exames_nacionais_edital.csv", "tfidf_model_exames_nacionais_edital.pkl")
+    # retrieve_exani = build_retriever("exani_edital.csv", "tfidf_model_exani_edital.pkl")
+    # retrieve_icfes = build_retriever("icfes_edital.csv", "tfidf_model_icfes_edital.pkl")
+    # retrieve_sat = build_retriever("sat_edital.csv", "tfidf_model_sat_edital.pkl")
 
-    retrieve_exani = Retriever(path_csv="./vectorstore/exani_edital.csv", 
-                            path_model='./vectorstore/tfidf_model_exani_edital.pkl')
-
-    retrieve_icfes = Retriever(path_csv="./vectorstore/icfes_edital.csv", 
-                            path_model='./vectorstore/tfidf_model_icfes_edital.pkl')
-
-    retrieve_sat = Retriever(path_csv="./vectorstore/sat_edital.csv", 
-                            path_model='./vectorstore/tfidf_model_sat_edital.pkl')
-    print("Vectorstores initialized!")
+    print("[LIFESPAN] Vectorstores prontos.")
     yield
-    print("Shutdown Server...")
+    print("[LIFESPAN] Encerrando servidor...")
+
+
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# STORAGE_DIR = os.path.join(BASE_DIR, "storage")
+# VECTORSTORE_DIR = os.path.join(BASE_DIR, "vectorstore")
+
+# # Cron job/Background task
+# @asynccontextmanager
+# async def lifespan(app: FastAPI):
+#     print("Init Vectorstores...")
+
+#     global retrieve_enem
+#     # retrieve_enem = Retriever(
+#     #                     path_csv=os.path.join(VECTORSTORE_DIR, "release/build/resources/data_playlists_enem.csv"),
+#     #                     path_model=os.path.join(VECTORSTORE_DIR, "release/build/resources/tfidf_model_enem.pkl")
+#     #                 )
+
+#     # retrieve_cuet = Retriever(path_csv="./vectorstore/cuet_edital.csv", 
+#     #                         path_model='./vectorstore/tfidf_model_cuet_edital.pkl')
+
+#     # retrieve_exames = Retriever(path_csv="./vectorstore/exames_nacionais_edital.csv", 
+#     #                             path_model='./vectorstore/tfidf_model_exames_nacionais_edital.pkl')
+
+#     # retrieve_exani = Retriever(path_csv="./vectorstore/exani_edital.csv", 
+#     #                         path_model='./vectorstore/tfidf_model_exani_edital.pkl')
+
+#     # retrieve_icfes = Retriever(path_csv="./vectorstore/icfes_edital.csv", 
+#     #                         path_model='./vectorstore/tfidf_model_icfes_edital.pkl')
+
+#     # retrieve_sat = Retriever(path_csv="./vectorstore/sat_edital.csv", 
+#     #                         path_model='./vectorstore/tfidf_model_sat_edital.pkl')
+#     print("Vectorstores initialized!")
+#     yield
+#     print("Shutdown Server...")
 
 # Helpers para manipular o JSON
-def load_data(database_file="./storage/database.json"):
+def load_data():
+    database_file = os.path.join(STORAGE_DIR, "release/build/resources/database.json")
     if not os.path.exists(database_file):
         with open(database_file, "w") as f:
             json.dump([], f)
     with open(database_file, "r") as f:
         return json.load(f)
 
-def save_data(data, database_file="./storage/database.json"):
+def save_data(data):
+    database_file = os.path.join(STORAGE_DIR, "release/build/resources/database.json")
     with open(database_file, "w") as f:
         json.dump(data, f, indent=4)
 
@@ -171,16 +242,19 @@ async def call_simulado(input_simulado: InputSimulado):
     lite_rag = input_simulado.lite_rag
     exam_type = input_simulado.exam_type.strip().lower()
     
-    if exam_type not in ['enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais']:
-        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais'.")
-    
+    if exam_type not in ['enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais',
+                         'gaokao', 'ielts']:
+        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais', 'gaokao', 'ielts'.")
+
     language = {
         "enem": "portuguese",
         "icfes": "spanish",
         "exani": "spanish",
         "sat": "english",
         "cuet": "english",
-        "exames_nacionais": "portuguese"
+        "exames_nacionais": "portuguese",
+        "gaokao": "chinese",
+        "ielts": "english"
     }
     
     template = [
@@ -251,8 +325,9 @@ async def call_simulado(input_simulado: InputSimulado):
     exam_type = input_simulado.exam_type.strip().lower()
     questions = input_simulado.questions
 
-    if exam_type not in ['enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais']:
-        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais'.")
+    if exam_type not in ['enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais',
+                         'gaokao', 'ielts']:
+        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais', 'gaokao', 'ielts'.")
     
     language = {
         "enem": "portuguese-Brasil",
@@ -260,7 +335,9 @@ async def call_simulado(input_simulado: InputSimulado):
         "exani": "spanish",
         "sat": "english",
         "cuet": "english",
-        "exames_nacionais": "portuguese-Portugal"
+        "exames_nacionais": "portuguese-Portugal",
+        "gaokao": "chinese",
+        "ielts": "english"
     }
     
     template = [
@@ -323,8 +400,9 @@ async def call_flashcard(input_flashcard: InputFlashcard):
     
     print(input_flashcard.flashcards_existentes)
     
-    if exam_type not in ['enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais']:
-        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais'.")
+    if exam_type not in ['enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais',
+                         'gaokao', 'ielts']:
+        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais', 'gaokao', 'ielts'.")
     
     language = {
         "enem": "portuguese-Brasil",
@@ -332,7 +410,9 @@ async def call_flashcard(input_flashcard: InputFlashcard):
         "exani": "spanish",
         "sat": "english",
         "cuet": "english",
-        "exames_nacionais": "portuguese-Portugal"
+        "exames_nacionais": "portuguese-Portugal",
+        "gaokao": "chinese",
+        "ielts": "english"
     }
 
     if len(flashcards_existentes) == 0:
@@ -404,8 +484,9 @@ async def call_key_topics(input_data_key_topics: InputDataKeyTopics):
     exam_type = input_data_key_topics.exam_type
     lite_rag = input_data_key_topics.lite_rag
     
-    if exam_type not in ['enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais']:
-        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais'.")
+    if exam_type not in ['enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais',
+                         'gaokao', 'ielts']:
+        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'icfes', 'exani', 'sat', 'cuet', 'exames_nacionais', 'gaokao', 'ielts'.")
     
     language = {
         "enem": "portuguese-Brasil",
@@ -413,7 +494,9 @@ async def call_key_topics(input_data_key_topics: InputDataKeyTopics):
         "exani": "spanish",
         "sat": "english",
         "cuet": "english",
-        "exames_nacionais": "portuguese-Portugal"
+        "exames_nacionais": "portuguese-Portugal",
+        "gaokao": "chinese",
+        "ielts": "english"
     }
 
     template = [
@@ -473,8 +556,9 @@ async def call_essay(input_data: InputDataEssay):
     exam_type = input_data.exam_type.strip().lower()
     
     llm = ChatOllama(model=model_name, temperature=0.0)
-    if exam_type not in ['enem', 'sat','exames_nacionais', 'gaokao', 'ielts']:
-        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'sat', 'exames_nacionais', 'gaokao', 'ielts'.")
+    if exam_type not in ['enem', 'sat','exames_nacionais', 'gaokao', 'ielts',
+                         'icfes', 'cuet', 'exani']:
+        raise HTTPException(status_code=400, detail="Invalid exam type. Must be one of: 'enem', 'sat', 'exames_nacionais', 'gaokao', 'ielts', 'icfes', 'cuet', 'exani'.")
     
     system_prompt = exams_types[exam_type]
     promt = ChatPromptTemplate.from_messages(
