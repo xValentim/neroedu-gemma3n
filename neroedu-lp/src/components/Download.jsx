@@ -8,18 +8,18 @@ const downloadOptions = [
     name: 'Windows',
     icon: '🪟',
     description: 'Download for Windows 10/11',
-    downloadUrl: '#',
-    fileSize: '~150 MB',
+    downloadUrl: 'https://neroedu.s3.us-east-1.amazonaws.com/NeroEdu+Setup+4.6.0.exe',
+    fileSize: '~450 MB',
     requirements: 'Windows 10 or later'
   },
-  {
+  /*{
     name: 'macOS',
     icon: '🍎',
     description: 'Download for macOS',
     downloadUrl: '#',
     fileSize: '~180 MB',
     requirements: 'macOS 10.15 or later'
-  },
+  },*/
   /*{
     name: 'Linux',
     icon: '🐧',
